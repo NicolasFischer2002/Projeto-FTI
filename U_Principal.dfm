@@ -1,9 +1,11 @@
 object F_Principal: TF_Principal
   Left = 0
   Top = 0
+  Width = 1216
+  Height = 639
+  Anchors = [akTop]
+  AutoScroll = True
   Caption = 'Principal'
-  ClientHeight = 600
-  ClientWidth = 1200
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +14,7 @@ object F_Principal: TF_Principal
   Font.Style = []
   OldCreateOrder = True
   Position = poScreenCenter
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   PixelsPerInch = 96
@@ -39,7 +42,6 @@ object F_Principal: TF_Principal
     Color = 4661279
     ParentBackground = False
     TabOrder = 1
-    ExplicitHeight = 550
     object SB_Atualizar: TSpeedButton
       Left = 0
       Top = 435
@@ -1651,7 +1653,7 @@ object F_Principal: TF_Principal
       BevelOuter = bvNone
       TabOrder = 0
       object TImage_LogoLeftTop: TImage
-        Left = 34
+        Left = 35
         Top = 27
         Width = 229
         Height = 80
@@ -2210,7 +2212,6 @@ object F_Principal: TF_Principal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitHeight = 550
     object Pnl_Center: TPanel
       Left = 0
       Top = 0
@@ -2221,7 +2222,6 @@ object F_Principal: TF_Principal
       Color = 5251875
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 550
       DesignSize = (
         900
         590)
@@ -2896,6 +2896,36 @@ object F_Principal: TF_Principal
           5403FF01CD5EEB95682C876B0000000049454E44AE426082}
         Stretch = True
       end
+      object Lbl_Time: TLabel
+        Left = 328
+        Top = 317
+        Width = 238
+        Height = 73
+        Anchors = [akTop]
+        AutoSize = False
+        Caption = '19:12:45'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -64
+        Font.Name = 'Times New Roman'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Lbl_DataCompleta: TLabel
+        Left = 217
+        Top = 401
+        Width = 449
+        Height = 40
+        Anchors = [akTop]
+        Caption = 'Ter'#231'a-feira, Dezembro 19, 2019'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -35
+        Font.Name = 'Times New Roman'
+        Font.Style = []
+        ParentFont = False
+        Transparent = False
+      end
       object Pnl_TopPurple: TPanel
         Left = 0
         Top = 0
@@ -2906,6 +2936,61 @@ object F_Principal: TF_Principal
         Color = 4201242
         ParentBackground = False
         TabOrder = 0
+        DesignSize = (
+          900
+          80)
+        object Image1: TImage
+          Left = 832
+          Top = 16
+          Width = 48
+          Height = 48
+          Cursor = crHandPoint
+          Anchors = [akRight]
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+            00301006000000079225C40000000467414D410000B18F0BFC61050000000662
+            4B4744000000000000F943BB7F0000000970485973000000600000006000F06B
+            42CF0000000774494D4507E60C1C17011A2EE62AD7000003D14944415478DAED
+            5ACB6ED340143DB613BAA00D4281A4525510880D14F80216F00D6D59F31620D1
+            2DEC805DB7B0A9042D3F40E117406AD708F1588204E5D1140A020A1492C6DCB9
+            73EDB8A88B8E4332653AC7B26C8F9D9BB973C6F7CC9D71000FAB086C5760B3C3
+            1360199E00CBF004588627C0323C0196E109B00C4F806578022C233701EFF10C
+            B7F9AC29461253C931B6EDDB3F46E2652CDEC57C16D216D1B18A833895DBAA01
+            E6F01C93C836779D765D8D1825B95384DB04D4A9DB3568FF4AFB16F2BD997A3B
+            88219C31B66A805744C01492E60DD0C37F3E22772FA7D5C8697E8323168FE6C4
+            FF71FCE28E778F4888999C5D9D26E05D1A7A142AFCA7015540E388ED16EA3266
+            3900071896EB050C50283A6D60C19880B778825BE9558598570168B31230C3CD
+            8F94800FE827023AFA06BCC1232620E61F0714ED550C1C11511A93A7B6DB6E99
+            0EE3B31C6F500856123CCDEDA1F6320EE0AC81A51C6FC0E3CC1B00ACD0A61011
+            15018D0542A6A50C574538640F17A9DB1568AF911C37F05B9E501E573AAD0109
+            12229AB4E98A15D858282FA5DB04A8715E441EAB0EA85B6027F5FC93B9AD7A58
+            8327C0327213308FA79C0FE83C508522AD058918B9C76DCBAB600DBFFB71C868
+            F899C0B895623CC0553A7E411F7640896F99CE027CC71255655008E8CB637A83
+            234BC0376C452F69C01CF9BC48F9708C6D54F691EF1DC37503AB390878886B7C
+            5667F5AF11F77B715CEE9E976A56D0EA2BAE40772DEDD182944DD0B86F1E2F70
+            174A967BD8E3A3D23EEB43AE4C7832BDAACADCC8B45C6F9E444C37DC2C852215
+            865A99708542D139633B06F0531159CCF04C10D2B93045C0E1CEE601D910B40C
+            1D82F66154EE5E703E0469D4E43841DECFE32547003527D08510D412E112251F
+            CA402FE582017E9222F48A08C371118E49768BE4711F8970444148D1A144F813
+            BA20C209D430F40EF47C501D7A81224236FF759780E43A949206F430D424F627
+            70AD95FE3B78022CC34FC6AD1BABBD521970C8A521970DD0E8A72B99F0DFD3D1
+            AA227A71BA48BBFBD3D1DAAB45F63B22F92DD0A6CA229925359D156D6341462F
+            C9E8059951A9D82579CAFD059980B79B94FD168982698E04AA4DCAD88F130696
+            FC92645B98E5F581309309573164F4798ACF84DBC20C2B609C59131EA0E16847
+            9724D7FE2C65580C5D9172D73F4B792D67E3F841FE2FE13E0BB292E33D24C663
+            0616DBFE302BA40C78855FC3020951492AE6FE87594A8223FE30AB8165190BAA
+            3BBB89808BC65673A046A148BD094DF9F340869F716AD26502B49F7AD8ADFDAF
+            52C39B849ED5563DACC11360199E00CBF004588627C0323C0196E109B00C4F80
+            6578022CC31360197F0007CB18403540BAF60000002574455874646174653A63
+            726561746500323032322D31322D32385432333A30313A32332B30303A303054
+            9B43F00000002574455874646174653A6D6F6469667900323032322D31322D32
+            385432333A30313A32332B30303A303025C6FB4C000000287445587464617465
+            3A74696D657374616D7000323032322D31322D32385432333A30313A32362B30
+            303A303020EBF5340000000049454E44AE426082}
+          ShowHint = False
+          Stretch = True
+        end
         object Pnl_TopHome: TPanel
           Left = 19
           Top = 12
@@ -3022,5 +3107,10 @@ object F_Principal: TF_Principal
         end
       end
     end
+  end
+  object TTimer: TTimer
+    OnTimer = TTimerTimer
+    Left = 1164
+    Top = 554
   end
 end
