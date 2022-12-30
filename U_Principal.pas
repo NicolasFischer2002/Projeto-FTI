@@ -17,7 +17,6 @@ type
     Pnl_TopPurple: TPanel;
     TImage_LogoCenter: TImage;
     Pnl_LeftTop: TPanel;
-    TImage_Home: TImage;
     Label1: TLabel;
     Pnl_TopHome: TPanel;
     Image1: TImage;
@@ -33,6 +32,7 @@ type
     Lbl_DashBoard: TLabel;
     Lbl_Investimentos: TLabel;
     Lbl_Atualizar: TLabel;
+    Image2: TImage;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure TTimerTimer(Sender: TObject);
@@ -71,6 +71,8 @@ implementation
 // Calling functions from another Unit
 uses U_Functions;
 
+
+// ============================= Work the dates ============================= //
 
 procedure TF_Principal.FormCreate(Sender: TObject);
 var
@@ -125,7 +127,12 @@ begin
                                  ',' + FormatDateTime(' yyyy', Data));
 end;
 
-// Close the Form with: crtl + w
+// ========================================================================== //
+
+
+
+// =================== Close the Form with: crtl + w ======================== //
+
 procedure TF_Principal.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -140,25 +147,50 @@ begin
       begin
            Pnl_LeftPai.Width := 400;
 
-           Pnl_LeftTop.Height := 200;
+           Pnl_LeftTop.Height := 180;
 
            TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMaior.png');
 
            TImage_LogoLeftTop.Width  := 315;
            TImage_LogoLeftTop.Height := 100;
+
+
+           TImage_DashBoard.Left := 55;
+           Lbl_DashBoard.Left    := 155;
+
+           TImage_Investimentos.Left := 55;
+           Lbl_Investimentos.Left    := 155;
+
+           TImage_Atualizar.Left     := 55;
+           Lbl_Atualizar.Left        := 155;
+
       end
      else
       begin
-           Pnl_LeftPai.Width := 300;
-
+           Pnl_LeftPai.Width  := 300;
            Pnl_LeftTop.Height := 150;
 
            TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMenor.png');
 
            TImage_LogoLeftTop.Width  := 229;
            TImage_LogoLeftTop.Height := 80;
+
+           TImage_DashBoard.Left := 35;
+           Lbl_DashBoard.Left    := 131;
+
+           TImage_Investimentos.Left := 35;
+           Lbl_Investimentos.Left    := 131;
+
+           TImage_Atualizar.Left     := 35;
+           Lbl_Atualizar.Left        := 131;
       end;
 end;
+
+// ========================================================================== //
+
+
+
+// =============================== Left Menu ================================ //
 
 procedure TF_Principal.Lbl_AtualizarMouseEnter(Sender: TObject);
 begin
@@ -250,9 +282,19 @@ begin
      Pnl_Investimentos.Color := $0047201F;
 end;
 
+// ========================================================================== //
+
+
+
+// ============================= Timer for clock ============================ //
+
 procedure TF_Principal.TTimerTimer(Sender: TObject);
 begin
      Lbl_Time.Caption := TimeToStr(Time);
 end;
 
+// ========================================================================== //
+
+
 end.
+

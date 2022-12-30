@@ -34,9 +34,6 @@ Coordinates=166,146,96,58
 [TImage_LogoCenter]
 Coordinates=351,78,132,58
 
-[TImage_Home]
-Coordinates=101,10,99,58
-
 [Pnl_Center]
 Coordinates=10,146,79,58
 
@@ -44,6 +41,6 @@ Coordinates=10,146,79,58
 Coordinates=210,10,67,58
 
 []
-Coordinates=121,214,89,36
+Coordinates=101,10,99,58
 Visible=True
 
