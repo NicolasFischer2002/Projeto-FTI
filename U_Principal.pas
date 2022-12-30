@@ -17,9 +17,6 @@ type
     Pnl_TopPurple: TPanel;
     TImage_LogoCenter: TImage;
     Pnl_LeftTop: TPanel;
-    SB_Atualizar: TSpeedButton;
-    SB_Investimentos: TSpeedButton;
-    SB_Dashboard: TSpeedButton;
     TImage_Home: TImage;
     Label1: TLabel;
     Pnl_TopHome: TPanel;
@@ -27,10 +24,37 @@ type
     Lbl_Time: TLabel;
     Lbl_DataCompleta: TLabel;
     TTimer: TTimer;
+    TImage_DashBoard: TImage;
+    TImage_Investimentos: TImage;
+    TImage_Atualizar: TImage;
+    Pnl_Atualizar: TPanel;
+    Pnl_Dashboard: TPanel;
+    Pnl_Investimentos: TPanel;
+    Lbl_DashBoard: TLabel;
+    Lbl_Investimentos: TLabel;
+    Lbl_Atualizar: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure TTimerTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Pnl_DashboardMouseEnter(Sender: TObject);
+    procedure Pnl_DashboardMouseLeave(Sender: TObject);
+    procedure Lbl_DashBoardMouseEnter(Sender: TObject);
+    procedure Lbl_DashBoardMouseLeave(Sender: TObject);
+    procedure TImage_DashBoardMouseEnter(Sender: TObject);
+    procedure TImage_DashBoardMouseLeave(Sender: TObject);
+    procedure Lbl_InvestimentosMouseEnter(Sender: TObject);
+    procedure Lbl_InvestimentosMouseLeave(Sender: TObject);
+    procedure TImage_InvestimentosMouseEnter(Sender: TObject);
+    procedure TImage_InvestimentosMouseLeave(Sender: TObject);
+    procedure Lbl_AtualizarMouseEnter(Sender: TObject);
+    procedure Lbl_AtualizarMouseLeave(Sender: TObject);
+    procedure TImage_AtualizarMouseEnter(Sender: TObject);
+    procedure TImage_AtualizarMouseLeave(Sender: TObject);
+    procedure Pnl_InvestimentosMouseEnter(Sender: TObject);
+    procedure Pnl_InvestimentosMouseLeave(Sender: TObject);
+    procedure Pnl_AtualizarMouseEnter(Sender: TObject);
+    procedure Pnl_AtualizarMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -127,13 +151,103 @@ begin
       begin
            Pnl_LeftPai.Width := 300;
 
-           Pnl_LeftTop.Height := 125;
+           Pnl_LeftTop.Height := 150;
 
            TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMenor.png');
 
            TImage_LogoLeftTop.Width  := 229;
            TImage_LogoLeftTop.Height := 80;
       end;
+end;
+
+procedure TF_Principal.Lbl_AtualizarMouseEnter(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Lbl_AtualizarMouseLeave(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := $0047201F;
+end;
+
+procedure TF_Principal.Lbl_DashBoardMouseEnter(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Lbl_DashBoardMouseLeave(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := $0047201F;
+end;
+
+procedure TF_Principal.Lbl_InvestimentosMouseEnter(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Lbl_InvestimentosMouseLeave(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := $0047201F;
+end;
+
+procedure TF_Principal.Pnl_AtualizarMouseEnter(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Pnl_AtualizarMouseLeave(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := $0047201F;
+end;
+
+procedure TF_Principal.Pnl_DashboardMouseEnter(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Pnl_DashboardMouseLeave(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := $0047201F;
+end;
+
+procedure TF_Principal.Pnl_InvestimentosMouseEnter(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := ClHotLight;
+end;
+
+procedure TF_Principal.Pnl_InvestimentosMouseLeave(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := $0047201F;
+end;
+
+procedure TF_Principal.TImage_AtualizarMouseEnter(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := ClHotLight;
+end;
+
+procedure TF_Principal.TImage_AtualizarMouseLeave(Sender: TObject);
+begin
+     Pnl_Atualizar.Color := $0047201F;
+end;
+
+procedure TF_Principal.TImage_DashBoardMouseEnter(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := ClHotLight;
+end;
+
+procedure TF_Principal.TImage_DashBoardMouseLeave(Sender: TObject);
+begin
+     Pnl_Dashboard.Color := $0047201F;
+end;
+
+procedure TF_Principal.TImage_InvestimentosMouseEnter(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := ClHotLight;
+end;
+
+procedure TF_Principal.TImage_InvestimentosMouseLeave(Sender: TObject);
+begin
+     Pnl_Investimentos.Color := $0047201F;
 end;
 
 procedure TF_Principal.TTimerTimer(Sender: TObject);
