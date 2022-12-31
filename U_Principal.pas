@@ -61,6 +61,16 @@ type
     procedure TImage_MenuClick(Sender: TObject);
   private
     { Private declarations }
+
+     // Vars
+
+     MenuCollapsed : Bool;
+
+     // Procedures/Functions
+
+     procedure ScreenMaximized();
+     procedure ScreenMinimized();
+
   public
     { Public declarations }
   end;
@@ -90,6 +100,8 @@ var
    DayWeekStr     : String;
 
 begin
+     MenuCollapsed := False;
+
      LongDayNames[1] := 'Domingo';
      LongDayNames[2] := 'Segunda-Feira';
      LongDayNames[3] := 'Terça-Feira';
@@ -103,8 +115,7 @@ begin
      Month     := Copy(MyDateStr,4,2);
      Year      := Copy(MyDateStr,7,9);
 
-     myDate := EncodeDate(StrToInt(Year),StrToInt(Month),StrToInt(Day));
-
+     myDate     := EncodeDate(StrToInt(Year),StrToInt(Month),StrToInt(Day));
      DayWeekStr := LongDayNames[DayOfWeek(myDate)];
 
      Data := Date();
@@ -145,48 +156,77 @@ begin
         Application.Terminate;
 end;
 
+// ========================================================================== //
+
+
+
+// ======================= ScreenMaximizade/Minimized ======================= //
+
+procedure TF_Principal.ScreenMaximized();
+begin
+     Pnl_LeftPai.Width  := 400;
+     Pnl_LeftTop.Height := 180;
+
+     TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMaior.png');
+
+     TImage_LogoLeftTop.Width  := 315;
+     TImage_LogoLeftTop.Height := 100;
+
+     TImage_DashBoard.Left     := 55;
+     Lbl_DashBoard.Left        := 155;
+
+     TImage_Investimentos.Left := 55;
+     Lbl_Investimentos.Left    := 155;
+
+     TImage_Atualizar.Left     := 55;
+     Lbl_Atualizar.Left        := 155;
+end;
+
+procedure TF_Principal.ScreenMinimized;
+begin
+     Pnl_LeftPai.Width  := 300;
+     Pnl_LeftTop.Height := 150;
+
+     TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMenor.png');
+
+     TImage_LogoLeftTop.Width  := 229;
+     TImage_LogoLeftTop.Height := 80;
+
+     TImage_DashBoard.Left     := 35;
+     Lbl_DashBoard.Left        := 131;
+
+     TImage_Investimentos.Left := 35;
+     Lbl_Investimentos.Left    := 131;
+
+     TImage_Atualizar.Left     := 35;
+     Lbl_Atualizar.Left        := 131;
+end;
+
+// ========================================================================== //
+
+
+
+// ======================= Screen Maximized/Minimized ======================= //
+
 procedure TF_Principal.FormResize(Sender: TObject);
 begin
      if F_Principal.WindowState = WsMaximized then
       begin
-           Pnl_LeftPai.Width := 400;
-
-           Pnl_LeftTop.Height := 180;
-
-           TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMaior.png');
-
-           TImage_LogoLeftTop.Width  := 315;
-           TImage_LogoLeftTop.Height := 100;
-
-
-           TImage_DashBoard.Left := 55;
-           Lbl_DashBoard.Left    := 155;
-
-           TImage_Investimentos.Left := 55;
-           Lbl_Investimentos.Left    := 155;
-
-           TImage_Atualizar.Left     := 55;
-           Lbl_Atualizar.Left        := 155;
-
+           if MenuCollapsed = False then
+            begin
+                 ScreenMaximized();
+            end
+           else
+            Pnl_LeftPai.Width := 0;
       end
      else
       begin
-           Pnl_LeftPai.Width  := 300;
-           Pnl_LeftTop.Height := 150;
-
-           TImage_LogoLeftTop.Picture.LoadFromFile('Img/Logo/LogoSuperiorEsquerdaEscuraMenor.png');
-
-           TImage_LogoLeftTop.Width  := 229;
-           TImage_LogoLeftTop.Height := 80;
-
-           TImage_DashBoard.Left := 35;
-           Lbl_DashBoard.Left    := 131;
-
-           TImage_Investimentos.Left := 35;
-           Lbl_Investimentos.Left    := 131;
-
-           TImage_Atualizar.Left     := 35;
-           Lbl_Atualizar.Left        := 131;
+           if MenuCollapsed = False then
+            begin
+                 ScreenMinimized();
+            end
+           else
+            Pnl_LeftPai.Width := 0;
       end;
 end;
 
@@ -296,16 +336,25 @@ end;
 procedure TF_Principal.TImage_MenuClick(Sender: TObject);
 begin
      if (Pnl_LeftPai.Width = 400) or (Pnl_LeftPai.Width = 300)then
-      Pnl_LeftPai.Width := 0
+      begin
+           Pnl_LeftPai.Width := 0;
+           MenuCollapsed     := True;
+      end
 
      else if (Pnl_LeftPai.Width = 0) and (F_Principal.WindowState = WsMaximized) then
-      Pnl_LeftPai.Width := 400
+      begin
+           MenuCollapsed := False;
+           ScreenMaximized();
+      end
 
      else if (Pnl_LeftPai.Width = 0) and not (F_Principal.WindowState = WsMaximized) then
-      Pnl_LeftPai.Width := 300;
+      begin
+           MenuCollapsed := False;
+           ScreenMinimized();
+      end;
 end;
 
- // ========================================================================== //
+// ========================================================================== //
 
 
 
