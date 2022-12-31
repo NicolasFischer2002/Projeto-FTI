@@ -17,9 +17,8 @@ type
     Pnl_TopPurple: TPanel;
     TImage_LogoCenter: TImage;
     Pnl_LeftTop: TPanel;
-    Label1: TLabel;
+    Lbl_Home: TLabel;
     Pnl_TopHome: TPanel;
-    Image1: TImage;
     Lbl_Time: TLabel;
     Lbl_DataCompleta: TLabel;
     TTimer: TTimer;
@@ -32,7 +31,11 @@ type
     Lbl_DashBoard: TLabel;
     Lbl_Investimentos: TLabel;
     Lbl_Atualizar: TLabel;
-    Image2: TImage;
+    TImage_Home: TImage;
+    Pnl_BemVindo: TPanel;
+    TImage_User: TImage;
+    Lbl_BemVindo: TLabel;
+    TImage_Menu: TImage;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure TTimerTimer(Sender: TObject);
@@ -55,6 +58,7 @@ type
     procedure Pnl_InvestimentosMouseLeave(Sender: TObject);
     procedure Pnl_AtualizarMouseEnter(Sender: TObject);
     procedure Pnl_AtualizarMouseLeave(Sender: TObject);
+    procedure TImage_MenuClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -282,7 +286,26 @@ begin
      Pnl_Investimentos.Color := $0047201F;
 end;
 
+
 // ========================================================================== //
+
+
+
+// ========================= Resize panel LeftPai =========================== //
+
+procedure TF_Principal.TImage_MenuClick(Sender: TObject);
+begin
+     if (Pnl_LeftPai.Width = 400) or (Pnl_LeftPai.Width = 300)then
+      Pnl_LeftPai.Width := 0
+
+     else if (Pnl_LeftPai.Width = 0) and (F_Principal.WindowState = WsMaximized) then
+      Pnl_LeftPai.Width := 400
+
+     else if (Pnl_LeftPai.Width = 0) and not (F_Principal.WindowState = WsMaximized) then
+      Pnl_LeftPai.Width := 300;
+end;
+
+ // ========================================================================== //
 
 
 

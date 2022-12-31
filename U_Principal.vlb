@@ -10,9 +10,6 @@ Coordinates=287,10,84,58
 [Pnl_LeftPai]
 Coordinates=10,10,81,58
 
-[Image1]
-Coordinates=99,146,57,58
-
 [Pnl_GreyTop]
 Coordinates=272,146,90,58
 
@@ -24,9 +21,6 @@ Coordinates=204,78,137,58
 
 [TTimer]
 Coordinates=0,137,55,36
-
-[Label1]
-Coordinates=10,78,53,58
 
 [Pnl_TopHome]
 Coordinates=166,146,96,58
@@ -41,6 +35,9 @@ Coordinates=10,146,79,58
 Coordinates=210,10,67,58
 
 []
-Coordinates=101,10,99,58
+Coordinates=99,146,57,58
 Visible=True
+
+[Lbl_Home]
+Coordinates=10,78,53,58
 
