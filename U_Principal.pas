@@ -59,12 +59,14 @@ type
     procedure Pnl_AtualizarMouseEnter(Sender: TObject);
     procedure Pnl_AtualizarMouseLeave(Sender: TObject);
     procedure TImage_MenuClick(Sender: TObject);
+    procedure TImage_UserClick(Sender: TObject);
   private
     { Private declarations }
 
      // Vars
 
      MenuCollapsed : Bool;
+     FormUserAtivo : Bool;
 
      // Procedures/Functions
 
@@ -76,14 +78,14 @@ type
   end;
 
 var
-  F_Principal: TF_Principal;
+  F_Principal : TF_Principal;
 
 implementation
 
 {$R *.dfm}
 
 // Calling functions from another Unit
-uses U_Functions;
+uses U_Functions,U_User;
 
 
 // ============================= Work the dates ============================= //
@@ -101,6 +103,7 @@ var
 
 begin
      MenuCollapsed := False;
+     FormUserAtivo := False;
 
      LongDayNames[1] := 'Domingo';
      LongDayNames[2] := 'Segunda-Feira';
@@ -351,6 +354,35 @@ begin
       begin
            MenuCollapsed := False;
            ScreenMinimized();
+      end;
+end;
+
+// ========================================================================== //
+
+
+
+// ============================ Call user form ============================== //
+
+procedure TF_Principal.TImage_UserClick(Sender: TObject);
+begin
+     if not FormUserAtivo then // Fazer uma function para substituir esse código
+      begin                    // que vai se repetir várias vezes
+           F_User := TF_User.Create(Self);
+
+           F_User.Parent      := Pnl_Center;
+           F_User.Align       := AlClient;
+           F_User.BorderStyle := BsNone;
+
+           F_User.Show;
+
+           FormUserAtivo := True;
+      end
+     else
+      begin
+           F_User.Close;
+           FreeAndNil(F_User);
+
+           FormUserAtivo := False;
       end;
 end;
 

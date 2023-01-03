@@ -52,6 +52,8 @@ object F_Principal: TF_Principal
       Height = 150
       Align = alTop
       BevelOuter = bvNone
+      Color = 4661279
+      ParentBackground = False
       TabOrder = 0
       object TImage_LogoLeftTop: TImage
         Left = 35
@@ -943,7 +945,7 @@ object F_Principal: TF_Principal
         900
         590)
       object TImage_LogoCenter: TImage
-        Left = 206
+        Left = 207
         Top = 168
         Width = 485
         Height = 148
@@ -1614,7 +1616,7 @@ object F_Principal: TF_Principal
         Stretch = True
       end
       object Lbl_Time: TLabel
-        Left = 331
+        Left = 332
         Top = 317
         Width = 238
         Height = 73
@@ -1629,7 +1631,7 @@ object F_Principal: TF_Principal
         ParentFont = False
       end
       object Lbl_DataCompleta: TLabel
-        Left = 232
+        Left = 202
         Top = 396
         Width = 491
         Height = 42
@@ -1923,6 +1925,7 @@ object F_Principal: TF_Principal
               30303A303061CEC22F0000000049454E44AE426082}
             ShowHint = False
             Stretch = True
+            OnClick = TImage_UserClick
           end
           object Lbl_BemVindo: TLabel
             Left = 123
