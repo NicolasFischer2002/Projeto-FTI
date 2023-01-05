@@ -18,6 +18,8 @@ type
     Lbl_Validacao: TLabel;
     Pnl_Adicionar: TPanel;
     procedure Pnl_AdicionarClick(Sender: TObject);
+    procedure Edt_NickNameKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -35,10 +37,46 @@ implementation
 
 uses U_Functions,U_Principal;
 
+
+// ============================= Valid NickName ============================= //
+
+procedure TF_User.Edt_NickNameKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+   NickName : String;
+begin
+     NickName := Edt_NickName.Text;
+
+     if (Length(Trim(NickName)) >= 3) and (Length(Trim(NickName)) <= 10) then
+      begin
+           Lbl_Validacao.Left       := 350;
+           Lbl_Validacao.Font.Color := clGreen;
+           Lbl_Validacao.Caption    := 'Válido';
+           Pnl_Adicionar.Enabled    := True;
+      end
+     else
+      begin
+           Lbl_Validacao.Left       := 318;
+           Lbl_Validacao.Font.Color := clRed;
+           Lbl_Validacao.Caption    := 'Inválido';
+           Pnl_Adicionar.Enabled    := False;
+      end;
+end;
+
+// ========================================================================== //
+
+
+
+// ============================ Add the NickName ============================ //
+
 procedure TF_User.Pnl_AdicionarClick(Sender: TObject);
 begin
-     F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + Edt_NickName.Text;
+     F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + Trim(Edt_NickName.Text);
+     Lbl_Validacao.Left    := 100;
+     Lbl_Validacao.Caption := 'Alterado com sucesso!';
 end;
+
+// ========================================================================== //
 
 end.
 

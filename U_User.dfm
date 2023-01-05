@@ -743,12 +743,13 @@ object F_User: TF_User
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnKeyUp = Edt_NickNameKeyUp
     end
   end
   object Pnl_ValidacaoNickName: TPanel
-    Left = 125
+    Left = 8
     Top = 363
-    Width = 633
+    Width = 884
     Height = 70
     Anchors = [akTop]
     BevelOuter = bvNone
@@ -756,14 +757,14 @@ object F_User: TF_User
     ParentBackground = False
     TabOrder = 1
     object Lbl_Validacao: TLabel
-      Left = 198
+      Left = 318
       Top = 14
       Width = 122
       Height = 42
       Caption = 'Inv'#225'lido'
-      Color = clRed
+      Color = clWhite
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clRed
       Font.Height = -35
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -771,7 +772,7 @@ object F_User: TF_User
       ParentFont = False
     end
     object Pnl_Adicionar: TPanel
-      Left = 336
+      Left = 456
       Top = 15
       Width = 150
       Height = 41
@@ -779,6 +780,7 @@ object F_User: TF_User
       BevelOuter = bvLowered
       Caption = 'Adicionar'
       Color = 5251875
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -21

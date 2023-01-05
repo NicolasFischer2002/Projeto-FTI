@@ -1631,7 +1631,7 @@ object F_Principal: TF_Principal
         ParentFont = False
       end
       object Lbl_DataCompleta: TLabel
-        Left = 202
+        Left = 216
         Top = 396
         Width = 491
         Height = 42
@@ -1773,18 +1773,18 @@ object F_Principal: TF_Principal
           end
         end
         object Pnl_BemVindo: TPanel
-          Left = 600
-          Top = 15
-          Width = 289
+          Left = 568
+          Top = 16
+          Width = 313
           Height = 48
           Anchors = [akTop, akRight]
           BevelOuter = bvNone
           TabOrder = 1
           DesignSize = (
-            289
+            313
             48)
           object TImage_User: TImage
-            Left = 69
+            Left = 57
             Top = 0
             Width = 48
             Height = 48
@@ -1928,7 +1928,7 @@ object F_Principal: TF_Principal
             OnClick = TImage_UserClick
           end
           object Lbl_BemVindo: TLabel
-            Left = 123
+            Left = 111
             Top = 15
             Width = 158
             Height = 23
@@ -1943,7 +1943,7 @@ object F_Principal: TF_Principal
             Transparent = True
           end
           object TImage_Menu: TImage
-            Left = 18
+            Left = 6
             Top = 0
             Width = 48
             Height = 48
