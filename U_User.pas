@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, IniFiles;
 
 type
   TF_User = class(TForm)
@@ -71,10 +71,38 @@ end;
 
 procedure TF_User.Pnl_AdicionarClick(Sender: TObject);
 begin
-     F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + Trim(Edt_NickName.Text);
-     Lbl_Validacao.Left    := 100;
-     Lbl_Validacao.Caption := 'Alterado com sucesso!';
+     try
+        Try
+           if FileExists(ExtractFilePath(Application.ExeName) + '\ArqIni.ini') then
+            begin
+                 DeleteFile(ExtractFilePath(Application.ExeName) + '\ArqIni.ini');
+                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 ArqIni.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
+            end
+           else
+            begin
+                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 ArqIni.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
+            end;
+
+            F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + ArqIni.ReadString('NickName', 'Username', 'Erro ao ler o valor');
+            Lbl_Validacao.Left    := 100;
+            Lbl_Validacao.Caption := 'Alterado com sucesso!';
+
+        Except
+         on E: Exception do
+          begin
+               ShowMessage('Erro na manipulação de File Ini: ' + E.Message );
+                Close;
+          end;
+
+        End;
+
+     finally
+         FreeAndNil(ArqIni);
+     end;
 end;
+
 
 // ========================================================================== //
 

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Buttons, DateUtils;
+  Vcl.StdCtrls, Vcl.Buttons, DateUtils, IniFiles;
 
 type
   TF_Principal = class(TForm)
@@ -88,7 +88,7 @@ implementation
 uses U_Functions,U_User;
 
 
-// ============================= Work the dates ============================= //
+// ====================== OnCreate do TF_Principal ========================== //
 
 procedure TF_Principal.FormCreate(Sender: TObject);
 var
@@ -143,6 +143,32 @@ begin
      Lbl_DataCompleta.Caption := ('');
      Lbl_DataCompleta.Caption := (DayWeekStr + ', ' + MonthStr + formatdatetime(' dd',data) +
                                  ',' + FormatDateTime(' yyyy', Data));
+
+     Try
+        Try
+           if FileExists(ExtractFilePath(Application.ExeName) + 'ArqIni.ini') then
+            begin
+                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 Lbl_BemVindo.Caption := ('Bem vindo, ' + ArqIni.ReadString('NickName', 'Username', 'Erro ao ler o valor'));
+            end
+           else
+            begin
+                 Lbl_BemVindo.Caption := ('Bem vindo, Amigo');
+            end;
+
+        Except
+         on E: Exception do
+          begin
+               ShowMessage('Erro na manipulação de File Ini: ' + E.Message );
+                Close;
+          end;
+
+        end;
+
+     Finally
+         FreeAndNil(ArqIni);
+     End;
+
 end;
 
 // ========================================================================== //

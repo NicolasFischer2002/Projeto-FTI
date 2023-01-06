@@ -1930,10 +1930,10 @@ object F_Principal: TF_Principal
           object Lbl_BemVindo: TLabel
             Left = 111
             Top = 15
-            Width = 158
+            Width = 155
             Height = 23
             Anchors = [akTop, akRight]
-            Caption = 'Bem vindo, Nicolas'
+            Caption = 'Bem vindo, People'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
