@@ -34,6 +34,8 @@ object F_Principal: TF_Principal
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 0
+    ExplicitLeft = -5
+    ExplicitTop = -3
   end
   object Pnl_LeftPai: TPanel
     Left = 0
@@ -1630,11 +1632,11 @@ object F_Principal: TF_Principal
         Font.Style = []
         ParentFont = False
       end
-      object Lbl_DataCompleta: TLabel
-        Left = 216
+      object Lbl_FullDate: TLabel
+        Left = 207
         Top = 396
-        Width = 491
-        Height = 42
+        Width = 490
+        Height = 85
         Anchors = [akTop]
         Caption = 'Ter'#231'a-feira, Dezembro 19, 2019'
         Font.Charset = ANSI_CHARSET

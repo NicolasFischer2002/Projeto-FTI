@@ -20,7 +20,7 @@ type
     Lbl_Home: TLabel;
     Pnl_TopHome: TPanel;
     Lbl_Time: TLabel;
-    Lbl_DataCompleta: TLabel;
+    Lbl_FullDate: TLabel;
     TTimer: TTimer;
     TImage_DashBoard: TImage;
     TImage_Investimentos: TImage;
@@ -140,9 +140,17 @@ begin
           12 : MonthStr := 'Dezembro';
      end;
 
-     Lbl_DataCompleta.Caption := ('');
-     Lbl_DataCompleta.Caption := (DayWeekStr + ', ' + MonthStr + formatdatetime(' dd',data) +
+     Lbl_FullDate.Caption := ('');
+     Lbl_FullDate.Caption := (DayWeekStr + ', ' + MonthStr + formatdatetime(' dd',data) +
                                  ',' + FormatDateTime(' yyyy', Data));
+
+
+     // Position the Lbl dynamically according to the text size of the dates
+     // 16.33333333 is the size each character occupies
+     // (maximum label width / number of characters occupied = 16.3333...)
+     Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.33333333));
+     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2));
+
 
      Try
         Try

@@ -13,9 +13,6 @@ Coordinates=10,10,81,58
 [Pnl_GreyTop]
 Coordinates=272,146,90,58
 
-[Lbl_DataCompleta]
-Coordinates=73,78,121,58
-
 [TImage_LogoLeftTop]
 Coordinates=204,78,137,58
 
@@ -40,4 +37,7 @@ Visible=True
 
 [Lbl_Home]
 Coordinates=10,78,53,58
+
+[Lbl_FullDate]
+Coordinates=73,78,121,58
 
