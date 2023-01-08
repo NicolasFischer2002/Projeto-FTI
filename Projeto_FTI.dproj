@@ -109,6 +109,10 @@
             <Form>F_User</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="U_Investimentos.pas">
+            <Form>F_Investimentos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

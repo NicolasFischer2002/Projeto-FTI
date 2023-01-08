@@ -6,7 +6,8 @@ uses
   U_Functions in 'U_Functions.pas',
   Vcl.Themes,
   Vcl.Styles,
-  U_User in 'U_User.pas' {F_User};
+  U_User in 'U_User.pas' {F_User},
+  U_Investimentos in 'U_Investimentos.pas' {F_Investimentos};
 
 {$R *.res}
 
@@ -15,5 +16,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TF_Principal, F_Principal);
   Application.CreateForm(TF_User, F_User);
+  Application.CreateForm(TF_Investimentos, F_Investimentos);
   Application.Run;
 end.

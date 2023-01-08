@@ -60,13 +60,15 @@ type
     procedure Pnl_AtualizarMouseLeave(Sender: TObject);
     procedure TImage_MenuClick(Sender: TObject);
     procedure TImage_UserClick(Sender: TObject);
+    procedure Pnl_InvestimentosClick(Sender: TObject);
+    procedure Lbl_InvestimentosClick(Sender: TObject);
+    procedure TImage_InvestimentosClick(Sender: TObject);
   private
     { Private declarations }
 
      // Vars
 
      MenuCollapsed : Bool;
-     FormUserAtivo : Bool;
 
      // Procedures/Functions
 
@@ -85,7 +87,7 @@ implementation
 {$R *.dfm}
 
 // Calling functions from another Unit
-uses U_Functions,U_User;
+uses U_Functions, U_User, U_Investimentos;
 
 
 // ====================== OnCreate do TF_Principal ========================== //
@@ -148,7 +150,8 @@ begin
      // Position the Lbl dynamically according to the text size of the dates
      // 16.33333333 is the size each character occupies
      // (maximum label width / number of characters occupied = 16.3333...)
-     Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.33333333));
+     // Lbl_FullDate.Caption := 'Terça-feira,Dezembro 19, 2023';
+     Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
      Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2));
 
 
@@ -265,6 +268,57 @@ begin
            else
             Pnl_LeftPai.Width := 0;
       end;
+end;
+
+// ========================================================================== //
+
+
+
+// ====================== Chama o Form Investimentos =========================//
+
+procedure TF_Principal.Pnl_InvestimentosClick(Sender: TObject);  // Aqui
+begin
+     if not FormInvestimentosAtivo then
+      begin
+           if FormUserAtivo then
+            begin
+                 F_User.Close;
+                 FormUserAtivo := False;
+            end;
+
+           F_Investimentos := TF_Investimentos.Create(Self);
+
+           F_Investimentos.Parent      := Pnl_Center;
+           F_Investimentos.Align       := AlClient;
+           F_Investimentos.BorderStyle := BsNone;
+
+           F_Investimentos.Show;
+
+           FormInvestimentosAtivo := True;
+      end
+     else
+      begin
+           F_Investimentos.Close;
+           FreeAndNil(F_Investimentos);
+
+           FormInvestimentosAtivo := False;
+      end;
+end;
+
+// ========================================================================== //
+
+
+
+// ============= Chama o evento de Click no Pnl_Investimentos ================//
+
+procedure TF_Principal.Lbl_InvestimentosClick(Sender: TObject);
+begin
+     Pnl_InvestimentosClick(Sender);
+end;
+
+procedure TF_Principal.TImage_InvestimentosClick(Sender: TObject);
+begin
+     Pnl_InvestimentosClick(Sender);
 end;
 
 // ========================================================================== //
@@ -399,8 +453,14 @@ end;
 
 procedure TF_Principal.TImage_UserClick(Sender: TObject);
 begin
-     if not FormUserAtivo then // Fazer uma function para substituir esse código
-      begin                    // que vai se repetir várias vezes
+     if not FormUserAtivo then
+      begin
+           if FormInvestimentosAtivo then
+            begin
+                 F_Investimentos.Close;
+                 FormInvestimentosAtivo := False;
+            end;
+
            F_User := TF_User.Create(Self);
 
            F_User.Parent      := Pnl_Center;

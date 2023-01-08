@@ -35,7 +35,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_Functions,U_Principal;
+uses U_Functions,U_Principal, U_Investimentos;
 
 
 // ============================= Valid NickName ============================= //

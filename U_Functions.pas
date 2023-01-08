@@ -10,10 +10,17 @@ Var
 private,
     { Private declarations }
 
+// Procedures
+
+
+// Functions
+
 
 public,
     { Public declarations }
-    ArqIni : TIniFile;
+    ArqIni                 : TIniFile;
+    FormUserAtivo          : Bool;
+    FormInvestimentosAtivo : Bool;
 
 
 // Procedures
@@ -23,8 +30,11 @@ public,
 
 
 
+
 implementation
 
+
+uses U_Principal, U_User, U_Investimentos;
 
 
 

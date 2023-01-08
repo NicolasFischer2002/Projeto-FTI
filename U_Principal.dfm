@@ -34,8 +34,6 @@ object F_Principal: TF_Principal
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 0
-    ExplicitLeft = -5
-    ExplicitTop = -3
   end
   object Pnl_LeftPai: TPanel
     Left = 0
@@ -827,6 +825,7 @@ object F_Principal: TF_Principal
       Color = 4661279
       ParentBackground = False
       TabOrder = 3
+      OnClick = Pnl_InvestimentosClick
       OnMouseEnter = Pnl_InvestimentosMouseEnter
       OnMouseLeave = Pnl_InvestimentosMouseLeave
       object TImage_Investimentos: TImage
@@ -904,6 +903,7 @@ object F_Principal: TF_Principal
           3A37DC76B30CF9D6A48A233AAB8F79798997F7591CF5B9D47F013809D8C6AEBF
           93AE0000000049454E44AE426082}
         Stretch = True
+        OnClick = TImage_InvestimentosClick
         OnMouseEnter = TImage_InvestimentosMouseEnter
         OnMouseLeave = TImage_InvestimentosMouseLeave
       end
@@ -920,6 +920,7 @@ object F_Principal: TF_Principal
         Font.Style = []
         ParentFont = False
         Transparent = True
+        OnClick = Lbl_InvestimentosClick
         OnMouseEnter = Lbl_InvestimentosMouseEnter
         OnMouseLeave = Lbl_InvestimentosMouseLeave
       end
@@ -1635,8 +1636,8 @@ object F_Principal: TF_Principal
       object Lbl_FullDate: TLabel
         Left = 207
         Top = 396
-        Width = 490
-        Height = 85
+        Width = 491
+        Height = 42
         Anchors = [akTop]
         Caption = 'Ter'#231'a-feira, Dezembro 19, 2019'
         Font.Charset = ANSI_CHARSET
