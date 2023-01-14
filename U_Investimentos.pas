@@ -21,10 +21,13 @@ type
     Pnl_Center: TPanel;
     Pnl_Top: TPanel;
     Pnl_Bottom: TPanel;
-    StringGrid1: TStringGrid;
+    StringGrid: TStringGrid;
     Pnl_Manager: TPanel;
     TImage_Manager: TImage;
     Lbl_Manager: TLabel;
+    Lbl_ValorPago: TLabel;
+    Edt_ValorPago: TEdit;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,5 +40,34 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF_Investimentos.FormCreate(Sender: TObject);
+begin
+     Try
+        StringGrid.Cells[0,0] := 'Código';
+        StringGrid.Cells[1,0] := 'Ativo';
+        StringGrid.Cells[2,0] := 'Valor';
+        StringGrid.Cells[3,0] := 'Qtd';
+        StringGrid.Cells[4,0] := 'Taxas';
+        StringGrid.Cells[5,0] := 'Lucro %';
+        StringGrid.Cells[6,0] := 'Retorno';
+
+
+
+        Try
+
+
+
+        Except
+           ShowMessage('Erro ao conectar com banco de dados');
+
+        End;
+
+
+
+     Finally
+
+     End;
+end;
 
 end.

@@ -10,6 +10,7 @@ object F_Investimentos: TF_Investimentos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Pnl_Right: TPanel
@@ -20,12 +21,14 @@ object F_Investimentos: TF_Investimentos
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitLeft = 681
+    ExplicitTop = 8
     DesignSize = (
       225
       590)
     object Lbl_Taxas: TLabel
       Left = 77
-      Top = 375
+      Top = 275
       Width = 63
       Height = 29
       Anchors = [akTop]
@@ -54,7 +57,7 @@ object F_Investimentos: TF_Investimentos
     end
     object Lbl_Quantidade: TLabel
       Left = 50
-      Top = 141
+      Top = 189
       Width = 121
       Height = 29
       Anchors = [akTop]
@@ -65,11 +68,10 @@ object F_Investimentos: TF_Investimentos
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 38
     end
     object Lbl_Lucro: TLabel
       Left = 71
-      Top = 258
+      Top = 359
       Width = 89
       Height = 29
       Anchors = [akTop]
@@ -81,9 +83,23 @@ object F_Investimentos: TF_Investimentos
       Font.Style = []
       ParentFont = False
     end
+    object Lbl_ValorPago: TLabel
+      Left = 56
+      Top = 108
+      Width = 114
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Valor Pago'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object Edt_Taxas: TEdit
       Left = 19
-      Top = 410
+      Top = 310
       Width = 190
       Height = 27
       Hint = '15, 20, 100 ...'
@@ -115,7 +131,7 @@ object F_Investimentos: TF_Investimentos
     end
     object Edt_Quantidade: TEdit
       Left = 19
-      Top = 176
+      Top = 224
       Width = 190
       Height = 27
       Hint = '15, 20, 100 ...'
@@ -131,7 +147,7 @@ object F_Investimentos: TF_Investimentos
     end
     object Edt_Lucro: TEdit
       Left = 19
-      Top = 293
+      Top = 394
       Width = 190
       Height = 27
       Hint = '15, 20, 100 ...'
@@ -144,6 +160,22 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 3
       TextHint = 'Lucro esperado, ex 10%'
+    end
+    object Edt_ValorPago: TEdit
+      Left = 19
+      Top = 143
+      Width = 190
+      Height = 27
+      Hint = 'ITUB4, BBDC4 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      TextHint = '25,00'
     end
   end
   object Pnl_Center: TPanel
@@ -162,6 +194,8 @@ object F_Investimentos: TF_Investimentos
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitLeft = -6
+      ExplicitTop = -6
       object Pnl_Manager: TPanel
         Left = 24
         Top = 23
@@ -374,12 +408,20 @@ object F_Investimentos: TF_Investimentos
       BevelOuter = bvNone
       TabOrder = 1
     end
-    object StringGrid1: TStringGrid
+    object StringGrid: TStringGrid
       Left = 0
       Top = 125
       Width = 675
       Height = 420
       Align = alClient
+      ColCount = 7
+      DefaultColWidth = 95
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
     end
   end
