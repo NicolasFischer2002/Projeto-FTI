@@ -20,6 +20,7 @@ type
     procedure Pnl_AdicionarClick(Sender: TObject);
     procedure Edt_NickNameKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -67,6 +68,18 @@ end;
 
 
 
+// ================== Close the Application with: crtl + w ================== //
+
+procedure TF_User.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     ApplicationTerminate_Public();
+end;
+
+// ========================================================================== //
+
+
+
 // ============================ Add the NickName ============================ //
 
 procedure TF_User.Pnl_AdicionarClick(Sender: TObject);
@@ -102,7 +115,6 @@ begin
          FreeAndNil(ArqIni);
      end;
 end;
-
 
 // ========================================================================== //
 

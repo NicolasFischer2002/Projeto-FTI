@@ -186,14 +186,12 @@ end;
 
 
 
-// =================== Close the Form with: crtl + w ======================== //
+// ================== Close the Application with: crtl + w ================== //
 
 procedure TF_Principal.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-     If ((GetKeyState(VK_CONTROL) AND 128)=128) and
-        ((GetKeyState(ord('W')) AND 128)=128) then
-        Application.Terminate;
+     ApplicationTerminate_Public();
 end;
 
 // ========================================================================== //

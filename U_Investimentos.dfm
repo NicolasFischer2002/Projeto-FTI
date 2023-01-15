@@ -11,181 +11,19 @@ object F_Investimentos: TF_Investimentos
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Pnl_Right: TPanel
-    Left = 675
-    Top = 0
-    Width = 225
-    Height = 590
-    Align = alRight
-    BevelOuter = bvNone
-    TabOrder = 0
-    ExplicitLeft = 681
-    ExplicitTop = 8
-    DesignSize = (
-      225
-      590)
-    object Lbl_Taxas: TLabel
-      Left = 77
-      Top = 275
-      Width = 63
-      Height = 29
-      Anchors = [akTop]
-      Caption = 'Taxas'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Lbl_Ativo: TLabel
-      Left = 80
-      Top = 24
-      Width = 52
-      Height = 29
-      Anchors = [akTop]
-      Caption = 'Ativo'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ExplicitLeft = 68
-    end
-    object Lbl_Quantidade: TLabel
-      Left = 50
-      Top = 189
-      Width = 121
-      Height = 29
-      Anchors = [akTop]
-      Caption = 'Quantidade'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Lbl_Lucro: TLabel
-      Left = 71
-      Top = 359
-      Width = 89
-      Height = 29
-      Anchors = [akTop]
-      Caption = 'Lucro %'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Lbl_ValorPago: TLabel
-      Left = 56
-      Top = 108
-      Width = 114
-      Height = 29
-      Anchors = [akTop]
-      Caption = 'Valor Pago'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Edt_Taxas: TEdit
-      Left = 19
-      Top = 310
-      Width = 190
-      Height = 27
-      Hint = '15, 20, 100 ...'
-      Anchors = [akTop]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 0
-      TextHint = 'Taxas de opera'#231#227'o'
-    end
-    object Edt_Ativo: TEdit
-      Left = 19
-      Top = 59
-      Width = 190
-      Height = 27
-      Hint = 'ITUB4, BBDC4 ...'
-      Anchors = [akTop]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 1
-      TextHint = 'ITUB4, BBDC4 ...'
-    end
-    object Edt_Quantidade: TEdit
-      Left = 19
-      Top = 224
-      Width = 190
-      Height = 27
-      Hint = '15, 20, 100 ...'
-      Anchors = [akTop]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
-      TextHint = '15, 20, 100 ...'
-    end
-    object Edt_Lucro: TEdit
-      Left = 19
-      Top = 394
-      Width = 190
-      Height = 27
-      Hint = '15, 20, 100 ...'
-      Anchors = [akTop]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 3
-      TextHint = 'Lucro esperado, ex 10%'
-    end
-    object Edt_ValorPago: TEdit
-      Left = 19
-      Top = 143
-      Width = 190
-      Height = 27
-      Hint = 'ITUB4, BBDC4 ...'
-      Anchors = [akTop]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 4
-      TextHint = '25,00'
-    end
-  end
   object Pnl_Center: TPanel
     Left = 0
     Top = 0
     Width = 675
-    Height = 590
+    Height = 545
     Align = alClient
     BevelOuter = bvNone
-    TabOrder = 1
+    TabOrder = 0
+    ExplicitWidth = 900
+    ExplicitHeight = 590
     object Pnl_Top: TPanel
       Left = 0
       Top = 0
@@ -194,8 +32,6 @@ object F_Investimentos: TF_Investimentos
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = -6
-      ExplicitTop = -6
       object Pnl_Manager: TPanel
         Left = 24
         Top = 23
@@ -399,15 +235,6 @@ object F_Investimentos: TF_Investimentos
         end
       end
     end
-    object Pnl_Bottom: TPanel
-      Left = 0
-      Top = 545
-      Width = 675
-      Height = 45
-      Align = alBottom
-      BevelOuter = bvNone
-      TabOrder = 1
-    end
     object StringGrid: TStringGrid
       Left = 0
       Top = 125
@@ -422,7 +249,219 @@ object F_Investimentos: TF_Investimentos
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
+      ExplicitLeft = 288
+      ExplicitTop = 200
+      ExplicitWidth = 320
+      ExplicitHeight = 120
     end
+  end
+  object Pnl_Right: TPanel
+    Left = 675
+    Top = 0
+    Width = 225
+    Height = 545
+    Align = alRight
+    BevelOuter = bvNone
+    TabOrder = 1
+    ExplicitLeft = 681
+    ExplicitTop = -6
+    DesignSize = (
+      225
+      545)
+    object Lbl_Taxas: TLabel
+      Left = 77
+      Top = 229
+      Width = 63
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Taxas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Lbl_Ativo: TLabel
+      Left = 80
+      Top = 18
+      Width = 52
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Ativo'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Lbl_Quantidade: TLabel
+      Left = 50
+      Top = 158
+      Width = 121
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Quantidade'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Lbl_Lucro: TLabel
+      Left = 71
+      Top = 300
+      Width = 89
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Lucro %'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Lbl_ValorPago: TLabel
+      Left = 56
+      Top = 86
+      Width = 114
+      Height = 29
+      Anchors = [akTop]
+      Caption = 'Valor Pago'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Edt_Taxas: TEdit
+      Left = 19
+      Top = 264
+      Width = 190
+      Height = 27
+      Hint = '15, 20, 100 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      TextHint = 'Taxas de opera'#231#227'o'
+    end
+    object Edt_Ativo: TEdit
+      Left = 19
+      Top = 53
+      Width = 190
+      Height = 27
+      Hint = 'ITUB4, BBDC4 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      TextHint = 'ITUB4, BBDC4 ...'
+      OnKeyDown = Edt_AtivoKeyDown
+    end
+    object Edt_Quantidade: TEdit
+      Left = 19
+      Top = 193
+      Width = 190
+      Height = 27
+      Hint = '15, 20, 100 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      TextHint = '15, 20, 100 ...'
+    end
+    object Edt_Lucro: TEdit
+      Left = 19
+      Top = 335
+      Width = 190
+      Height = 27
+      Hint = '15, 20, 100 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      TextHint = 'Lucro esperado, ex 10%'
+    end
+    object Edt_ValorPago: TEdit
+      Left = 19
+      Top = 121
+      Width = 190
+      Height = 27
+      Hint = 'ITUB4, BBDC4 ...'
+      Anchors = [akTop]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      TextHint = '25,00'
+    end
+    object Btn_CadastrarAtivo: TButton
+      Left = 19
+      Top = 480
+      Width = 190
+      Height = 65
+      Anchors = [akBottom]
+      Caption = 'Cadastrar Ativo'
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+  end
+  object Pnl_Bottom: TPanel
+    Left = 0
+    Top = 545
+    Width = 900
+    Height = 45
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitWidth = 675
+  end
+  object ADOConnection: TADOConnection
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\AAA - Programa'#231#227 +
+      'o\Projeto FTI 15 01 23\Win32\Debug\Investimentos.mdb;Persist Sec' +
+      'urity Info=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 504
+    Top = 16
+  end
+  object Query: TADOQuery
+    Connection = ADOConnection
+    Parameters = <>
+    Left = 592
+    Top = 16
   end
 end

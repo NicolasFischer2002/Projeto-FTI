@@ -12,6 +12,7 @@ object F_User: TF_User
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   DesignSize = (
     900
     590)
