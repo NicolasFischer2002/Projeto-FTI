@@ -31,9 +31,17 @@ type
     Btn_CadastrarAtivo: TButton;
     StringGrid: TStringGrid;
     procedure FormCreate(Sender: TObject);
-    procedure Edt_AtivoKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Edt_ValorPagoKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Edt_QuantidadeKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Edt_TaxasKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Edt_LucroKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -49,9 +57,10 @@ implementation
 
 uses U_Functions, U_User, U_Principal;
 
+
 // ======================== Validation dos EDTs ============================= //
 
-procedure TF_Investimentos.Edt_AtivoKeyDown(Sender: TObject; var Key: Word;
+procedure TF_Investimentos.Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 Var
    Ativo : String;
@@ -59,7 +68,7 @@ begin
      Try
         Ativo := Edt_Ativo.Text;
 
-        if (Length(Trim(Ativo)) >= 4) and (Length(Trim(Ativo)) <= 5) then
+        if (Length(Trim(Ativo)) >= 5) and (Length(Trim(Ativo)) <= 6) then
          begin
               Edt_Ativo.Font.Color := clGreen;
               EdtAtivoPreenchido   := True;
@@ -76,6 +85,133 @@ begin
 end;
 
 
+procedure TF_Investimentos.Edt_ValorPagoKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   ValorPago : Double;
+begin
+     Try
+        Try
+           ValorPago := StrToFloat(Edt_ValorPago.Text);
+
+           if (ValorPago > 0) then
+            begin
+                 Edt_ValorPago.Font.Color := clGreen;
+                 EdtValorPagoPreenchido   := True;
+            end
+           else
+            begin
+                 Edt_ValorPago.Font.Color := clRed;
+                 EdtValorPagoPreenchido   := False;
+            end;
+
+        Except
+            EdtValorPagoPreenchido   := False;
+            Edt_ValorPago.Font.Color := clRed;
+            AtivaBtnCadastrarAtivo_Public();
+        End;
+
+     Finally
+         AtivaBtnCadastrarAtivo_Public();
+     End;
+end;
+
+
+procedure TF_Investimentos.Edt_QuantidadeKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   Quantidade : Integer;
+begin
+     Try
+        Try
+           Quantidade := StrToInt(Edt_Quantidade.Text);
+
+           if (Quantidade > 0) then
+            begin
+                 Edt_Quantidade.Font.Color := clGreen;
+                 EdtQuantidadePreenchido   := True;
+            end
+           else
+            begin
+                 Edt_Quantidade.Font.Color := clRed;
+                 EdtQuantidadePreenchido   := False;
+            end;
+
+        Except
+            EdtQuantidadePreenchido   := False;
+            Edt_Quantidade.Font.Color := clRed;
+            AtivaBtnCadastrarAtivo_Public();
+        End;
+
+     Finally
+         AtivaBtnCadastrarAtivo_Public();
+     End;
+end;
+
+
+procedure TF_Investimentos.Edt_TaxasKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   Taxas : Double;
+begin
+     Try
+        Try
+           Taxas := StrToFloat(Edt_Taxas.Text);
+
+           if (Taxas > 0) then
+            begin
+                 Edt_Taxas.Font.Color := clGreen;
+                 EdtTaxasPreenchido   := True;
+            end
+           else
+            begin
+                 Edt_Taxas.Font.Color := clRed;
+                 EdtTaxasPreenchido   := False;
+            end;
+
+        Except
+            EdtTaxasPreenchido   := False;
+            Edt_Taxas.Font.Color := clRed;
+            AtivaBtnCadastrarAtivo_Public();
+        End;
+
+     Finally
+         AtivaBtnCadastrarAtivo_Public();
+     End;
+end;
+
+
+procedure TF_Investimentos.Edt_LucroKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   Lucro : Double;
+begin
+     Try
+        try
+           Lucro := StrToFloat(Edt_Lucro.Text);
+
+           if Lucro > 0 then
+            begin
+                 Edt_Lucro.Font.Color := clGreen;
+                 EdtLucroPreenchido   := True;
+            end
+           else
+            begin
+                 Edt_Lucro.Font.Color := clRed;
+                 EdtLucroPreenchido   := False;
+            end;
+
+        Except
+            EdtLucroPreenchido   := False;
+            Edt_Lucro.Font.Color := clRed;
+            AtivaBtnCadastrarAtivo_Public();
+        end;
+
+     Finally
+         AtivaBtnCadastrarAtivo_Public();
+     End;
+
+end;
 
 // ========================================================================== //
 

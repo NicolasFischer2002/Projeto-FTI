@@ -22,8 +22,6 @@ object F_Investimentos: TF_Investimentos
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 900
-    ExplicitHeight = 590
     object Pnl_Top: TPanel
       Left = 0
       Top = 0
@@ -250,10 +248,6 @@ object F_Investimentos: TF_Investimentos
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 288
-      ExplicitTop = 200
-      ExplicitWidth = 320
-      ExplicitHeight = 120
     end
   end
   object Pnl_Right: TPanel
@@ -264,8 +258,6 @@ object F_Investimentos: TF_Investimentos
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 681
-    ExplicitTop = -6
     DesignSize = (
       225
       545)
@@ -344,7 +336,7 @@ object F_Investimentos: TF_Investimentos
       Top = 264
       Width = 190
       Height = 27
-      Hint = '15, 20, 100 ...'
+      Hint = '4,90 + 4,90'
       Anchors = [akTop]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -354,6 +346,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 3
       TextHint = 'Taxas de opera'#231#227'o'
+      OnKeyUp = Edt_TaxasKeyUp
     end
     object Edt_Ativo: TEdit
       Left = 19
@@ -370,7 +363,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 0
       TextHint = 'ITUB4, BBDC4 ...'
-      OnKeyDown = Edt_AtivoKeyDown
+      OnKeyUp = Edt_AtivoKeyUp
     end
     object Edt_Quantidade: TEdit
       Left = 19
@@ -387,13 +380,14 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 2
       TextHint = '15, 20, 100 ...'
+      OnKeyUp = Edt_QuantidadeKeyUp
     end
     object Edt_Lucro: TEdit
       Left = 19
       Top = 335
       Width = 190
       Height = 27
-      Hint = '15, 20, 100 ...'
+      Hint = 'Sem %'
       Anchors = [akTop]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -402,14 +396,15 @@ object F_Investimentos: TF_Investimentos
       Font.Style = []
       ParentFont = False
       TabOrder = 4
-      TextHint = 'Lucro esperado, ex 10%'
+      TextHint = 'Lucro esperado, ex 10'
+      OnKeyUp = Edt_LucroKeyUp
     end
     object Edt_ValorPago: TEdit
       Left = 19
       Top = 121
       Width = 190
       Height = 27
-      Hint = 'ITUB4, BBDC4 ...'
+      Hint = '25,00'
       Anchors = [akTop]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -419,6 +414,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 1
       TextHint = '25,00'
+      OnKeyUp = Edt_ValorPagoKeyUp
     end
     object Btn_CadastrarAtivo: TButton
       Left = 19
@@ -445,7 +441,6 @@ object F_Investimentos: TF_Investimentos
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitWidth = 675
   end
   object ADOConnection: TADOConnection
     ConnectionString = 
