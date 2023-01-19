@@ -442,21 +442,4 @@ object F_Investimentos: TF_Investimentos
     BevelOuter = bvNone
     TabOrder = 2
   end
-  object ADOConnection: TADOConnection
-    ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\AAA - Programa'#231#227 +
-      'o\Projeto FTI 15 01 23\Win32\Debug\Investimentos.mdb;Persist Sec' +
-      'urity Info=False'
-    LoginPrompt = False
-    Mode = cmShareDenyNone
-    Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 504
-    Top = 16
-  end
-  object Query: TADOQuery
-    Connection = ADOConnection
-    Parameters = <>
-    Left = 592
-    Top = 16
-  end
 end

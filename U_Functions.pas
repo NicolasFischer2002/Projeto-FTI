@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, IniFiles;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, IniFiles, Data.Win.ADODB;
 
 Var
 private,
@@ -28,10 +28,15 @@ public,
     EdtTaxasPreenchido      : Bool;
     EdtLucroPreenchido      : Bool;
 
+    AConnection             : TADOConnection;
+    Query                   : TADOQuery;
+
 
 // Procedures
 procedure AtivaBtnCadastrarAtivo_Public();
 procedure ApplicationTerminate_Public();
+procedure ConnectDatabase_Public();
+
 
 // Functions
 
@@ -59,6 +64,7 @@ end;
 // ========================================================================== //
 
 
+
 // ================== Close the Application with: crtl + w ================== //
 
 procedure ApplicationTerminate_Public();
@@ -70,5 +76,28 @@ end;
 
 // ========================================================================== //
 
+
+
+// ========================== Connect with database ========================= //
+
+procedure ConnectDatabase_Public();
+begin
+     Try
+        AConnection                  := TADOConnection.Create(Nil);
+        AConnection.Connected        := False;
+        AConnection.Provider         := 'Microsoft.Jet.OLEDB.4.0';
+        AConnection.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Investimentos.mdb;Persist Security Info=False';
+        AConnection.LoginPrompt      := False;
+        AConnection.Connected        := True;
+
+        Query            := TADOQuery.Create(Nil);
+        Query.Connection := AConnection;
+
+     Except
+         Application.MessageBox('Falha ao conectar com banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
+     End;
+end;
+
+// ========================================================================== //
 
 end.

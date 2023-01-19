@@ -15,8 +15,6 @@ type
     Pnl_Manager: TPanel;
     TImage_Manager: TImage;
     Lbl_Manager: TLabel;
-    ADOConnection: TADOConnection;
-    Query: TADOQuery;
     Pnl_Right: TPanel;
     Lbl_Taxas: TLabel;
     Lbl_Ativo: TLabel;
@@ -233,22 +231,22 @@ begin
 
         // Base está pronta, conectado e funcionando
 
-        Query.SQL.Clear;
-        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo) VALUES (1234)';
-        Query.ExecSQL;
-
-
-        Query.SQL.Clear;
-        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo) VALUES ("asdd")';
-        Query.ExecSQL;
-
-
-        Query.SQL.Clear;
-        Query.SQL.Text := 'SELECT * FROM Investimentos WHERE Ativo = "1234"';
-        Query.Open;
-
-
-         StringGrid.Cells[1,1] := Query.FieldByName('Ativo').AsString;
+//        Query.SQL.Clear;
+//        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo) VALUES (1234)';
+//        Query.ExecSQL;
+//
+//
+//        Query.SQL.Clear;
+//        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo) VALUES ("asdd")';
+//        Query.ExecSQL;
+//
+//
+//        Query.SQL.Clear;
+//        Query.SQL.Text := 'SELECT * FROM Investimentos WHERE Ativo = "1234"';
+//        Query.Open;
+//
+//
+//         StringGrid.Cells[1,1] := Query.FieldByName('Ativo').AsString;
 
 
      Finally

@@ -102,7 +102,6 @@ var
    MyDateStr      : String;
    MonthStr       : String;
    DayWeekStr     : String;
-
 begin
      MenuCollapsed := False;
      FormUserAtivo := False;
@@ -171,7 +170,7 @@ begin
          on E: Exception do
           begin
                ShowMessage('Erro na manipulação de File Ini: ' + E.Message );
-                Close;
+               Close;
           end;
 
         end;
@@ -179,6 +178,8 @@ begin
      Finally
          FreeAndNil(ArqIni);
      End;
+
+     ConnectDatabase_Public();
 
 end;
 

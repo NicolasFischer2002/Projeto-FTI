@@ -2003,6 +2003,6 @@ object F_Principal: TF_Principal
   object TTimer: TTimer
     OnTimer = TTimerTimer
     Left = 1164
-    Top = 554
+    Top = 482
   end
 end
