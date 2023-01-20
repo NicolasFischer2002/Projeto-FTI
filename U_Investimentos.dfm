@@ -232,6 +232,15 @@ object F_Investimentos: TF_Investimentos
           ParentFont = False
         end
       end
+      object Button1: TButton
+        Left = 568
+        Top = 40
+        Width = 75
+        Height = 25
+        Caption = 'Limpar BD'
+        TabOrder = 1
+        OnClick = Button1Click
+      end
     end
     object StringGrid: TStringGrid
       Left = 0
@@ -431,6 +440,7 @@ object F_Investimentos: TF_Investimentos
       Font.Style = []
       ParentFont = False
       TabOrder = 5
+      OnClick = Btn_CadastrarAtivoClick
     end
   end
   object Pnl_Bottom: TPanel

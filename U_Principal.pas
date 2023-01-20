@@ -36,6 +36,7 @@ type
     TImage_User: TImage;
     Lbl_BemVindo: TLabel;
     TImage_Menu: TImage;
+    Pnl_CenterBottomConectado: TPanel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure TTimerTimer(Sender: TObject);
@@ -69,6 +70,8 @@ type
      // Vars
 
      MenuCollapsed : Bool;
+
+     Tempo         : Integer;
 
      // Procedures/Functions
 
@@ -483,11 +486,25 @@ end;
 
 
 
-// ============================= Timer for clock ============================ //
+// ================================ Timer  ================================== //
 
 procedure TF_Principal.TTimerTimer(Sender: TObject);
 begin
-     Lbl_Time.Caption := TimeToStr(Time);
+     Try
+        Lbl_Time.Caption := TimeToStr(Time);
+
+        if Tempo < 4000 then
+         begin
+              if Pnl_CenterBottomConectado.Visible then
+               Tempo := Tempo + 1000;
+
+              if Tempo > 3000 then
+               Pnl_CenterBottomConectado.Visible := False;
+         end;
+
+     Except
+         Application.MessageBox('Erro na inicialização do Timer', 'Atenção!', mb_Ok + mb_IconExclamation);
+     End;
 end;
 
 // ========================================================================== //

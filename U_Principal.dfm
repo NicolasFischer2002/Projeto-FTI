@@ -1998,6 +1998,28 @@ object F_Principal: TF_Principal
           end
         end
       end
+      object Pnl_CenterBottomConectado: TPanel
+        Left = 0
+        Top = 549
+        Width = 900
+        Height = 41
+        Align = alBottom
+        BevelOuter = bvNone
+        Caption = 'Conectado com sucesso!'
+        Color = clGreen
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        Visible = False
+        ExplicitLeft = 304
+        ExplicitTop = 520
+        ExplicitWidth = 185
+      end
     end
   end
   object TTimer: TTimer

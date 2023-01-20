@@ -28,6 +28,7 @@ type
     Edt_ValorPago: TEdit;
     Btn_CadastrarAtivo: TButton;
     StringGrid: TStringGrid;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
@@ -40,6 +41,8 @@ type
       Shift: TShiftState);
     procedure Edt_LucroKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Btn_CadastrarAtivoClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,7 +59,53 @@ implementation
 uses U_Functions, U_User, U_Principal;
 
 
+
+
+
+
+procedure TF_Investimentos.Button1Click(Sender: TObject);
+begin
+     Query.SQL.Clear;
+     Query.SQL.Text := 'DELETE * FROM Investimentos'; // Funcionando
+     Query.ExecSQL;
+     ShowMessage('Banco de dados limpo');
+end;
+
+
+
+// ============================ Cadastra Ativo ============================== //
+
+procedure TF_Investimentos.Btn_CadastrarAtivoClick(Sender: TObject);
+Var
+   Ativo      : String;
+   ValorPago  : String;
+   Quantidade : String;
+   Taxas      : String;
+   Lucro      : String;
+begin
+     Try
+        Ativo      := Edt_Ativo.Text;
+        ValorPago  := Edt_ValorPago.Text;
+        Quantidade := Edt_ValorPago.Text;
+        Taxas      := Edt_Taxas.Text;
+        Lucro      := Edt_Lucro.Text;
+
+        Query.SQL.Clear;
+        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Lucro) VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) + ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) + ',' + QuotedStr(Lucro) + ') '; // Funcionando
+        Query.ExecSQL;
+
+        ShowMessage('Cadastrado com sucesso');
+
+     Except
+         Application.MessageBox('Falha ao cadastrar ativo no banco de dados!','Atenção', mb_Ok+mb_IconExclamation);
+     End;
+end;
+
+// ========================================================================== //
+
+
 // ======================== Validation dos EDTs ============================= //
+
 
 procedure TF_Investimentos.Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
