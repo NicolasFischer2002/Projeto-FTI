@@ -248,8 +248,9 @@ object F_Investimentos: TF_Investimentos
       Width = 675
       Height = 420
       Align = alClient
-      ColCount = 7
-      DefaultColWidth = 95
+      ColCount = 8
+      DefaultColWidth = 161
+      DrawingStyle = gdsGradient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16

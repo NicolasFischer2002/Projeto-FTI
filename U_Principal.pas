@@ -288,6 +288,8 @@ begin
                  FormUserAtivo := False;
             end;
 
+           F_Principal.WindowState := wsMaximized;
+
            F_Investimentos := TF_Investimentos.Create(Self);
 
            F_Investimentos.Parent      := Pnl_Center;

@@ -2016,9 +2016,6 @@ object F_Principal: TF_Principal
         ParentFont = False
         TabOrder = 1
         Visible = False
-        ExplicitLeft = 304
-        ExplicitTop = 520
-        ExplicitWidth = 185
       end
     end
   end
