@@ -31,12 +31,15 @@ public,
     AConnection             : TADOConnection;
     Query                   : TADOQuery;
 
+    Line_public             : Integer;
+
 
 // Procedures
 procedure AtivaBtnCadastrarAtivo_Public();
 procedure ApplicationTerminate_Public();
 procedure ConnectDatabase_Public();
-procedure ReadDataBaseWriteGrid();
+procedure ReadDataBaseWriteGrid_Public();
+procedure ClearGrid_Public();
 
 
 // Functions
@@ -51,51 +54,80 @@ uses U_Principal, U_User, U_Investimentos;
 
 
 
+// ============================= Clear Grid ================================= //
+
+procedure ClearGrid_Public();
+Var
+   Col  : Integer;
+   Line : Integer;
+begin
+     for line := 1 to F_Investimentos.StringGrid.RowCount - 1 do
+      for Col := 0 to F_Investimentos.StringGrid.ColCount - 1 do
+       F_Investimentos.StringGrid.Cells[Col, Line] := '';
+end;
+
+// ========================================================================== //
+
 
 // ================== Read from database and write to grid ================== //
 
-procedure ReadDataBaseWriteGrid();
+procedure ReadDataBaseWriteGrid_public();
 Var
    Str  : String;
-   Line : Integer;
 begin
      Try
-           Query.SQL.Clear;
-           Query.SQL.Text := 'SELECT * FROM Investimentos';
-           Query.Open;
+        ClearGrid_Public();
 
-           if Query.RecordCount > 0 then
-            begin
-                 Line := 1;
-                 Query.First;
-                 while not Query.Eof do
-                  begin
-                       Str := Query.FieldByName('Código').AsString +
-                              '|' + Query.FieldByName('Ativo').AsString +
-                              '|' + Query.FieldByName('Valor_Negociado').AsString +
-                              '|' + Query.FieldByName('Quantidade').AsString +
-                              '|' + Query.FieldByName('Taxas').AsString +
-                              '|' + Query.FieldByName('Lucro').AsString +
-                              '|' + Query.FieldByName('Venda_com_lucro').AsString +
-                              '|' + Query.FieldByName('Retorno').AsString;
+        Line_public := 1;
 
-                       F_Investimentos.StringGrid.Cells[0,Line] := PegaColpipeline_Public(Str,0);
-                       F_Investimentos.StringGrid.Cells[1,Line] := PegaColpipeline_Public(Str,1);
-                       F_Investimentos.StringGrid.Cells[2,Line] := PegaColpipeline_Public(Str,2);
-                       F_Investimentos.StringGrid.Cells[3,Line] := PegaColpipeline_Public(Str,3);
-                       F_Investimentos.StringGrid.Cells[4,Line] := PegaColpipeline_Public(Str,4);
-                       F_Investimentos.StringGrid.Cells[5,Line] := PegaColpipeline_Public(Str,5);
-                       F_Investimentos.StringGrid.Cells[6,Line] := PegaColpipeline_Public(Str,6);
-                       F_Investimentos.StringGrid.Cells[7,Line] := PegaColpipeline_Public(Str,7);
+        F_Investimentos.StringGrid.ColCount := 9;
+        F_Investimentos.StringGrid.RowCount := Line_public;
 
-                       Inc(Line);
-                       Query.Next;
-                  end;
-            end;
+        Query.SQL.Clear;
+        Query.SQL.Text := 'SELECT * FROM Investimentos';
+        Query.Open;
 
-        Except
-            Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
-        End;
+        if Query.RecordCount > 0 then
+         begin
+              Query.First;
+              while not Query.Eof do
+               begin
+                    Str := Query.FieldByName('Código').AsString +
+                           '|' + Query.FieldByName('Ativo').AsString +
+                           '|' + Query.FieldByName('Valor_Negociado').AsString +
+                           '|' + Query.FieldByName('Quantidade').AsString +
+                           '|' + Query.FieldByName('Taxas').AsString +
+                           '|' + Query.FieldByName('Valor_investido').AsString +
+                           '|' + Query.FieldByName('Lucro').AsString +
+                           '|' + Query.FieldByName('Venda_com_lucro').AsString +
+                           '|' + Query.FieldByName('Retorno').AsString;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                     begin
+                          F_Investimentos.StringGrid.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
+                          F_Investimentos.StringGrid.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
+                          F_Investimentos.StringGrid.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
+                          F_Investimentos.StringGrid.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
+                          F_Investimentos.StringGrid.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
+                          F_Investimentos.StringGrid.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
+                          F_Investimentos.StringGrid.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
+                          F_Investimentos.StringGrid.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
+                          F_Investimentos.StringGrid.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
+                     end;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                    begin
+                         Inc(Line_public);
+                         F_Investimentos.StringGrid.RowCount := Line_public;
+                    end;
+
+                    Query.Next;
+               end;
+         end;
+
+     Except
+           Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
+     End;
 end;
 
 // ========================================================================== //

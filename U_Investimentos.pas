@@ -45,6 +45,7 @@ type
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
+    procedure ClearEDTs();
   public
     { Public declarations }
   end;
@@ -72,51 +73,71 @@ begin
 end;
 
 
+// ============================= Clear EDTs ================================= //
+
+procedure TF_Investimentos.ClearEDTs();
+begin
+     Edt_Ativo.Text      := '';
+     Edt_ValorPago.Text  := '';
+     Edt_Quantidade.Text := '';
+     Edt_Taxas.Text      := '';
+     Edt_Lucro.Text      := '';
+end;
+
+// ========================================================================== //
+
+
 
 // ============================ Cadastra Ativo ============================== //
 
 procedure TF_Investimentos.Btn_CadastrarAtivoClick(Sender: TObject);
 Var
-   Ativo         : String;
-   ValorPago     : String;
-   Quantidade    : String;
-   Taxas         : String;
-   Lucro         : String;
-   VendaComLucro : String;
-   Retorno       : String;
+   Ativo          : String;
+   ValorPago      : String;
+   Quantidade     : String;
+   Taxas          : String;
+   Lucro          : String;
+   VendaComLucro  : String;
+   Retorno        : String;
+   ValorInvestido : String;
 begin
      Try
-        Ativo      := Edt_Ativo.Text;
-        ValorPago  := Edt_ValorPago.Text;
-        Quantidade := Edt_Quantidade.Text;
-        Taxas      := Edt_Taxas.Text;
-        Lucro      := Edt_Lucro.Text;
-
-        VendaComLucro := FloatToStr((StrToFloat(ValorPago) +
-                         (((StrToFloat(ValorPago) * StrToFloat(Quantidade)) - StrToFloat(Taxas)) * StrToFloat(Lucro)) / 1000));
-
-        Retorno       := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
-                         (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
+        Try
+           Ativo      := Edt_Ativo.Text;
+           ValorPago  := Edt_ValorPago.Text;
+           Quantidade := Edt_Quantidade.Text;
+           Taxas      := Edt_Taxas.Text;
+           Lucro      := Edt_Lucro.Text;
 
 
-//        Query.SQL.Clear;
-//        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Lucro) VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) + ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) + ',' + QuotedStr(Lucro) + ') '; // Funcionando
-//        Query.ExecSQL;
+           ValorInvestido := FloatToStr((StrToFloat(ValorPago) * StrToFloat(Quantidade)) + StrToFloat(Taxas));
 
-        Query.SQL.Clear;
-        Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Lucro,Venda_Com_Lucro,Retorno)' +
-                          'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
-                          ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
-                          ',' + QuotedStr(Lucro) + ',' + QuotedStr(VendaComLucro) +
-                          ',' + QuotedStr(Retorno) + ') ';
-        Query.ExecSQL;
 
-        ShowMessage('Cadastrado com sucesso');
+           VendaComLucro  := FloatToStr((StrToFloat(ValorPago) +
+                            (((StrToFloat(ValorPago) * StrToFloat(Quantidade)) - StrToFloat(Taxas)) * StrToFloat(Lucro)) / 1000));
 
-        ReadDataBaseWriteGrid(); // Verificar aqui
+           Retorno        := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
+                            (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
 
-     Except
-         Application.MessageBox('Falha ao cadastrar ativo no banco de dados!','Atenção', mb_Ok+mb_IconExclamation);
+
+           Query.SQL.Clear;
+           Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +
+                             'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
+                             ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
+                             ',' + QuotedStr(ValorInvestido) + ',' + QuotedStr(Lucro) +
+                             ',' + QuotedStr(VendaComLucro) + ',' + QuotedStr(Retorno) + ') ';
+           Query.ExecSQL;
+
+           ShowMessage('Cadastrado com sucesso');
+
+           ReadDataBaseWriteGrid_Public();
+
+        Except
+            Application.MessageBox('Falha ao cadastrar ativo no banco de dados!','Atenção', mb_Ok+mb_IconExclamation);
+        End;
+
+     Finally
+         ClearEDTs();
      End;
 end;
 
@@ -287,29 +308,25 @@ end;
 
 procedure TF_Investimentos.FormCreate(Sender: TObject);
 Var
-   Str  : String;
-   Line : Integer;
+   Str : String;
 begin
      Try
+        ClearGrid_Public();
+
+        Line_public := 1;
+
+        StringGrid.ColCount := 9;
+        StringGrid.RowCount := Line_public;
+
         StringGrid.Cells[0,0] := 'Código';
         StringGrid.Cells[1,0] := 'Ativo';
         StringGrid.Cells[2,0] := 'Valor';
         StringGrid.Cells[3,0] := 'Quantidade';
         StringGrid.Cells[4,0] := 'Taxas';
-        StringGrid.Cells[5,0] := 'Lucro %';
-        StringGrid.Cells[6,0] := 'Venda com lucro';
-        StringGrid.Cells[7,0] := 'Retorno';
-
-//        ReadDataBaseWriteGrid();
-
-        // Base está pronta, conectado e funcionando
-
-//        Query.SQL.Clear;
-//        Query.SQL.Text := 'SELECT * FROM Investimentos WHERE Ativo = "1234"';
-//        Query.Open;
-//
-//
-//         StringGrid.Cells[1,1] := Query.FieldByName('Ativo').AsString;
+        StringGrid.Cells[5,0] := 'Valor investido';
+        StringGrid.Cells[6,0] := 'Lucro %';
+        StringGrid.Cells[7,0] := 'Venda com lucro';
+        StringGrid.Cells[8,0] := 'Retorno';
 
         Try
            Query.SQL.Clear;
@@ -318,7 +335,6 @@ begin
 
            if Query.RecordCount > 0 then
             begin
-                 Line := 1;
                  Query.First;
                  while not Query.Eof do
                   begin
@@ -327,20 +343,30 @@ begin
                               '|' + Query.FieldByName('Valor_Negociado').AsString +
                               '|' + Query.FieldByName('Quantidade').AsString +
                               '|' + Query.FieldByName('Taxas').AsString +
+                              '|' + Query.FieldByName('Valor_investido').AsString +
                               '|' + Query.FieldByName('Lucro').AsString +
                               '|' + Query.FieldByName('Venda_com_lucro').AsString +
                               '|' + Query.FieldByName('Retorno').AsString;
 
-                       StringGrid.Cells[0,Line] := PegaColpipeline_Public(Str,0);
-                       StringGrid.Cells[1,Line] := PegaColpipeline_Public(Str,1);
-                       StringGrid.Cells[2,Line] := PegaColpipeline_Public(Str,2);
-                       StringGrid.Cells[3,Line] := PegaColpipeline_Public(Str,3);
-                       StringGrid.Cells[4,Line] := PegaColpipeline_Public(Str,4);
-                       StringGrid.Cells[5,Line] := PegaColpipeline_Public(Str,5);
-                       StringGrid.Cells[6,Line] := PegaColpipeline_Public(Str,6);
-                       StringGrid.Cells[7,Line] := PegaColpipeline_Public(Str,7);
+                       if Query.FieldByName('Ativo').AsString <> '' then
+                        begin
+                             StringGrid.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
+                             StringGrid.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
+                             StringGrid.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
+                             StringGrid.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
+                             StringGrid.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
+                             StringGrid.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
+                             StringGrid.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
+                             StringGrid.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
+                             StringGrid.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
+                        end;
 
-                       Inc(Line);
+                       if Query.FieldByName('Ativo').AsString <> '' then
+                        begin
+                             Inc(Line_public);
+                             StringGrid.RowCount := Line_public;
+                        end;
+
                        Query.Next;
                   end;
             end;
