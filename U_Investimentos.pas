@@ -328,6 +328,17 @@ begin
         StringGrid.Cells[7,0] := 'Venda com lucro';
         StringGrid.Cells[8,0] := 'Retorno';
 
+        StringGrid.ColWidths[0] := 70;
+        StringGrid.ColWidths[1] := 80;
+        StringGrid.ColWidths[2] := 80;
+        StringGrid.ColWidths[3] := 100;
+        StringGrid.ColWidths[4] := 80;
+        StringGrid.ColWidths[5] := 120;
+        StringGrid.ColWidths[6] := 80;
+        StringGrid.ColWidths[7] := 135;
+        StringGrid.ColWidths[8] := 100;
+
+
         Try
            Query.SQL.Clear;
            Query.SQL.Text := 'SELECT * FROM Investimentos';
