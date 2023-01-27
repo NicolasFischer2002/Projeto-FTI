@@ -431,6 +431,7 @@ object F_Investimentos: TF_Investimentos
       Top = 480
       Width = 190
       Height = 65
+      Hint = 'Teste'
       Anchors = [akBottom]
       Caption = 'Cadastrar Ativo'
       Enabled = False

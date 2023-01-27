@@ -64,6 +64,9 @@ type
     procedure Pnl_InvestimentosClick(Sender: TObject);
     procedure Lbl_InvestimentosClick(Sender: TObject);
     procedure TImage_InvestimentosClick(Sender: TObject);
+    procedure Pnl_DashboardClick(Sender: TObject);
+    procedure Lbl_DashBoardClick(Sender: TObject);
+    procedure TImage_DashBoardClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -153,16 +156,18 @@ begin
      // 16.33333333 is the size each character occupies
      // (maximum label width / number of characters occupied = 16.3333...)
      // Lbl_FullDate.Caption := 'Terça-feira,Dezembro 19, 2023';
+     // Lbl_FullDate.Caption := 'Quinta-feira, Novembro 19, 2023';
+
      Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
-     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2));
+     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 3);
 
 
      Try
         Try
            if FileExists(ExtractFilePath(Application.ExeName) + 'ArqIni.ini') then
             begin
-                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
-                 Lbl_BemVindo.Caption := ('Bem vindo, ' + ArqIni.ReadString('NickName', 'Username', 'Erro ao ler o valor'));
+                 ArqIni_Public := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 Lbl_BemVindo.Caption := ('Bem vindo, ' + ArqIni_Public.ReadString('NickName', 'Username', 'Erro ao ler o valor'));
             end
            else
             begin
@@ -179,7 +184,7 @@ begin
         end;
 
      Finally
-         FreeAndNil(ArqIni);
+         FreeAndNil(ArqIni_Public);
      End;
 
      ConnectDatabase_Public();
@@ -278,6 +283,33 @@ end;
 
 
 
+// ================ Close all forms Returning to Dashboard ================== //
+
+procedure TF_Principal.Pnl_DashboardClick(Sender: TObject);
+begin
+     if not FormPrincipalAtivo then
+      begin
+           if FormUserAtivo then
+            begin
+                 F_User.Close;
+                 FormUserAtivo := False;
+            end;
+           if FormInvestimentosAtivo then
+            begin
+                 F_Investimentos.Close;
+                 FormInvestimentosAtivo := False;
+            end;
+      end
+     else
+      begin
+           FormPrincipalAtivo := False;
+      end;
+end;
+
+// ========================================================================== //
+
+
+
 // ====================== Chama o Form Investimentos =========================//
 
 procedure TF_Principal.Pnl_InvestimentosClick(Sender: TObject);  // Aqui
@@ -315,7 +347,23 @@ end;
 
 
 
-// ============= Chama o evento de Click no Pnl_Investimentos ================//
+// ================ Call the events of Click in Pnl_Dashboard =============== //
+
+procedure TF_Principal.Lbl_DashBoardClick(Sender: TObject);
+begin
+     Pnl_DashboardClick(Sender);
+end;
+
+procedure TF_Principal.TImage_DashBoardClick(Sender: TObject);
+begin
+      Pnl_DashboardClick(Sender);
+end;
+
+// ========================================================================== //
+
+
+
+// =============== Call the events of Click in Pnl_Investimentos ==============//
 
 procedure TF_Principal.Lbl_InvestimentosClick(Sender: TObject);
 begin

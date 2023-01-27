@@ -733,8 +733,10 @@ object F_Principal: TF_Principal
       ParentBackground = False
       ParentDoubleBuffered = False
       TabOrder = 2
+      OnClick = Pnl_DashboardClick
       OnMouseEnter = Pnl_DashboardMouseEnter
       OnMouseLeave = Pnl_DashboardMouseLeave
+      ExplicitTop = 156
       object TImage_DashBoard: TImage
         Left = 35
         Top = 32
@@ -794,6 +796,7 @@ object F_Principal: TF_Principal
           CD3EFC90B7D977FD246DC6B207CB5A8873E25692710E2663DE9064CC8C4D56DD
           589AB09C427194EF26FF0FD1A6A0EADF91A75D0000000049454E44AE426082}
         Stretch = True
+        OnClick = TImage_DashBoardClick
         OnMouseEnter = TImage_DashBoardMouseEnter
         OnMouseLeave = TImage_DashBoardMouseLeave
       end
@@ -810,6 +813,7 @@ object F_Principal: TF_Principal
         Font.Style = []
         ParentFont = False
         Transparent = True
+        OnClick = Lbl_DashBoardClick
         OnMouseEnter = Lbl_DashBoardMouseEnter
         OnMouseLeave = Lbl_DashBoardMouseLeave
       end
@@ -948,7 +952,7 @@ object F_Principal: TF_Principal
         900
         590)
       object TImage_LogoCenter: TImage
-        Left = 207
+        Left = 198
         Top = 168
         Width = 485
         Height = 148
@@ -1619,7 +1623,7 @@ object F_Principal: TF_Principal
         Stretch = True
       end
       object Lbl_Time: TLabel
-        Left = 332
+        Left = 323
         Top = 317
         Width = 238
         Height = 73

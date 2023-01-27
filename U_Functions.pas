@@ -18,9 +18,11 @@ private,
 
 public,
     { Public declarations }
-    ArqIni                  : TIniFile;
+    ArqIni_Public           : TIniFile;
+
     FormUserAtivo           : Bool;
     FormInvestimentosAtivo  : Bool;
+    FormPrincipalAtivo      : Bool;
 
     EdtAtivoPreenchido      : Bool;
     EdtValorPagoPreenchido  : Bool;
@@ -61,9 +63,14 @@ Var
    Col  : Integer;
    Line : Integer;
 begin
-     for line := 1 to F_Investimentos.StringGrid.RowCount - 1 do
-      for Col := 0 to F_Investimentos.StringGrid.ColCount - 1 do
-       F_Investimentos.StringGrid.Cells[Col, Line] := '';
+     Try
+        for line := 1 to F_Investimentos.StringGrid.RowCount - 1 do
+         for Col := 0 to F_Investimentos.StringGrid.ColCount - 1 do
+          F_Investimentos.StringGrid.Cells[Col, Line] := '';
+
+     Except
+         // continue normally
+     End;
 end;
 
 // ========================================================================== //

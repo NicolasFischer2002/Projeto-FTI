@@ -88,7 +88,7 @@ end;
 
 
 
-// ============================ Cadastra Ativo ============================== //
+// ============================ Register active ============================= //
 
 procedure TF_Investimentos.Btn_CadastrarAtivoClick(Sender: TObject);
 Var

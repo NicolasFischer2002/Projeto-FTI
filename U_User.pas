@@ -89,16 +89,16 @@ begin
            if FileExists(ExtractFilePath(Application.ExeName) + '\ArqIni.ini') then
             begin
                  DeleteFile(ExtractFilePath(Application.ExeName) + '\ArqIni.ini');
-                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
-                 ArqIni.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
+                 ArqIni_Public := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 ArqIni_Public.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
             end
            else
             begin
-                 ArqIni := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
-                 ArqIni.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
+                 ArqIni_Public := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                 ArqIni_Public.WriteString('NickName', 'Username', Trim(Edt_NickName.Text));
             end;
 
-            F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + ArqIni.ReadString('NickName', 'Username', 'Erro ao ler o valor');
+            F_Principal.Lbl_BemVindo.Caption := 'Bem vindo, ' + ArqIni_Public.ReadString('NickName', 'Username', 'Erro ao ler o valor');
             Lbl_Validacao.Left    := 100;
             Lbl_Validacao.Caption := 'Alterado com sucesso!';
 
@@ -112,7 +112,7 @@ begin
         End;
 
      finally
-         FreeAndNil(ArqIni);
+         FreeAndNil(ArqIni_Public);
      end;
 end;
 
