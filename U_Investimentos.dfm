@@ -10,7 +10,6 @@ object F_Investimentos: TF_Investimentos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
@@ -242,7 +241,7 @@ object F_Investimentos: TF_Investimentos
         OnClick = Button1Click
       end
     end
-    object StringGrid: TStringGrid
+    object StringGrid_Investments: TStringGrid
       Left = 0
       Top = 125
       Width = 675

@@ -67,6 +67,9 @@ type
     procedure Pnl_DashboardClick(Sender: TObject);
     procedure Lbl_DashBoardClick(Sender: TObject);
     procedure TImage_DashBoardClick(Sender: TObject);
+    procedure Pnl_AtualizarClick(Sender: TObject);
+    procedure Lbl_AtualizarClick(Sender: TObject);
+    procedure TImage_AtualizarClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -93,7 +96,7 @@ implementation
 {$R *.dfm}
 
 // Calling functions from another Unit
-uses U_Functions, U_User, U_Investimentos;
+uses U_Functions, U_User, U_Investimentos, U_Update;
 
 
 // ====================== OnCreate do TF_Principal ========================== //
@@ -299,6 +302,11 @@ begin
                  F_Investimentos.Close;
                  FormInvestimentosAtivo := False;
             end;
+           if FormUpdateActive then
+            begin
+                 F_Update.Close;
+                 FormUpdateActive := False;
+            end;
       end
      else
       begin
@@ -310,9 +318,9 @@ end;
 
 
 
-// ====================== Chama o Form Investimentos =========================//
+// ===================== Call the Form Investimentos ======================== //
 
-procedure TF_Principal.Pnl_InvestimentosClick(Sender: TObject);  // Aqui
+procedure TF_Principal.Pnl_InvestimentosClick(Sender: TObject);  
 begin
      if not FormInvestimentosAtivo then
       begin
@@ -320,6 +328,11 @@ begin
             begin
                  F_User.Close;
                  FormUserAtivo := False;
+            end;
+           if FormUpdateActive then
+            begin
+                 F_Update.Close;
+                 FormUpdateActive := False;
             end;
 
            F_Principal.WindowState := wsMaximized;
@@ -333,6 +346,10 @@ begin
            F_Investimentos.Show;
 
            FormInvestimentosAtivo := True;
+
+           ClearGrid_Public();
+           StartTheStringGrid_Public();
+           FeedTheGrid_Public();
       end
      else
       begin
@@ -340,6 +357,52 @@ begin
            FreeAndNil(F_Investimentos);
 
            FormInvestimentosAtivo := False;
+      end;
+end;
+
+// ========================================================================== //
+
+
+
+// ======================== Call the form Update ============================ //
+
+procedure TF_Principal.Pnl_AtualizarClick(Sender: TObject);
+begin
+     if not FormUpdateActive then
+      begin
+           if FormUserAtivo then
+            begin
+                 F_User.Close;
+                 FormUserAtivo := False;
+            end;
+           if FormInvestimentosAtivo then
+            begin
+                 F_Investimentos.Close;
+                 FormInvestimentosAtivo := False;
+            end;
+
+           F_Principal.WindowState := wsMaximized;
+
+           F_Update := TF_Update.Create(Self);
+
+           F_Update.Parent      := Pnl_Center;
+           F_Update.Align       := AlClient;
+           F_Update.BorderStyle := BsNone;
+
+           F_Update.Show;
+
+           FormUpdateActive := True;
+
+           ClearGrid_Public();
+           StartTheStringGrid_Public();
+           FeedTheGrid_Public();
+      end
+     else
+      begin
+           F_Update.Close;
+           FreeAndNil(F_Update);
+
+           FormUpdateActive := False;
       end;
 end;
 
@@ -373,6 +436,22 @@ end;
 procedure TF_Principal.TImage_InvestimentosClick(Sender: TObject);
 begin
      Pnl_InvestimentosClick(Sender);
+end;
+
+// ========================================================================== //
+
+
+
+// ================ Call the events of click in Pnl_Update ================== //
+
+procedure TF_Principal.Lbl_AtualizarClick(Sender: TObject);
+begin
+     Pnl_AtualizarClick(Sender);
+end;
+
+procedure TF_Principal.TImage_AtualizarClick(Sender: TObject);
+begin
+     Pnl_AtualizarClick(Sender);
 end;
 
 // ========================================================================== //

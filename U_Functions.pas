@@ -23,6 +23,7 @@ public,
     FormUserAtivo           : Bool;
     FormInvestimentosAtivo  : Bool;
     FormPrincipalAtivo      : Bool;
+    FormUpdateActive        : Bool;
 
     EdtAtivoPreenchido      : Bool;
     EdtValorPagoPreenchido  : Bool;
@@ -42,17 +43,120 @@ procedure ApplicationTerminate_Public();
 procedure ConnectDatabase_Public();
 procedure ReadDataBaseWriteGrid_Public();
 procedure ClearGrid_Public();
+procedure StartTheStringGrid_Public();
+procedure FeedTheGrid_Public();
+
+
 
 
 // Functions
-function PegaColpipeline_Public (TXT : String; Col : Integer): string;
-
+function PegaColpipeline_Public (TXT : String; Col : Integer) : string;
 
 
 implementation
 
 
-uses U_Principal, U_User, U_Investimentos;
+uses U_Principal, U_User, U_Investimentos, U_Update;
+
+
+
+
+// ============================= Feed The Grid ============================== //
+
+procedure FeedTheGrid_Public();
+Var
+   Str : String;
+begin
+     Try
+        Query.SQL.Clear;
+        Query.SQL.Text := 'SELECT * FROM Investimentos';
+        Query.Open;
+
+        if Query.RecordCount > 0 then
+         begin
+              Query.First;
+              while not Query.Eof do
+               begin
+                    Str := Query.FieldByName('Código').AsString +
+                           '|' + Query.FieldByName('Ativo').AsString +
+                           '|' + Query.FieldByName('Valor_Negociado').AsString +
+                           '|' + Query.FieldByName('Quantidade').AsString +
+                           '|' + Query.FieldByName('Taxas').AsString +
+                           '|' + Query.FieldByName('Valor_investido').AsString +
+                           '|' + Query.FieldByName('Lucro').AsString +
+                           '|' + Query.FieldByName('Venda_com_lucro').AsString +
+                           '|' + Query.FieldByName('Retorno').AsString;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                     begin
+                          F_Investimentos.StringGrid_Investments.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
+                          F_Investimentos.StringGrid_Investments.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
+                          F_Investimentos.StringGrid_Investments.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
+                          F_Investimentos.StringGrid_Investments.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
+                          F_Investimentos.StringGrid_Investments.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
+                          F_Investimentos.StringGrid_Investments.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
+                          F_Investimentos.StringGrid_Investments.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
+                          F_Investimentos.StringGrid_Investments.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
+                          F_Investimentos.StringGrid_Investments.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
+                     end;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                     begin
+                          Inc(Line_public);
+                          F_Investimentos.StringGrid_Investments.RowCount := Line_public;
+                     end;
+
+                    Query.Next;
+               end;
+         end;
+
+     Except
+         Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
+     End;
+end;
+
+// ========================================================================== //
+
+
+
+// ============================ Scale the grid ============================== //
+
+procedure StartTheStringGrid_Public();
+Var
+   Str : String;
+begin
+     try
+        Line_public := 1;
+
+        F_Investimentos.StringGrid_Investments.ColCount := 9;
+        F_Investimentos.StringGrid_Investments.RowCount := Line_public;
+
+        F_Investimentos.StringGrid_Investments.Cells[0,0] := 'Código';
+        F_Investimentos.StringGrid_Investments.Cells[1,0] := 'Ativo';
+        F_Investimentos.StringGrid_Investments.Cells[2,0] := 'Valor';
+        F_Investimentos.StringGrid_Investments.Cells[3,0] := 'Quantidade';
+        F_Investimentos.StringGrid_Investments.Cells[4,0] := 'Taxas';
+        F_Investimentos.StringGrid_Investments.Cells[5,0] := 'Valor investido';
+        F_Investimentos.StringGrid_Investments.Cells[6,0] := 'Lucro %';
+        F_Investimentos.StringGrid_Investments.Cells[7,0] := 'Venda com lucro';
+        F_Investimentos.StringGrid_Investments.Cells[8,0] := 'Retorno';
+
+        F_Investimentos.StringGrid_Investments.ColWidths[0] := 70;
+        F_Investimentos.StringGrid_Investments.ColWidths[1] := 80;
+        F_Investimentos.StringGrid_Investments.ColWidths[2] := 80;
+        F_Investimentos.StringGrid_Investments.ColWidths[3] := 100;
+        F_Investimentos.StringGrid_Investments.ColWidths[4] := 80;
+        F_Investimentos.StringGrid_Investments.ColWidths[5] := 120;
+        F_Investimentos.StringGrid_Investments.ColWidths[6] := 80;
+        F_Investimentos.StringGrid_Investments.ColWidths[7] := 135;
+        F_Investimentos.StringGrid_Investments.ColWidths[8] := 100;
+
+     finally
+
+     end;
+end;
+
+// ========================================================================== //
 
 
 
@@ -64,9 +168,9 @@ Var
    Line : Integer;
 begin
      Try
-        for line := 1 to F_Investimentos.StringGrid.RowCount - 1 do
-         for Col := 0 to F_Investimentos.StringGrid.ColCount - 1 do
-          F_Investimentos.StringGrid.Cells[Col, Line] := '';
+        for line := 1 to F_Investimentos.StringGrid_Investments.RowCount - 1 do
+         for Col := 0 to F_Investimentos.StringGrid_Investments.ColCount - 1 do
+          F_Investimentos.StringGrid_Investments.Cells[Col, Line] := '';
 
      Except
          // continue normally
@@ -87,8 +191,8 @@ begin
 
         Line_public := 1;
 
-        F_Investimentos.StringGrid.ColCount := 9;
-        F_Investimentos.StringGrid.RowCount := Line_public;
+        F_Investimentos.StringGrid_Investments.ColCount := 9;
+        F_Investimentos.StringGrid_Investments.RowCount := Line_public;
 
         Query.SQL.Clear;
         Query.SQL.Text := 'SELECT * FROM Investimentos';
@@ -111,21 +215,21 @@ begin
 
                     if Query.FieldByName('Ativo').AsString <> '' then
                      begin
-                          F_Investimentos.StringGrid.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
-                          F_Investimentos.StringGrid.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
-                          F_Investimentos.StringGrid.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
-                          F_Investimentos.StringGrid.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
-                          F_Investimentos.StringGrid.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
-                          F_Investimentos.StringGrid.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
-                          F_Investimentos.StringGrid.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
-                          F_Investimentos.StringGrid.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
-                          F_Investimentos.StringGrid.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
+                          F_Investimentos.StringGrid_Investments.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
+                          F_Investimentos.StringGrid_Investments.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
+                          F_Investimentos.StringGrid_Investments.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
+                          F_Investimentos.StringGrid_Investments.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
+                          F_Investimentos.StringGrid_Investments.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
+                          F_Investimentos.StringGrid_Investments.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
+                          F_Investimentos.StringGrid_Investments.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
+                          F_Investimentos.StringGrid_Investments.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
+                          F_Investimentos.StringGrid_Investments.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
                      end;
 
                     if Query.FieldByName('Ativo').AsString <> '' then
                     begin
                          Inc(Line_public);
-                         F_Investimentos.StringGrid.RowCount := Line_public;
+                         F_Investimentos.StringGrid_Investments.RowCount := Line_public;
                     end;
 
                     Query.Next;

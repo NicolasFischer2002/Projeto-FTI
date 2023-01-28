@@ -1,0 +1,9 @@
+Últimas alterações: 28/01/2023
+
+-> Refatoração e criações de funções para deixar o código mais organizado no que tange a alimentação e dimensionamento do grid de Investimentos
+
+-> Mudado alguns nomes para nomes em inglês
+
+-> Criado o Form Update
+
+-> Criação de um diário de alterações 

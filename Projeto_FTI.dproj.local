@@ -2,17 +2,30 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/12/20 15:34:49.000.666,=C:\Users\Nicolas Fischer\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/12/20 15:35:43.000.091,C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\U_Principal.dfm=C:\Users\Nicolas Fischer\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>2022/12/20 15:35:43.000.091,C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\U_Principal.pas=C:\Users\Nicolas Fischer\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/12/20 15:35:43.000.091,C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\U_Principal.dfm=C:\Users\Nicolas Fischer\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>2022/12/20 15:35:48.000.506,C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\Projeto_FTI.dproj=C:\Users\Nicolas Fischer\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2022/12/21 12:47:31.000.795,=C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\Unit1.pas</Transaction>
     <Transaction>2022/12/21 12:47:50.000.358,=C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\Unit1.pas</Transaction>
     <Transaction>2022/12/21 12:48:36.000.508,C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\Unit1.pas=C:\Users\Nicolas Fischer\Desktop\Projeto FTI 20 12 22\U_Functions.pas</Transaction>
     <Transaction>2023/01/02 20:21:18.000.162,=C:\Users\Micro\Desktop\Projeto FTI 31 12 22\Unit1.pas</Transaction>
-    <Transaction>2023/01/02 20:21:57.000.937,C:\Users\Micro\Desktop\Projeto FTI 31 12 22\Unit1.pas=C:\Users\Micro\Desktop\Projeto FTI 31 12 22\U_User.pas</Transaction>
     <Transaction>2023/01/02 20:21:57.000.937,C:\Users\Micro\Desktop\Projeto FTI 31 12 22\Unit1.dfm=C:\Users\Micro\Desktop\Projeto FTI 31 12 22\U_User.dfm</Transaction>
+    <Transaction>2023/01/02 20:21:57.000.937,C:\Users\Micro\Desktop\Projeto FTI 31 12 22\Unit1.pas=C:\Users\Micro\Desktop\Projeto FTI 31 12 22\U_User.pas</Transaction>
     <Transaction>2023/01/08 18:08:48.000.995,=C:\AAA - Programação\Projeto FTI 07 01 23\Unit1.pas</Transaction>
-    <Transaction>2023/01/08 18:08:56.000.515,C:\AAA - Programação\Projeto FTI 07 01 23\Unit1.pas=C:\AAA - Programação\Projeto FTI 07 01 23\U_Investimentos.pas</Transaction>
     <Transaction>2023/01/08 18:08:56.000.515,C:\AAA - Programação\Projeto FTI 07 01 23\Unit1.dfm=C:\AAA - Programação\Projeto FTI 07 01 23\U_Investimentos.dfm</Transaction>
-  </Transactions>
+    <Transaction>2023/01/08 18:08:56.000.515,C:\AAA - Programação\Projeto FTI 07 01 23\Unit1.pas=C:\AAA - Programação\Projeto FTI 07 01 23\U_Investimentos.pas</Transaction>
+    <Transaction>2023/01/28 11:07:25.365,=C:\AAA - Programação\Projeto FTI 26 01 23\Unit1.pas</Transaction>
+    <Transaction>2023/01/28 11:07:55.641,C:\AAA - Programação\Projeto FTI 26 01 23\U_Update.pas=C:\AAA - Programação\Projeto FTI 26 01 23\Unit1.pas</Transaction>
+    <Transaction>2023/01/28 11:07:55.641,C:\AAA - Programação\Projeto FTI 26 01 23\U_Update.dfm=C:\AAA - Programação\Projeto FTI 26 01 23\Unit1.dfm</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="U_Functions.pas"/>
+    <File Path="U_Investimentos.pas"/>
+    <File Path="U_Investimentos.dfm"/>
+    <File Path="U_Principal.pas"/>
+    <File Path="U_Principal.dfm"/>
+    <File Path="U_Update.pas"/>
+    <File Path="U_Update.dfm"/>
+    <File Path="U_User.pas"/>
+    <File Path="U_User.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>

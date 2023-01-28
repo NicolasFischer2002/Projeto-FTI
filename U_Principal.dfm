@@ -617,6 +617,7 @@ object F_Principal: TF_Principal
       Color = 4661279
       ParentBackground = False
       TabOrder = 1
+      OnClick = Pnl_AtualizarClick
       OnMouseEnter = Pnl_AtualizarMouseEnter
       OnMouseLeave = Pnl_AtualizarMouseLeave
       object TImage_Atualizar: TImage
@@ -700,6 +701,7 @@ object F_Principal: TF_Principal
           FF1EF2367C748849EB64DB26DB4AE430719BEA57BA6CB7CB36A02853C5AA51B6
           A7653B20E0982B6BFF011FFF59415ABD55C80000000049454E44AE426082}
         Stretch = True
+        OnClick = TImage_AtualizarClick
         OnMouseEnter = TImage_AtualizarMouseEnter
         OnMouseLeave = TImage_AtualizarMouseLeave
       end
@@ -716,6 +718,7 @@ object F_Principal: TF_Principal
         Font.Style = []
         ParentFont = False
         Transparent = True
+        OnClick = Lbl_AtualizarClick
         OnMouseEnter = Lbl_AtualizarMouseEnter
         OnMouseLeave = Lbl_AtualizarMouseLeave
       end
@@ -736,7 +739,6 @@ object F_Principal: TF_Principal
       OnClick = Pnl_DashboardClick
       OnMouseEnter = Pnl_DashboardMouseEnter
       OnMouseLeave = Pnl_DashboardMouseLeave
-      ExplicitTop = 156
       object TImage_DashBoard: TImage
         Left = 35
         Top = 32
