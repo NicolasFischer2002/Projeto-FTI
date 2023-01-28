@@ -162,7 +162,7 @@ begin
      // Lbl_FullDate.Caption := 'Quinta-feira, Novembro 19, 2023';
 
      Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
-     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 3);
+     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 2);
 
 
      Try
@@ -347,9 +347,9 @@ begin
 
            FormInvestimentosAtivo := True;
 
-           ClearGrid_Public();
-           StartTheStringGrid_Public();
-           FeedTheGrid_Public();
+           ClearGridInvestments_Public();
+           StartTheStringGridInvestments_Public();
+           FeedTheGridInvestments_Public();
       end
      else
       begin
@@ -393,9 +393,10 @@ begin
 
            FormUpdateActive := True;
 
-           ClearGrid_Public();
-           StartTheStringGrid_Public();
-           FeedTheGrid_Public();
+           ClearGridUpdate_Public();
+           StartTheStringGridUpdate_Public();
+           FeedTheGridUpdate_Public();
+
       end
      else
       begin

@@ -249,6 +249,7 @@ object F_Investimentos: TF_Investimentos
       Align = alClient
       ColCount = 8
       DefaultColWidth = 145
+      DefaultColAlignment = taCenter
       DrawingStyle = gdsGradient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

@@ -122,9 +122,9 @@ object F_Update: TF_Update
       object Lbl_UpdateYourInvestments: TLabel
         Left = 128
         Top = 60
-        Width = 351
+        Width = 380
         Height = 35
-        Caption = 'Atualize seus investimentos'
+        Caption = 'Atualize ou delete seus Ativos'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -29
@@ -133,7 +133,7 @@ object F_Update: TF_Update
         ParentFont = False
       end
     end
-    object StringGrid_Investments: TStringGrid
+    object StringGrid_Update: TStringGrid
       Left = 0
       Top = 125
       Width = 675
@@ -141,6 +141,7 @@ object F_Update: TF_Update
       Align = alClient
       ColCount = 8
       DefaultColWidth = 145
+      DefaultColAlignment = taCenter
       DrawingStyle = gdsGradient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -149,6 +150,7 @@ object F_Update: TF_Update
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = StringGrid_UpdateClick
     end
   end
 end

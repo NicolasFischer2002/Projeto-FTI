@@ -36,16 +36,23 @@ public,
 
     Line_public             : Integer;
 
+    LineGridUpdate          : Integer;
+    RowGridUpdate           : Integer;
+
 
 // Procedures
 procedure AtivaBtnCadastrarAtivo_Public();
 procedure ApplicationTerminate_Public();
 procedure ConnectDatabase_Public();
 procedure ReadDataBaseWriteGrid_Public();
-procedure ClearGrid_Public();
-procedure StartTheStringGrid_Public();
-procedure FeedTheGrid_Public();
 
+procedure ClearGridInvestments_Public();
+procedure StartTheStringGridInvestments_Public();
+procedure FeedTheGridInvestments_Public();
+
+procedure ClearGridUpdate_Public();
+procedure StartTheStringGridUpdate_Public();
+procedure FeedTheGridUpdate_Public();
 
 
 
@@ -61,9 +68,131 @@ uses U_Principal, U_User, U_Investimentos, U_Update;
 
 
 
-// ============================= Feed The Grid ============================== //
 
-procedure FeedTheGrid_Public();
+
+
+// ========================== Feed The Grid Update ========================== //
+
+procedure FeedTheGridUpdate_Public();
+Var
+   Str : String;
+begin
+     Try
+        Query.SQL.Clear;
+        Query.SQL.Text := 'SELECT * FROM Investimentos';
+        Query.Open;
+
+        if Query.RecordCount > 0 then
+         begin
+              Query.First;
+              while not Query.Eof do
+               begin
+                    Str := Query.FieldByName('Código').AsString +
+                           '|' + Query.FieldByName('Ativo').AsString +
+                           '|' + Query.FieldByName('Valor_Negociado').AsString +
+                           '|' + Query.FieldByName('Quantidade').AsString +
+                           '|' + Query.FieldByName('Taxas').AsString +
+                           '|' + Query.FieldByName('Valor_investido').AsString +
+                           '|' + Query.FieldByName('Lucro').AsString +
+                           '|' + Query.FieldByName('Venda_com_lucro').AsString +
+                           '|' + Query.FieldByName('Retorno').AsString;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                     begin
+                          F_Update.StringGrid_Update.Cells[0,Line_public] := PegaColpipeline_Public(Str,0);
+                          F_Update.StringGrid_Update.Cells[1,Line_public] := PegaColpipeline_Public(Str,1);
+                          F_Update.StringGrid_Update.Cells[2,Line_public] := PegaColpipeline_Public(Str,2);
+                          F_Update.StringGrid_Update.Cells[3,Line_public] := PegaColpipeline_Public(Str,3);
+                          F_Update.StringGrid_Update.Cells[4,Line_public] := PegaColpipeline_Public(Str,4);
+                          F_Update.StringGrid_Update.Cells[5,Line_public] := PegaColpipeline_Public(Str,5);
+                          F_Update.StringGrid_Update.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
+                          F_Update.StringGrid_Update.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
+                          F_Update.StringGrid_Update.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
+                     end;
+
+                    if Query.FieldByName('Ativo').AsString <> '' then
+                     begin
+                          Inc(Line_public);
+                          F_Update.StringGrid_Update.RowCount := Line_public;
+                     end;
+
+                    Query.Next;
+               end;
+         end;
+
+     Except
+         Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
+     End;
+end;
+
+
+
+
+// ========================= Scale the grid Update ========================== //
+
+procedure StartTheStringGridUpdate_Public();
+Var
+   Str : String;
+begin
+     try
+        Line_public := 1;
+
+        F_Update.StringGrid_Update.ColCount := 9;
+        F_Update.StringGrid_Update.RowCount := Line_public;
+
+        F_Update.StringGrid_Update.Cells[0,0] := 'Código';
+        F_Update.StringGrid_Update.Cells[1,0] := 'Ativo';
+        F_Update.StringGrid_Update.Cells[2,0] := 'Valor';
+        F_Update.StringGrid_Update.Cells[3,0] := 'Quantidade';
+        F_Update.StringGrid_Update.Cells[4,0] := 'Taxas';
+        F_Update.StringGrid_Update.Cells[5,0] := 'Valor investido';
+        F_Update.StringGrid_Update.Cells[6,0] := 'Lucro %';
+        F_Update.StringGrid_Update.Cells[7,0] := 'Venda com lucro';
+        F_Update.StringGrid_Update.Cells[8,0] := 'Retorno';
+
+        F_Update.StringGrid_Update.ColWidths[0] := 70;
+        F_Update.StringGrid_Update.ColWidths[1] := 80;
+        F_Update.StringGrid_Update.ColWidths[2] := 80;
+        F_Update.StringGrid_Update.ColWidths[3] := 100;
+        F_Update.StringGrid_Update.ColWidths[4] := 80;
+        F_Update.StringGrid_Update.ColWidths[5] := 120;
+        F_Update.StringGrid_Update.ColWidths[6] := 80;
+        F_Update.StringGrid_Update.ColWidths[7] := 135;
+        F_Update.StringGrid_Update.ColWidths[8] := 100;
+
+     finally
+
+     end;
+end;
+
+// ========================================================================== //
+
+
+
+// ========================== Clear Grid Update ============================= //
+
+procedure ClearGridUpdate_Public();
+Var
+   Col  : Integer;
+   Line : Integer;
+begin
+     Try
+        for line := 1 to F_Update.StringGrid_Update.RowCount - 1 do
+         for Col := 0 to F_Update.StringGrid_Update.ColCount - 1 do
+          F_Update.StringGrid_Update.Cells[Col, Line] := '';
+
+     Except
+         // continue normally
+     End;
+end;
+
+// ========================================================================== //
+
+
+
+// ======================= Feed The Grid Investment ========================= //
+
+procedure FeedTheGridInvestments_Public();
 Var
    Str : String;
 begin
@@ -119,9 +248,9 @@ end;
 
 
 
-// ============================ Scale the grid ============================== //
+// ======================= Scale the grid Investments ======================= //
 
-procedure StartTheStringGrid_Public();
+procedure StartTheStringGridInvestments_Public();
 Var
    Str : String;
 begin
@@ -160,9 +289,9 @@ end;
 
 
 
-// ============================= Clear Grid ================================= //
+// ======================== Clear Grid Investment =========================== //
 
-procedure ClearGrid_Public();
+procedure ClearGridInvestments_Public();
 Var
    Col  : Integer;
    Line : Integer;
@@ -187,7 +316,7 @@ Var
    Str  : String;
 begin
      Try
-        ClearGrid_Public();
+        ClearGridInvestments_Public();
 
         Line_public := 1;
 
