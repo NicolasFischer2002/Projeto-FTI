@@ -36,8 +36,10 @@ public,
 
     Line_public             : Integer;
 
-    LineGridUpdate          : Integer;
-    RowGridUpdate           : Integer;
+    LineGridUpdate_Public   : Integer;
+    RowGridUpdate_Public    : Integer;
+
+    UpdateDelete_Public     : String;
 
 
 // Procedures

@@ -20,8 +20,8 @@ object F_UpdateMessage: TF_UpdateMessage
   object Lbl_Message: TLabel
     Left = 31
     Top = 24
-    Width = 441
-    Height = 41
+    Width = 429
+    Height = 35
     Caption = 'Deseja realmente deletar o ativo?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
@@ -31,20 +31,34 @@ object F_UpdateMessage: TF_UpdateMessage
     ParentFont = False
     WordWrap = True
   end
+  object Lbl_AtivoCodigo: TLabel
+    Left = 158
+    Top = 65
+    Width = 188
+    Height = 29
+    Caption = 'Ativo, c'#243'digo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object Btn_DeleteActive: TButton
     Left = 134
-    Top = 112
-    Width = 106
+    Top = 121
+    Width = 105
     Height = 41
     Caption = 'Deletar Ativo'
     TabOrder = 0
   end
   object Btn_Cancel: TButton
     Left = 270
-    Top = 112
-    Width = 106
+    Top = 121
+    Width = 105
     Height = 41
     Caption = 'Cancelar'
     TabOrder = 1
+    OnClick = Btn_CancelClick
   end
 end

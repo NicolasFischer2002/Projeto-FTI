@@ -1,3 +1,16 @@
+Últimas alterações: 29/01/2023
+
+-> Refatorado form F_UpdateMessage
+
+-> Adicionado funcionalidades nos Forms F_Update e F_UpdateMessage
+
+-> Refatorados eventos do grid de F_UpdateMessage
+
+-> Front-end de F_Update e F_UpdateMessage praticamente prontos aguardando back-end
+
+==============================
+
+
 Últimas alterações: 28/01/2023
 
 -> Refatoração e criações de funções para deixar o código mais organizado no que tange a alimentação e dimensionamento do grid de Investimentos

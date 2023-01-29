@@ -11,6 +11,7 @@ object F_Update: TF_Update
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Pnl_Bottom: TPanel
@@ -30,6 +31,51 @@ object F_Update: TF_Update
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitLeft = 667
+    ExplicitTop = 8
+    object Lbl_Updating: TLabel
+      Left = 39
+      Top = 76
+      Width = 152
+      Height = 35
+      Caption = 'Atualizando'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -29
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Btn_Updating: TButton
+      Left = 14
+      Top = 125
+      Width = 95
+      Height = 36
+      Caption = 'Atualizando'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = Btn_UpdatingClick
+    end
+    object Btn_Deleting: TButton
+      Left = 118
+      Top = 125
+      Width = 95
+      Height = 36
+      Caption = 'Deletando'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = Btn_DeletingClick
+    end
   end
   object Pnl_Center: TPanel
     Left = 0
@@ -47,6 +93,8 @@ object F_Update: TF_Update
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitLeft = -6
+      ExplicitTop = -6
       object TImage_UpdateGrid: TImage
         Left = 37
         Top = 28
@@ -128,6 +176,19 @@ object F_Update: TF_Update
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -29
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 128
+        Top = 94
+        Width = 505
+        Height = 25
+        Caption = 'Clique sobre o grid para atualizar ou deletar um Ativo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -21
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
