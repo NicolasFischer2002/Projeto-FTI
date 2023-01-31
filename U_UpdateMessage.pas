@@ -14,6 +14,7 @@ type
     Lbl_AtivoCodigo: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Btn_CancelClick(Sender: TObject);
+    procedure Btn_DeleteActiveClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,6 +33,32 @@ Uses U_Update, U_Functions;
 procedure TF_UpdateMessage.Btn_CancelClick(Sender: TObject);
 begin
      F_UpdateMessage.Close;
+end;
+
+procedure TF_UpdateMessage.Btn_DeleteActiveClick(Sender: TObject);
+Var
+   CodAtivo : String;
+begin
+     Try
+        Try
+           CodAtivo := F_Update.StringGrid_Update.Cells[0,LineGridUpdate_Public];
+
+           Query.SQL.Clear;
+           Query.SQL.Text := 'DELETE FROM Investimentos WHERE Código=' + CodAtivo;
+           Query.ExecSQL;
+
+           Application.MessageBox('Ativo excluído com sucesso!', 'Atenção!', mb_Ok + mb_IconInformation);
+
+           ClearGridUpdate_Public();
+           FeedTheGridUpdate_Public();
+
+        Finally
+            F_UpdateMessage.Close;
+        End;
+
+     Except
+         Application.MessageBox('Erro ao deletar ativo do banco de dados!', 'Atenção!', mb_Ok + mb_IconExclamation);
+     end;
 end;
 
 procedure TF_UpdateMessage.FormCreate(Sender: TObject);

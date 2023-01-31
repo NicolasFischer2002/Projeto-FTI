@@ -97,6 +97,7 @@ Var
    VendaComLucro  : String;
    Retorno        : String;
    ValorInvestido : String;
+   Copied         : String;
 begin
      Try
         Try
@@ -110,12 +111,22 @@ begin
            ValorInvestido := FloatToStr((StrToFloat(ValorPago) * StrToFloat(Quantidade)) + StrToFloat(Taxas));
 
 
-           VendaComLucro  := FloatToStr((StrToFloat(ValorPago) +
-                            (((StrToFloat(ValorPago) * StrToFloat(Quantidade)) - StrToFloat(Taxas)) * StrToFloat(Lucro)) / 1000));
+//           VendaComLucro  := FloatToStr((StrToFloat(ValorPago) +
+//                            (((StrToFloat(ValorPago) * StrToFloat(Quantidade)) - StrToFloat(Taxas)) * StrToFloat(Lucro)) / 1000));
+
+
+           VendaComLucro  := FloatToStr((((StrToFloat(ValorPago) * StrToFloat(Quantidade) + StrToFloat(Taxas))
+                             / StrToFloat(Lucro)) + (StrToFloat(ValorPago) * StrToFloat(Quantidade))) / StrToFloat(Quantidade));
+
 
            Retorno        := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
                             (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
 
+           if Length(Retorno) > 4 then
+            begin
+                 Copied  := Retorno;
+                 Retorno := Copy(Copied,0,6);
+            end;
 
            Query.SQL.Clear;
            Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +

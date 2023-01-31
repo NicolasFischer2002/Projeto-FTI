@@ -1,3 +1,14 @@
+
+Últimas alterações: 30/01/2023
+
+-> Adicionado a funcionalidade de deletar do banco de dados um ativo específico
+
+-> Corrigido bug das funções que leem do banco e escrevem nos grids
+
+-> Corrigido bug nos cálculos relacionados a valor para vender ativo com lucro
+
+==============================
+
 Últimas alterações: 29/01/2023
 
 -> Refatorado form F_UpdateMessage
@@ -9,7 +20,6 @@
 -> Front-end de F_Update e F_UpdateMessage praticamente prontos aguardando back-end
 
 ==============================
-
 
 Últimas alterações: 28/01/2023
 

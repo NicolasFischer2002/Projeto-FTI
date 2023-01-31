@@ -80,6 +80,8 @@ Var
    Str : String;
 begin
      Try
+        Line_public := 1;
+
         Query.SQL.Clear;
         Query.SQL.Text := 'SELECT * FROM Investimentos';
         Query.Open;
@@ -183,6 +185,8 @@ begin
          for Col := 0 to F_Update.StringGrid_Update.ColCount - 1 do
           F_Update.StringGrid_Update.Cells[Col, Line] := '';
 
+        F_Update.StringGrid_Update.RowCount := 1;
+
      Except
          // continue normally
      End;
@@ -199,6 +203,8 @@ Var
    Str : String;
 begin
      Try
+        Line_public := 1;
+
         Query.SQL.Clear;
         Query.SQL.Text := 'SELECT * FROM Investimentos';
         Query.Open;

@@ -34,7 +34,7 @@ object F_UpdateMessage: TF_UpdateMessage
   object Lbl_AtivoCodigo: TLabel
     Left = 158
     Top = 65
-    Width = 188
+    Width = 135
     Height = 29
     Caption = 'Ativo, c'#243'digo'
     Font.Charset = DEFAULT_CHARSET
@@ -51,6 +51,7 @@ object F_UpdateMessage: TF_UpdateMessage
     Height = 41
     Caption = 'Deletar Ativo'
     TabOrder = 0
+    OnClick = Btn_DeleteActiveClick
   end
   object Btn_Cancel: TButton
     Left = 270
