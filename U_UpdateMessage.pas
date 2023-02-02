@@ -67,6 +67,7 @@ begin
         LineGridUpdate_Public := F_Update.StringGrid_Update.Row;
         RowGridUpdate_Public  := F_Update.StringGrid_Update.Col;
 
+        Lbl_AtivoCodigo.Left := 158;
         Lbl_AtivoCodigo.Caption := '';
         Lbl_AtivoCodigo.Caption := F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public] + ',' + ' código ' + F_Update.StringGrid_Update.Cells[0,LineGridUpdate_Public];
 

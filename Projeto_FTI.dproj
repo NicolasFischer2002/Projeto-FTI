@@ -121,6 +121,10 @@
             <Form>F_UpdateMessage</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="U_UpdateMessageUpdate.pas">
+            <Form>F_UpdateMessageUpdate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

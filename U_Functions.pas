@@ -65,7 +65,7 @@ function PegaColpipeline_Public (TXT : String; Col : Integer) : string;
 implementation
 
 
-uses U_Principal, U_User, U_Investimentos, U_Update;
+Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMessageUpdate;
 
 
 

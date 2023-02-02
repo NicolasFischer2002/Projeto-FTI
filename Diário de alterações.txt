@@ -1,4 +1,17 @@
 
+
+Últimas alterações: 01/02/2023
+
+-> Criação do Form UpdateMessageUpdate
+
+-> Importação dos dados do grid para os Edts do Form UpdateMessageUpdate
+
+-> Correção de bug no Botão de cadastrar ativo, agora ele é setado como Enable false após cadastrar
+
+-> Identificado bugs e registrado para manutenções futuras
+
+==============================
+
 Últimas alterações: 30/01/2023
 
 -> Adicionado a funcionalidade de deletar do banco de dados um ativo específico

@@ -31,12 +31,10 @@ object F_Update: TF_Update
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 667
-    ExplicitTop = 8
     object Lbl_Updating: TLabel
       Left = 39
       Top = 76
-      Width = 152
+      Width = 148
       Height = 35
       Caption = 'Atualizando'
       Font.Charset = DEFAULT_CHARSET
@@ -93,8 +91,6 @@ object F_Update: TF_Update
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = -6
-      ExplicitTop = -6
       object TImage_UpdateGrid: TImage
         Left = 37
         Top = 28

@@ -56,7 +56,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_Functions, U_User, U_Principal, U_Update;
+Uses U_Functions, U_User, U_Principal, U_Update;
 
 
 
@@ -146,6 +146,7 @@ begin
 
      Finally
          ClearEDTs();
+         Btn_CadastrarAtivo.Enabled := False;
      End;
 end;
 

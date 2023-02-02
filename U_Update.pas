@@ -37,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_Functions, U_User, U_Investimentos, U_Principal, U_UpdateMessage;
+Uses U_Functions, U_User, U_Investimentos, U_Principal, U_UpdateMessage, U_UpdateMessageUpdate;
 
 procedure TF_Update.Btn_DeletingClick(Sender: TObject);
 begin
@@ -84,7 +84,14 @@ begin
            F_UpdateMessage := TF_UpdateMessage.Create(Self);
            F_UpdateMessage.Visible := False;
            F_UpdateMessage.ShowModal;
+      end
+     else if (LineGridUpdate_Public > 0) and (UpdateDelete_Public = 'Update') then
+      begin
+           F_UpdateMessageUpdate := TF_UpdateMessageUpdate.Create(Self);
+           F_UpdateMessageUpdate.Visible := False;
+           F_UpdateMessageUpdate.ShowModal;
       end;
+
 end;
 
 
