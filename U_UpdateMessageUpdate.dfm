@@ -139,5 +139,6 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     Font.Style = []
     ParentFont = False
     TabOrder = 6
+    OnClick = Btn_UpdateClick
   end
 end

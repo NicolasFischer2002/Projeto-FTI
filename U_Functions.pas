@@ -61,6 +61,12 @@ procedure FeedTheGridUpdate_Public();
 // Functions
 function PegaColpipeline_Public (TXT : String; Col : Integer) : string;
 
+function InvestedAmount_Public(AmountPaid, Quantity, Fees : String) : String;
+function SaleWithProfit_Public(AmountPaid, Quantity, Fees, Profit : String ) : String;
+function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
+
+
+
 
 implementation
 
@@ -70,6 +76,61 @@ Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMe
 
 
 
+
+
+// ================================ Return ================================== //
+
+ function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
+ Var
+    Return : String;
+ begin
+      Try
+         Return := FloatToStr((StrToFloat(SaleWithProfit) * StrToFloat(Quantity)) -
+                  (StrToFloat(AmountPaid) * StrToFloat(Quantity)));
+
+      Finally
+          Result := Return;
+      End;
+ end;
+
+// ========================================================================== //
+
+
+
+// ============================ Sale with profit ============================ //
+
+function SaleWithProfit_Public(AmountPaid, Quantity, Fees, Profit : String ) : String;
+Var
+   SaleWithProfit : String;
+begin
+     Try
+         SaleWithProfit := FloatToStr((((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees))
+                               / StrToFloat(Profit)) + (StrToFloat(AmountPaid) * StrToFloat(Quantity))) / StrToFloat(Quantity));
+     Finally
+         Result := SaleWithProfit;
+     End;
+end;
+
+// ========================================================================== //
+
+
+
+// ============================ Amount Invested ============================= //
+
+function InvestedAmount_Public(AmountPaid, Quantity, Fees : String) : String;
+Var
+   AmountInvested : String;
+begin
+     Try
+        AmountInvested := FloatToStr((StrToFloat(AmountPaid) * StrToFloat(Quantity)) + StrToFloat(Fees));
+
+     Finally
+         Result := AmountInvested;
+     End;
+
+end;
+
+// ========================================================================== //
 
 
 

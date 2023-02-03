@@ -108,24 +108,27 @@ begin
            Lucro      := Edt_Lucro.Text;
 
 
-           ValorInvestido := FloatToStr((StrToFloat(ValorPago) * StrToFloat(Quantidade)) + StrToFloat(Taxas));
+//           ValorInvestido := FloatToStr((StrToFloat(ValorPago) * StrToFloat(Quantidade)) + StrToFloat(Taxas));
+           ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
 
 
-//           VendaComLucro  := FloatToStr((StrToFloat(ValorPago) +
-//                            (((StrToFloat(ValorPago) * StrToFloat(Quantidade)) - StrToFloat(Taxas)) * StrToFloat(Lucro)) / 1000));
+//           VendaComLucro  := FloatToStr((((StrToFloat(ValorPago) * StrToFloat(Quantidade) + StrToFloat(Taxas))
+//                             / StrToFloat(Lucro)) + (StrToFloat(ValorPago) * StrToFloat(Quantidade))) / StrToFloat(Quantidade));
+
+           VendaComLucro := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
 
 
-           VendaComLucro  := FloatToStr((((StrToFloat(ValorPago) * StrToFloat(Quantidade) + StrToFloat(Taxas))
-                             / StrToFloat(Lucro)) + (StrToFloat(ValorPago) * StrToFloat(Quantidade))) / StrToFloat(Quantidade));
+//           Retorno        := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
+//                            (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
+
+           Retorno := Return_Public(VendaComLucro, Quantidade, ValorPago);
 
 
-           Retorno        := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
-                            (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
 
            if Length(Retorno) > 4 then
-            begin
-                 Copied  := Retorno;
-                 Retorno := Copy(Copied,0,6);
+            begin                                  //****************************//
+                 Copied  := Retorno;               //  Arrumar essa varzea aqui  //
+                 Retorno := Copy(Copied,0,6);      //****************************//
             end;
 
            Query.SQL.Clear;

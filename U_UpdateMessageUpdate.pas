@@ -18,6 +18,7 @@ type
     Btn_Update: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Btn_CancelClick(Sender: TObject);
+    procedure Btn_UpdateClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +37,32 @@ Uses U_Functions, U_Update;
 procedure TF_UpdateMessageUpdate.Btn_CancelClick(Sender: TObject);
 begin
      F_UpdateMessageUpdate.Close;
+end;
+
+procedure TF_UpdateMessageUpdate.Btn_UpdateClick(Sender: TObject);
+Var
+   Code           : String;
+   Active         : String;
+   AmountPaid     : String; // Valor pago
+   Quantity       : String;
+   fees           : String; // Taxas
+   Profit         : String; // Lucro
+   SaleWithProfit : String; // Venda com Lucro
+   Return         : String;
+   InvestedValue  : String;
+begin
+     Try
+        Code           := F_Update.StringGrid_Update.Cells[0,LineGridUpdate_Public];
+        Active         := F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public];
+        AmountPaid     := F_Update.StringGrid_Update.Cells[2,LineGridUpdate_Public];
+        Quantity       := F_Update.StringGrid_Update.Cells[3,LineGridUpdate_Public];
+        fees           := F_Update.StringGrid_Update.Cells[5,LineGridUpdate_Public];
+        Profit         := F_Update.StringGrid_Update.Cells[5,LineGridUpdate_Public];
+        SaleWithProfit := F_Update.StringGrid_Update.Cells[5,LineGridUpdate_Public];
+
+     Finally
+
+     End;
 end;
 
 procedure TF_UpdateMessageUpdate.FormCreate(Sender: TObject);
