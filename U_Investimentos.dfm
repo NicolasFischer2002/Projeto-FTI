@@ -231,15 +231,6 @@ object F_Investimentos: TF_Investimentos
           ParentFont = False
         end
       end
-      object Button1: TButton
-        Left = 568
-        Top = 40
-        Width = 75
-        Height = 25
-        Caption = 'Limpar BD'
-        TabOrder = 1
-        OnClick = Button1Click
-      end
     end
     object StringGrid_Investments: TStringGrid
       Left = 0

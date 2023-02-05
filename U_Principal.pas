@@ -70,6 +70,7 @@ type
     procedure Pnl_AtualizarClick(Sender: TObject);
     procedure Lbl_AtualizarClick(Sender: TObject);
     procedure TImage_AtualizarClick(Sender: TObject);
+
   private
     { Private declarations }
 
@@ -111,6 +112,8 @@ var
    MyDateStr      : String;
    MonthStr       : String;
    DayWeekStr     : String;
+
+   LengthFullDate : Integer;
 begin
      MenuCollapsed := False;
      FormUserAtivo := False;
@@ -161,9 +164,18 @@ begin
      // Lbl_FullDate.Caption := 'Terça-feira,Dezembro 19, 2023';
      // Lbl_FullDate.Caption := 'Quinta-feira, Novembro 19, 2023';
 
-     Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
-     Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 2);
+     LengthFullDate := Length(Lbl_FullDate.Caption);
 
+     if LengthFullDate < 30 then
+      begin
+           Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
+           Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) - 6);
+      end
+     else
+      begin
+           Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
+           Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 2);
+      end;
 
      Try
         Try

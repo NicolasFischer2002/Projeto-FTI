@@ -31,6 +31,9 @@ object F_Update: TF_Update
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
+    DesignSize = (
+      225
+      545)
     object Lbl_Updating: TLabel
       Left = 39
       Top = 76
@@ -41,14 +44,14 @@ object F_Update: TF_Update
       Font.Color = clWhite
       Font.Height = -29
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsUnderline]
       ParentFont = False
     end
     object Btn_Updating: TButton
       Left = 14
       Top = 125
       Width = 95
-      Height = 36
+      Height = 35
       Caption = 'Atualizando'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -63,7 +66,7 @@ object F_Update: TF_Update
       Left = 118
       Top = 125
       Width = 95
-      Height = 36
+      Height = 35
       Caption = 'Deletando'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -73,6 +76,22 @@ object F_Update: TF_Update
       ParentFont = False
       TabOrder = 1
       OnClick = Btn_DeletingClick
+    end
+    object Btn_DeleteAllActives: TButton
+      Left = 14
+      Top = 510
+      Width = 199
+      Height = 35
+      Anchors = [akLeft, akBottom]
+      Caption = 'Deletar todos os ativos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = Btn_DeleteAllActivesClick
     end
   end
   object Pnl_Center: TPanel

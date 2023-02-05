@@ -30,10 +30,20 @@ implementation
 
 Uses U_Update, U_Functions;
 
+
+
+// =================== Close Form when click in cancel ====================== //
+
 procedure TF_UpdateMessage.Btn_CancelClick(Sender: TObject);
 begin
      F_UpdateMessage.Close;
 end;
+
+// ========================================================================== //
+
+
+
+// ============================ DeleteActive ================================ //
 
 procedure TF_UpdateMessage.Btn_DeleteActiveClick(Sender: TObject);
 Var
@@ -61,6 +71,12 @@ begin
      end;
 end;
 
+// ========================================================================== //
+
+
+
+// ============================= FormCreate ================================= //
+
 procedure TF_UpdateMessage.FormCreate(Sender: TObject);
 begin
      Try
@@ -77,5 +93,7 @@ begin
          Application.MessageBox('Erro ao Deletar Ativo', 'Atenção!', mb_Ok + mb_IconExclamation);
      End;
 end;
+
+// ========================================================================== //
 
 end.

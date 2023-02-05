@@ -28,7 +28,6 @@ type
     Edt_ValorPago: TEdit;
     Btn_CadastrarAtivo: TButton;
     StringGrid_Investments: TStringGrid;
-    Button1: TButton;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -41,7 +40,6 @@ type
     procedure Edt_LucroKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Btn_CadastrarAtivoClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     procedure ClearEDTs();
@@ -60,14 +58,6 @@ Uses U_Functions, U_User, U_Principal, U_Update;
 
 
 
-
-procedure TF_Investimentos.Button1Click(Sender: TObject);
-begin
-     Query.SQL.Clear;
-     Query.SQL.Text := 'DELETE * FROM Investimentos'; // Funcionando
-     Query.ExecSQL;
-     ShowMessage('Banco de dados limpo');
-end;
 
 
 // ============================= Clear EDTs ================================= //
@@ -107,23 +97,11 @@ begin
            Taxas      := Edt_Taxas.Text;
            Lucro      := Edt_Lucro.Text;
 
-
-//           ValorInvestido := FloatToStr((StrToFloat(ValorPago) * StrToFloat(Quantidade)) + StrToFloat(Taxas));
            ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
-
-
-//           VendaComLucro  := FloatToStr((((StrToFloat(ValorPago) * StrToFloat(Quantidade) + StrToFloat(Taxas))
-//                             / StrToFloat(Lucro)) + (StrToFloat(ValorPago) * StrToFloat(Quantidade))) / StrToFloat(Quantidade));
 
            VendaComLucro := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
 
-
-//           Retorno        := FloatToStr((StrToFloat(VendaComLucro) * StrToFloat(Quantidade)) -
-//                            (StrToFloat(ValorPago) * StrToFloat(Quantidade)));
-
            Retorno := Return_Public(VendaComLucro, Quantidade, ValorPago);
-
-
 
            if Length(Retorno) > 4 then
             begin                                  //****************************//
@@ -311,10 +289,6 @@ begin
      End;
 
 end;
-
-// ========================================================================== //
-
-
 
 // ========================================================================== //
 

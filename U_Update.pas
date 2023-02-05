@@ -20,10 +20,12 @@ type
     Btn_Deleting: TButton;
     Lbl_Updating: TLabel;
     Label1: TLabel;
+    Btn_DeleteAllActives: TButton;
     procedure StringGrid_UpdateClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Btn_UpdatingClick(Sender: TObject);
     procedure Btn_DeletingClick(Sender: TObject);
+    procedure Btn_DeleteAllActivesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +41,41 @@ implementation
 
 Uses U_Functions, U_User, U_Investimentos, U_Principal, U_UpdateMessage, U_UpdateMessageUpdate;
 
+
+// ========================== Delete All Actives ============================ //
+
+procedure TF_Update.Btn_DeleteAllActivesClick(Sender: TObject);
+begin
+     Try
+        if Application.MessageBox('Deseja realmente apagar todos os ativos do banco de dados?','Atenção!', mb_yesno + MB_ICONINFORMATION) = mrYes then
+         begin
+              Query.SQL.Clear;
+              Query.SQL.Text := 'DELETE * FROM Investimentos';
+              Query.ExecSQL;
+
+              ShowMessage('Banco de dados limpo');
+              Application.MessageBox('Banco de dados limpo com sucesso!','Atenção!', mb_Ok + MB_ICONINFORMATION);
+
+              ClearGridUpdate_Public();
+              StartTheStringGridUpdate_Public();
+              FeedTheGridUpdate_Public();
+         end
+        else
+         begin
+
+         end;
+
+     Except
+         Application.MessageBox('Falha ao deletar todos os ativos no banco de dados!','Atenção!', mb_Ok + MB_ICONINFORMATION);
+     End;
+end;
+
+// ========================================================================== //
+
+
+
+// =============================== Deleting ================================= //
+
 procedure TF_Update.Btn_DeletingClick(Sender: TObject);
 begin
      if UpdateDelete_Public <> 'Delete' then
@@ -51,6 +88,12 @@ begin
      end;
 end;
 
+// ========================================================================== //
+
+
+
+// ============================= Updating =================================== //
+
 procedure TF_Update.Btn_UpdatingClick(Sender: TObject);
 begin
      if UpdateDelete_Public <> 'Update' then
@@ -59,15 +102,19 @@ begin
           Lbl_Updating.Caption := 'Atualizando';
           UpdateDelete_Public  := 'Update';
 
-//          Lbl_Updating.Font.Color := $00C100;
           Lbl_Updating.Font.Style := [fsUnderline];
      end;
 end;
 
+// ========================================================================== //
+
+
+
+// ============================= FormCreate ================================= //
+
 procedure TF_Update.FormCreate(Sender: TObject);
 begin
      UpdateDelete_Public     := 'Update';
-//     Lbl_Updating.Font.Color := $00C100;
 end;
 
 procedure TF_Update.StringGrid_UpdateClick(Sender: TObject);
@@ -93,6 +140,8 @@ begin
       end;
 
 end;
+
+// ========================================================================== //
 
 
 end.

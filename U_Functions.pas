@@ -78,6 +78,8 @@ Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMe
 
 
 
+
+
 // ================================ Return ================================== //
 
  function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
@@ -190,6 +192,7 @@ begin
      End;
 end;
 
+// ========================================================================== //
 
 
 
