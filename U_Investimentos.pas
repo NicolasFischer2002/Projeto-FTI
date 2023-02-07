@@ -28,6 +28,9 @@ type
     Edt_ValorPago: TEdit;
     Btn_CadastrarAtivo: TButton;
     StringGrid_Investments: TStringGrid;
+    TImage_Search: TImage;
+    Edt_Search: TEdit;
+    Lbl_Search: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edt_AtivoKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -40,6 +43,9 @@ type
     procedure Edt_LucroKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Btn_CadastrarAtivoClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure Edt_SearchKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure ClearEDTs();
@@ -161,6 +167,11 @@ begin
      End;
 end;
 
+// ========================================================================== //
+
+
+
+// ========================================================================== //
 
 procedure TF_Investimentos.Edt_ValorPagoKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -193,6 +204,11 @@ begin
      End;
 end;
 
+// ========================================================================== //
+
+
+
+// ========================================================================== //
 
 procedure TF_Investimentos.Edt_QuantidadeKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -225,6 +241,50 @@ begin
      End;
 end;
 
+// ========================================================================== //
+
+
+
+// ========================================================================== //
+
+procedure TF_Investimentos.Edt_SearchKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   Search  : String;
+   Content : String;
+   Line    : Integer;
+   Col     : Integer;
+begin
+     Try
+        Search := Edt_Search.Text;
+
+        for line := 1 to StringGrid_Investments.RowCount -1 do
+         for Col := 0 to 1 do
+          begin
+               Content := StringGrid_Investments.Cells[Col, Line];
+               if Search = Content then
+                begin
+                     ClearGridInvestments_Public();
+                     StringGrid_Investments.RowCount := 2;
+
+                     // Mandar um SQL para pegar os dados do banco pelo código(Line, Col 0) e preencher uma linha
+                     // Caso o Edt esteja vazio recarregar o grid
+                     // Deixar registrar apenas ativos não repetidos
+
+                     Break;
+                end;
+          end;
+
+     Finally
+
+     End;
+end;
+
+// ========================================================================== //
+
+
+
+// ========================================================================== //
 
 procedure TF_Investimentos.Edt_TaxasKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -257,6 +317,11 @@ begin
      End;
 end;
 
+// ========================================================================== //
+
+
+
+// ========================================================================== //
 
 procedure TF_Investimentos.Edt_LucroKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -287,6 +352,28 @@ begin
      Finally
          AtivaBtnCadastrarAtivo_Public();
      End;
+
+end;
+
+// ========================================================================== //
+
+
+
+// ========================================================================== //
+
+procedure TF_Investimentos.FormResize(Sender: TObject);
+begin
+
+     TImage_Search.Top  := 62;
+     TImage_Search.Left := 840;
+
+     Edt_Search.Height := 25;
+     Edt_Search.Width  := 200;
+     Edt_Search.Left   := 900;
+     Edt_Search.Top    := 80;
+
+     Lbl_Search.Top    := 43;
+     Lbl_Search.Left   := 916;
 
 end;
 
