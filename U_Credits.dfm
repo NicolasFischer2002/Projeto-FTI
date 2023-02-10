@@ -26,7 +26,7 @@ object F_Credits: TF_Credits
     ParentBackground = False
     TabOrder = 0
     object Image1: TImage
-      Left = 88
+      Left = 98
       Top = 19
       Width = 150
       Height = 150
@@ -513,7 +513,7 @@ object F_Credits: TF_Credits
       Stretch = True
     end
     object Label1: TLabel
-      Left = 304
+      Left = 296
       Top = 77
       Width = 297
       Height = 31

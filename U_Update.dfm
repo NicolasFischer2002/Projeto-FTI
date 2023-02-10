@@ -32,6 +32,8 @@ object F_Update: TF_Update
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitLeft = 667
+    ExplicitTop = -6
     DesignSize = (
       225
       545)
@@ -53,6 +55,7 @@ object F_Update: TF_Update
       Top = 125
       Width = 95
       Height = 35
+      Hint = 'Atualizar Ativos'
       Caption = 'Atualizando'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -60,6 +63,8 @@ object F_Update: TF_Update
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
       OnClick = Btn_UpdatingClick
       OnKeyDown = FormKeyDown
@@ -69,6 +74,7 @@ object F_Update: TF_Update
       Top = 125
       Width = 95
       Height = 35
+      Hint = 'Deletar Ativos'
       Caption = 'Deletando'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -76,6 +82,8 @@ object F_Update: TF_Update
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 1
       OnClick = Btn_DeletingClick
       OnKeyDown = FormKeyDown
@@ -85,6 +93,7 @@ object F_Update: TF_Update
       Top = 510
       Width = 199
       Height = 35
+      Hint = 'Deletar todos os ativos do banco de dados'
       Anchors = [akLeft, akBottom]
       Caption = 'Deletar todos os ativos'
       Font.Charset = DEFAULT_CHARSET
@@ -93,6 +102,8 @@ object F_Update: TF_Update
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 2
       OnClick = Btn_DeleteAllActivesClick
       OnKeyDown = FormKeyDown

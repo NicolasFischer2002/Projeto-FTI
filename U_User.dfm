@@ -1,7 +1,7 @@
 object F_User: TF_User
   Left = 0
   Top = 0
-  Caption = 'User'
+  Caption = 'Usu'#225'rio'
   ClientHeight = 590
   ClientWidth = 900
   Color = 5251875

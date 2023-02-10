@@ -8,7 +8,7 @@ object F_Principal: TF_Principal
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -15
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = True
@@ -17,7 +17,7 @@ object F_Principal: TF_Principal
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 18
   object Pnl_GreyTop: TPanel
     Left = 0
     Top = 0
@@ -1673,6 +1673,8 @@ object F_Principal: TF_Principal
           Width = 64
           Height = 64
           Cursor = crHandPoint
+          Hint = 'Cr'#233'ditos'
+          ParentShowHint = False
           Picture.Data = {
             0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
             00401006000000FAF9AD9D00000006624B4744000000000000F943BB7F000000
@@ -1793,6 +1795,7 @@ object F_Principal: TF_Principal
             5431373A33383A30342B30303A303029AD5B740000002874455874646174653A
             74696D657374616D7000323032332D30322D31305431373A33383A30342B3030
             3A30307EB87AAB0000000049454E44AE426082}
+          ShowHint = True
           Stretch = True
           OnClick = TImage_CreditsClick
         end
@@ -1813,6 +1816,7 @@ object F_Principal: TF_Principal
             Width = 48
             Height = 48
             Cursor = crHandPoint
+            Hint = 'Escolha como ser chamado'
             Anchors = [akRight]
             ParentShowHint = False
             Picture.Data = {
@@ -1947,7 +1951,7 @@ object F_Principal: TF_Principal
               33305432303A30383A31372B30303A3030EA6CCBB40000002874455874646174
               653A74696D657374616D7000323032322D31322D33305432303A30383A32322B
               30303A303061CEC22F0000000049454E44AE426082}
-            ShowHint = False
+            ShowHint = True
             Stretch = True
             OnClick = TImage_UserClick
           end
@@ -1972,7 +1976,9 @@ object F_Principal: TF_Principal
             Width = 48
             Height = 48
             Cursor = crHandPoint
+            Hint = 'Recolher/Aumentar menu'
             Anchors = [akTop, akRight]
+            ParentShowHint = False
             Picture.Data = {
               0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
               00301006000000079225C40000000467414D410000B18F0BFC61050000000662
@@ -2014,6 +2020,7 @@ object F_Principal: TF_Principal
               385432333A30313A32332B30303A303025C6FB4C000000287445587464617465
               3A74696D657374616D7000323032322D31322D32385432333A30313A32362B30
               303A303020EBF5340000000049454E44AE426082}
+            ShowHint = True
             Stretch = True
             OnClick = TImage_MenuClick
           end

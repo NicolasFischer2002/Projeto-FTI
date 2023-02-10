@@ -28,7 +28,6 @@ type
     Edt_ValorPago: TEdit;
     Btn_CadastrarAtivo: TButton;
     StringGrid_Investments: TStringGrid;
-    TImage_Search: TImage;
     Edt_Search: TEdit;
     Lbl_Search: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -98,38 +97,55 @@ Var
    Retorno        : String;
    ValorInvestido : String;
    Copied         : String;
+   ActiveGrid     : String;
+   Line           : Integer;
+   Col            : Integer;
+   ActiveExists   : Bool;
 begin
      Try
         Try
-           Ativo      := Edt_Ativo.Text;
-           ValorPago  := Edt_ValorPago.Text;
-           Quantidade := Edt_Quantidade.Text;
-           Taxas      := Edt_Taxas.Text;
-           Lucro      := Edt_Lucro.Text;
+           ActiveExists := False;
 
-           ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
+           for line := 1 to StringGrid_Investments.RowCount do
+            for Col := 1 to 1 do
+             begin
+                  ActiveGrid := LowerCase(StringGrid_Investments.Cells[Col,Line]);
+                  if ActiveGrid = LowerCase(Trim(Edt_Ativo.Text)) then
+                   begin
+                        ActiveExists := True;
+                        Application.MessageBox('Ativo já cadstrado com este código!', 'Atenção', mb_Ok+mb_IconExclamation);
+                        Break;
+                   end
+             end;
 
-           VendaComLucro := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
+             if not ActiveExists then
+              begin
+                   Ativo      := Edt_Ativo.Text;
+                   ValorPago  := Edt_ValorPago.Text;
+                   Quantidade := Edt_Quantidade.Text;
+                   Taxas      := Edt_Taxas.Text;
+                   Lucro      := Edt_Lucro.Text;
 
-           Retorno := Return_Public(VendaComLucro, Quantidade, ValorPago);
+                   ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
 
-           if Length(Retorno) > 4 then
-            begin                                  //****************************//
-                 Copied  := Retorno;               //  Arrumar essa varzea aqui  //
-                 Retorno := Copy(Copied,0,6);      //****************************//
-            end;
+                   VendaComLucro  := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
 
-           Query.SQL.Clear;
-           Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +
-                             'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
-                             ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
-                             ',' + QuotedStr(ValorInvestido) + ',' + QuotedStr(Lucro) +
-                             ',' + QuotedStr(VendaComLucro) + ',' + QuotedStr(Retorno) + ') ';
-           Query.ExecSQL;
+                   Retorno        := Return_Public(VendaComLucro, Quantidade, ValorPago);
 
-           ShowMessage('Cadastrado com sucesso');
+                   Query.SQL.Clear;
+                   Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +
+                                     'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
+                                     ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
+                                     ',' + QuotedStr(ValorInvestido) + ',' + QuotedStr(Lucro) +
+                                     ',' + QuotedStr(VendaComLucro) + ',' + QuotedStr(Retorno) + ') ';
+                   Query.ExecSQL;
 
-           ReadDataBaseWriteGrid_Public();
+                   ShowMessage('Cadastrado com sucesso');
+
+                   ReadDataBaseWriteGrid_Public();
+              end;
+
+
 
         Except
             Application.MessageBox('Falha ao cadastrar ativo no banco de dados!','Atenção', mb_Ok+mb_IconExclamation);
@@ -411,29 +427,20 @@ begin
      Finally
          AtivaBtnCadastrarAtivo_Public();
      End;
-
 end;
 
 // ========================================================================== //
 
 
 
-// ========================================================================== //
+// ============================== Form Resize =============================== //
 
 procedure TF_Investimentos.FormResize(Sender: TObject);
 begin
+     Lbl_Search.Left := Trunc(F_Investimentos.Width - 355);
 
-     TImage_Search.Top  := 62;
-     TImage_Search.Left := 840;
-
-     Edt_Search.Height := 25;
-     Edt_Search.Width  := 200;
-     Edt_Search.Left   := 900;
-     Edt_Search.Top    := 80;
-
-     Lbl_Search.Top    := 43;
-     Lbl_Search.Left   := 916;
-
+     Edt_Search.Width  := Trunc(F_Investimentos.Width / 4);
+     Edt_Search.Left   := Trunc(F_Investimentos.Width - 380);
 end;
 
 // ========================================================================== //
