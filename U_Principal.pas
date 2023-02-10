@@ -17,8 +17,6 @@ type
     Pnl_TopPurple: TPanel;
     TImage_LogoCenter: TImage;
     Pnl_LeftTop: TPanel;
-    Lbl_Home: TLabel;
-    Pnl_TopHome: TPanel;
     Lbl_Time: TLabel;
     Lbl_FullDate: TLabel;
     TTimer: TTimer;
@@ -31,7 +29,7 @@ type
     Lbl_DashBoard: TLabel;
     Lbl_Investimentos: TLabel;
     Lbl_Atualizar: TLabel;
-    TImage_Home: TImage;
+    TImage_Credits: TImage;
     Pnl_BemVindo: TPanel;
     TImage_User: TImage;
     Lbl_BemVindo: TLabel;
@@ -70,6 +68,7 @@ type
     procedure Pnl_AtualizarClick(Sender: TObject);
     procedure Lbl_AtualizarClick(Sender: TObject);
     procedure TImage_AtualizarClick(Sender: TObject);
+    procedure TImage_CreditsClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -97,7 +96,7 @@ implementation
 {$R *.dfm}
 
 // Calling functions from another Unit
-uses U_Functions, U_User, U_Investimentos, U_Update;
+uses U_Functions, U_User, U_Investimentos, U_Update, U_Credits;
 
 
 // ====================== OnCreate do TF_Principal ========================== //
@@ -465,6 +464,19 @@ end;
 procedure TF_Principal.TImage_AtualizarClick(Sender: TObject);
 begin
      Pnl_AtualizarClick(Sender);
+end;
+
+// ========================================================================== //
+
+
+
+// ========================================================================== //
+
+procedure TF_Principal.TImage_CreditsClick(Sender: TObject);
+begin
+     F_Credits := TF_Credits.Create(Self);
+     F_Credits.Visible := False;
+     F_Credits.ShowModal;
 end;
 
 // ========================================================================== //

@@ -46,6 +46,8 @@ type
     procedure FormResize(Sender: TObject);
     procedure Edt_SearchKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Edt_SearchKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure ClearEDTs();
@@ -61,6 +63,8 @@ implementation
 {$R *.dfm}
 
 Uses U_Functions, U_User, U_Principal, U_Update;
+
+
 
 
 
@@ -245,6 +249,24 @@ end;
 
 
 
+// ============ Used to clear the text of all Edits on the form ============= //
+// Todos os KeyDown dos Edts (deste form) apontam para esse evento
+
+procedure TF_Investimentos.Edt_SearchKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and (key = VK_DELETE) then
+      begin
+           (Sender as Tedit).Clear;
+      end;
+
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and
+        ((GetKeyState(ord('W')) AND 128)=128) then
+      begin
+           Application.Terminate;
+      end;
+end;
+
 // ========================================================================== //
 
 procedure TF_Investimentos.Edt_SearchKeyUp(Sender: TObject; var Key: Word;
@@ -254,26 +276,63 @@ Var
    Content : String;
    Line    : Integer;
    Col     : Integer;
+
+   Code           : String;
+   Active         : String;
+   AmountPaid     : String;
+   Quantity       : String;
+   Fees           : String;
+   AmountInvested : String;
+   Profit         : String;
+   SaleWithProfit : String;
+   Return         : String;
+
+   Key_par : Word;
+
 begin
      Try
         Search := Edt_Search.Text;
 
-        for line := 1 to StringGrid_Investments.RowCount -1 do
-         for Col := 0 to 1 do
-          begin
-               Content := StringGrid_Investments.Cells[Col, Line];
-               if Search = Content then
+        if Search <> '' then
+         begin
+              for line := 1 to StringGrid_Investments.RowCount -1 do
+               for Col := 0 to 1 do
                 begin
-                     ClearGridInvestments_Public();
-                     StringGrid_Investments.RowCount := 2;
+                     Content := StringGrid_Investments.Cells[Col, Line];
+                     if LowerCase(Search) = LowerCase(Content) then
+                      begin
+                           Code           := StringGrid_Investments.Cells[0,Line];
+                           Active         := StringGrid_Investments.Cells[1,Line];
+                           AmountPaid     := StringGrid_Investments.Cells[2,Line];
+                           Quantity       := StringGrid_Investments.Cells[3,Line];
+                           Fees           := StringGrid_Investments.Cells[4,Line];
+                           AmountInvested := StringGrid_Investments.Cells[5,Line];
+                           Profit         := StringGrid_Investments.Cells[6,Line];
+                           SaleWithProfit := StringGrid_Investments.Cells[7,Line];
+                           Return         := StringGrid_Investments.Cells[8,Line];
 
-                     // Mandar um SQL para pegar os dados do banco pelo código(Line, Col 0) e preencher uma linha
-                     // Caso o Edt esteja vazio recarregar o grid
-                     // Deixar registrar apenas ativos não repetidos
+                           ClearGridInvestments_Public();
+                           StringGrid_Investments.RowCount := 2;
 
-                     Break;
+                           StringGrid_Investments.Cells[0,1] := Code;
+                           StringGrid_Investments.Cells[1,1] := Active;
+                           StringGrid_Investments.Cells[2,1] := AmountPaid;
+                           StringGrid_Investments.Cells[3,1] := Quantity;
+                           StringGrid_Investments.Cells[4,1] := Fees;
+                           StringGrid_Investments.Cells[5,1] := AmountInvested;
+                           StringGrid_Investments.Cells[6,1] := Profit;
+                           StringGrid_Investments.Cells[7,1] := SaleWithProfit;
+                           StringGrid_Investments.Cells[8,1] := Return;
+
+                           Break;
+                      end;
                 end;
-          end;
+         end;
+        if Search = '' then
+         begin
+              ClearGridInvestments_Public();
+              FeedTheGridInvestments_Public();
+         end;
 
      Finally
 

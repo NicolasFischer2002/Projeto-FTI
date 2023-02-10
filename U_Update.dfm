@@ -12,6 +12,7 @@ object F_Update: TF_Update
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object Pnl_Bottom: TPanel
@@ -61,6 +62,7 @@ object F_Update: TF_Update
       ParentFont = False
       TabOrder = 0
       OnClick = Btn_UpdatingClick
+      OnKeyDown = FormKeyDown
     end
     object Btn_Deleting: TButton
       Left = 118
@@ -76,6 +78,7 @@ object F_Update: TF_Update
       ParentFont = False
       TabOrder = 1
       OnClick = Btn_DeletingClick
+      OnKeyDown = FormKeyDown
     end
     object Btn_DeleteAllActives: TButton
       Left = 14
@@ -92,6 +95,7 @@ object F_Update: TF_Update
       ParentFont = False
       TabOrder = 2
       OnClick = Btn_DeleteAllActivesClick
+      OnKeyDown = FormKeyDown
     end
   end
   object Pnl_Center: TPanel
@@ -227,6 +231,7 @@ object F_Update: TF_Update
       ParentFont = False
       TabOrder = 1
       OnClick = StringGrid_UpdateClick
+      OnKeyDown = FormKeyDown
     end
   end
 end

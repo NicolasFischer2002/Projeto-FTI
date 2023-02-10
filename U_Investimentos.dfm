@@ -192,7 +192,7 @@ object F_Investimentos: TF_Investimentos
       object Lbl_Search: TLabel
         Left = 504
         Top = 20
-        Width = 165
+        Width = 161
         Height = 29
         Anchors = [akTop]
         Caption = 'Pesquisar Ativo'
@@ -418,6 +418,7 @@ object F_Investimentos: TF_Investimentos
         Font.Style = []
         ParentFont = False
         TabOrder = 1
+        OnKeyDown = Edt_SearchKeyDown
         OnKeyUp = Edt_SearchKeyUp
       end
     end
@@ -438,6 +439,7 @@ object F_Investimentos: TF_Investimentos
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnKeyDown = FormKeyDown
     end
   end
   object Pnl_Right: TPanel
@@ -536,6 +538,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 3
       TextHint = 'Taxas de opera'#231#227'o'
+      OnKeyDown = Edt_SearchKeyDown
       OnKeyUp = Edt_TaxasKeyUp
     end
     object Edt_Ativo: TEdit
@@ -553,6 +556,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 0
       TextHint = 'ITUB4, BBDC4 ...'
+      OnKeyDown = Edt_SearchKeyDown
       OnKeyUp = Edt_AtivoKeyUp
     end
     object Edt_Quantidade: TEdit
@@ -570,6 +574,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 2
       TextHint = '15, 20, 100 ...'
+      OnKeyDown = Edt_SearchKeyDown
       OnKeyUp = Edt_QuantidadeKeyUp
     end
     object Edt_Lucro: TEdit
@@ -587,6 +592,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 4
       TextHint = 'Lucro esperado, ex 10'
+      OnKeyDown = Edt_SearchKeyDown
       OnKeyUp = Edt_LucroKeyUp
     end
     object Edt_ValorPago: TEdit
@@ -604,6 +610,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 1
       TextHint = '25,00'
+      OnKeyDown = Edt_SearchKeyDown
       OnKeyUp = Edt_ValorPagoKeyUp
     end
     object Btn_CadastrarAtivo: TButton
@@ -623,6 +630,7 @@ object F_Investimentos: TF_Investimentos
       ParentFont = False
       TabOrder = 5
       OnClick = Btn_CadastrarAtivoClick
+      OnKeyDown = FormKeyDown
     end
   end
   object Pnl_Bottom: TPanel

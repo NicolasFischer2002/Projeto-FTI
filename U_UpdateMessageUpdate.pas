@@ -33,6 +33,7 @@ type
     procedure Edt_FeesKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edt_ProfitKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
     EdtActiveCompleted     : Bool;
@@ -334,6 +335,20 @@ begin
      Except
 
      End;
+end;
+
+procedure TF_UpdateMessageUpdate.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and
+        ((GetKeyState(ord('W')) AND 128)=128) then
+        begin
+             Close;
+        end;
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and (key = VK_DELETE) then
+      begin
+           (Sender as Tedit).Clear;
+      end;
 end;
 
 // ========================================================================== //

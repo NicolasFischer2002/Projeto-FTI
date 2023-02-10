@@ -15,6 +15,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Btn_CancelClick(Sender: TObject);
     procedure Btn_DeleteActiveClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -92,6 +93,16 @@ begin
      Except
          Application.MessageBox('Erro ao Deletar Ativo', 'Atenção!', mb_Ok + mb_IconExclamation);
      End;
+end;
+
+procedure TF_UpdateMessage.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and
+        ((GetKeyState(ord('W')) AND 128)=128) then
+      begin
+           Close;
+      end;
 end;
 
 // ========================================================================== //

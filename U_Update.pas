@@ -26,6 +26,7 @@ type
     procedure Btn_UpdatingClick(Sender: TObject);
     procedure Btn_DeletingClick(Sender: TObject);
     procedure Btn_DeleteAllActivesClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -107,6 +108,21 @@ begin
 end;
 
 // ========================================================================== //
+
+
+
+// ========================================================================== //
+
+procedure TF_Update.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     ApplicationTerminate_Public();
+end;
+
+
+// ========================================================================== //
+
+
 
 
 

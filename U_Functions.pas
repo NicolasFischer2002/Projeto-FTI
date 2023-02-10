@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, IniFiles, Data.Win.ADODB;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, IniFiles, Data.Win.ADODB, System.Math;
 
 Var
 private,
@@ -79,21 +79,28 @@ Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMe
 
 
 
+// ========================================================================== //
+
+
+// ========================================================================== //
+
 
 // ================================ Return ================================== //
 
- function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
- Var
-    Return : String;
- begin
-      Try
-         Return := FloatToStr((StrToFloat(SaleWithProfit) * StrToFloat(Quantity)) -
-                  (StrToFloat(AmountPaid) * StrToFloat(Quantity)));
+function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
+Var
+   Return : String;
+begin
+     Try
+        Return := FloatToStr((StrToFloat(SaleWithProfit) * StrToFloat(Quantity)) -
+                 (StrToFloat(AmountPaid) * StrToFloat(Quantity)));
 
-      Finally
-          Result := Return;
-      End;
- end;
+        Return := FloatToStr(RoundTo(StrToFloat(Return), -2));
+
+     Finally
+         Result := Return;
+     End;
+end;
 
 // ========================================================================== //
 
@@ -108,6 +115,9 @@ begin
      Try
          SaleWithProfit := FloatToStr((((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees))
                                / StrToFloat(Profit)) + (StrToFloat(AmountPaid) * StrToFloat(Quantity))) / StrToFloat(Quantity));
+
+        SaleWithProfit  := FloatToStr(RoundTo(StrToFloat(SaleWithProfit), -2));
+
      Finally
          Result := SaleWithProfit;
      End;
@@ -126,10 +136,11 @@ begin
      Try
         AmountInvested := FloatToStr((StrToFloat(AmountPaid) * StrToFloat(Quantity)) + StrToFloat(Fees));
 
+        AmountInvested := FloatToStr(RoundTo(StrToFloat(AmountInvested), -2));
+
      Finally
          Result := AmountInvested;
      End;
-
 end;
 
 // ========================================================================== //
@@ -495,7 +506,7 @@ end;
 
 procedure ApplicationTerminate_Public();
 begin
-     If ((GetKeyState(VK_CONTROL) AND 128)=128) and
+     if ((GetKeyState(VK_CONTROL) AND 128)=128) and
         ((GetKeyState(ord('W')) AND 128)=128) then
         Application.Terminate;
 end;

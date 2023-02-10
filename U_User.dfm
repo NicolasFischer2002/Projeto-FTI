@@ -744,6 +744,7 @@ object F_User: TF_User
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnKeyDown = FormKeyDown
       OnKeyUp = Edt_NickNameKeyUp
     end
   end
@@ -773,7 +774,7 @@ object F_User: TF_User
       ParentFont = False
     end
     object Pnl_Adicionar: TPanel
-      Left = 456
+      Left = 457
       Top = 15
       Width = 150
       Height = 41

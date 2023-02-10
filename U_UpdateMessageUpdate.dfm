@@ -14,6 +14,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   DesignSize = (
     650
     300)
@@ -112,6 +113,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 1
     TextHint = 'ITUB4, BBDC4 ...'
+    OnKeyDown = FormKeyDown
     OnKeyUp = Edt_ActiveKeyUp
   end
   object Edt_AmountPaid: TEdit
@@ -129,6 +131,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 2
     TextHint = '25,00'
+    OnKeyDown = FormKeyDown
     OnKeyUp = Edt_AmountPaidKeyUp
   end
   object Edt_Quantity: TEdit
@@ -146,6 +149,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 4
     TextHint = '15, 20, 100 ...'
+    OnKeyDown = FormKeyDown
     OnKeyUp = Edt_QuantityKeyUp
   end
   object Edt_Fees: TEdit
@@ -163,6 +167,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 3
     TextHint = 'Taxas de opera'#231#227'o'
+    OnKeyDown = FormKeyDown
     OnKeyUp = Edt_FeesKeyUp
   end
   object Edt_Profit: TEdit
@@ -180,6 +185,7 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 5
     TextHint = 'Lucro esperado'
+    OnKeyDown = FormKeyDown
     OnKeyUp = Edt_ProfitKeyUp
   end
   object Btn_Cancel: TButton
@@ -196,9 +202,10 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 0
     OnClick = Btn_CancelClick
+    OnKeyDown = FormKeyDown
   end
   object Btn_Update: TButton
-    Left = 171
+    Left = 163
     Top = 241
     Width = 150
     Height = 41
@@ -211,5 +218,6 @@ object F_UpdateMessageUpdate: TF_UpdateMessageUpdate
     ParentFont = False
     TabOrder = 6
     OnClick = Btn_UpdateClick
+    OnKeyDown = FormKeyDown
   end
 end

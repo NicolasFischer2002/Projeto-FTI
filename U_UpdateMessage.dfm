@@ -15,6 +15,7 @@ object F_UpdateMessage: TF_UpdateMessage
   Position = poScreenCenter
   Visible = True
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object Lbl_Message: TLabel
@@ -58,9 +59,10 @@ object F_UpdateMessage: TF_UpdateMessage
     ParentFont = False
     TabOrder = 1
     OnClick = Btn_DeleteActiveClick
+    OnKeyDown = FormKeyDown
   end
   object Btn_Cancel: TButton
-    Left = 264
+    Left = 280
     Top = 121
     Width = 150
     Height = 41
@@ -73,5 +75,6 @@ object F_UpdateMessage: TF_UpdateMessage
     ParentFont = False
     TabOrder = 0
     OnClick = Btn_CancelClick
+    OnKeyDown = FormKeyDown
   end
 end
