@@ -32,8 +32,6 @@ object F_Update: TF_Update
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 667
-    ExplicitTop = -6
     DesignSize = (
       225
       545)

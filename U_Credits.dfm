@@ -27,7 +27,7 @@ object F_Credits: TF_Credits
     TabOrder = 0
     object Image1: TImage
       Left = 98
-      Top = 19
+      Top = 17
       Width = 150
       Height = 150
       Picture.Data = {
@@ -514,7 +514,7 @@ object F_Credits: TF_Credits
     end
     object Label1: TLabel
       Left = 296
-      Top = 77
+      Top = 75
       Width = 297
       Height = 31
       Caption = 'Projeto FTI - Investimentos'

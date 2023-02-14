@@ -79,12 +79,6 @@ Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMe
 
 
 
-// ========================================================================== //
-
-
-// ========================================================================== //
-
-
 // ================================ Return ================================== //
 
 function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
@@ -111,12 +105,23 @@ end;
 function SaleWithProfit_Public(AmountPaid, Quantity, Fees, Profit : String ) : String;
 Var
    SaleWithProfit : String;
+   InvestedAmount : String;
+
 begin
      Try
-         SaleWithProfit := FloatToStr((((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees))
-                               / StrToFloat(Profit)) + (StrToFloat(AmountPaid) * StrToFloat(Quantity))) / StrToFloat(Quantity));
+//         SaleWithProfit := FloatToStr((((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees))
+//                               / StrToFloat(Profit)) + (StrToFloat(AmountPaid) * StrToFloat(Quantity))) / StrToFloat(Quantity));
 
-        SaleWithProfit  := FloatToStr(RoundTo(StrToFloat(SaleWithProfit), -2));
+
+         InvestedAmount := FloatToStr((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees)));
+
+         SaleWithProfit := FloatToStr((StrToFloat(InvestedAmount) * StrToFloat(Profit)) / 100 );
+
+         SaleWithProfit := FloatToStr(StrToFloat(SaleWithProfit) / (StrToFloat(Quantity)));
+
+         SaleWithProfit := FloatToStr(StrToFloat(SaleWithProfit) + (StrToFloat(AmountPaid)));
+
+         SaleWithProfit := FloatToStr(RoundTo(StrToFloat(SaleWithProfit), -2));
 
      Finally
          Result := SaleWithProfit;
