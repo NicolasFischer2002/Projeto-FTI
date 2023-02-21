@@ -38,7 +38,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure TTimerTimer(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure Pnl_DashboardMouseEnter(Sender: TObject);
     procedure Pnl_DashboardMouseLeave(Sender: TObject);
     procedure Lbl_DashBoardMouseEnter(Sender: TObject);
@@ -69,6 +69,8 @@ type
     procedure Lbl_AtualizarClick(Sender: TObject);
     procedure TImage_AtualizarClick(Sender: TObject);
     procedure TImage_CreditsClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
 
   private
     { Private declarations }
@@ -96,12 +98,12 @@ implementation
 {$R *.dfm}
 
 // Calling functions from another Unit
-uses U_Functions, U_User, U_Investimentos, U_Update, U_Credits;
+uses U_Functions, U_User, U_Investimentos, U_Update, U_Credits, U_Login;
 
 
 // ====================== OnCreate do TF_Principal ========================== //
 
-procedure TF_Principal.FormCreate(Sender: TObject);
+procedure TF_Principal.FormShow(Sender: TObject);
 var
    LongDayNames   : array[1..7] of string;
    MyDate         : TDateTime;
@@ -205,6 +207,24 @@ begin
 
      Line_public := 1;
 
+     F_Login.Visible := False;
+
+end;
+
+// ========================================================================== //
+
+
+
+// ======================== Close hidden login form ========================= //
+
+procedure TF_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+     Try
+        F_Login.Close;
+
+     Finally
+
+     End;
 end;
 
 // ========================================================================== //
@@ -655,7 +675,11 @@ begin
                Tempo := Tempo + 1000;
 
               if Tempo > 3000 then
-               Pnl_CenterBottomConectado.Visible := False;
+               begin
+                    Pnl_CenterBottomConectado.Visible := False;
+                    // F_Login.Close;
+               end;
+
          end;
 
      Except

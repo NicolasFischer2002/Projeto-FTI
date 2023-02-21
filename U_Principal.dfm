@@ -13,9 +13,10 @@ object F_Principal: TF_Principal
   Font.Style = []
   OldCreateOrder = True
   Position = poScreenCenter
-  OnCreate = FormCreate
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
   OnResize = FormResize
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 18
   object Pnl_GreyTop: TPanel
@@ -2043,7 +2044,6 @@ object F_Principal: TF_Principal
         ParentBackground = False
         ParentFont = False
         TabOrder = 1
-        Visible = False
       end
     end
   end

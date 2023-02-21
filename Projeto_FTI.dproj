@@ -129,6 +129,10 @@
             <Form>F_Credits</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="U_Login.pas">
+            <Form>F_Login</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -535,10 +535,11 @@ begin
         Query            := TADOQuery.Create(Nil);
         Query.Connection := AConnection;
 
-        F_Principal.Pnl_CenterBottomConectado.Visible := True;
+        // F_Principal.Pnl_CenterBottomConectado.Visible := True;
 
      Except
          Application.MessageBox('Falha ao conectar com banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
+         Application.Terminate;
      End;
 end;
 
