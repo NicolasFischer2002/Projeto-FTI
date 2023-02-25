@@ -679,7 +679,6 @@ begin
                     Pnl_CenterBottomConectado.Visible := False;
                     // F_Login.Close;
                end;
-
          end;
 
      Except

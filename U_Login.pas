@@ -15,17 +15,22 @@ type
     Lbl_Login: TLabel;
     Lbl_User: TLabel;
     Lbl_Password: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    Edt_NickName: TEdit;
+    Edt_PassWord: TEdit;
     Pnl_Enter: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
+    Lbl_ForgotPassword: TLabel;
+    Lbl_CreateAccount: TLabel;
+    Pnl_UserPassWordIncorrect: TPanel;
+    Timer: TTimer;
     procedure Pnl_EnterMouseEnter(Sender: TObject);
     procedure Pnl_EnterMouseLeave(Sender: TObject);
     procedure Pnl_EnterClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
   private
     { Private declarations }
+    TimeTimer : Integer;
+
   public
     { Public declarations }
   end;
@@ -42,12 +47,17 @@ uses U_Functions, U_Principal;
 
 
 
+
+
+
+
 // ============================== FormShow ================================== //
 
 procedure TF_Login.FormShow(Sender: TObject);
 begin
      Try
         Pnl_Enter.SetFocus;
+        TimeTimer := 0;
 
      Finally
 
@@ -61,10 +71,23 @@ end;
 // ============================== Enter Click =============================== //
 
 procedure TF_Login.Pnl_EnterClick(Sender: TObject);
+Var
+   NickName : String;
+   PassWord : String;
 begin
      Try
-        F_Principal := TF_Principal.Create(Self);
-        F_Principal.Show;
+        NickName := Edt_NickName.Text;
+        PassWord := Edt_PassWord.Text;
+
+        if (NickName = 'GodModeOn') and (PassWord = 'GodModeOn') then
+         begin
+              F_Principal := TF_Principal.Create(Self);
+              F_Principal.Show;
+         end
+        else
+         begin
+              Pnl_UserPassWordIncorrect.Visible := True;
+         end;
 
      Finally
 
@@ -104,5 +127,25 @@ begin
 end;
 
 // ========================================================================== //
+
+
+// =============================== Timer ==================================== //
+
+procedure TF_Login.TimerTimer(Sender: TObject);
+begin
+     if Pnl_UserPassWordIncorrect.Visible = True then
+      begin
+           TimeTimer := TimeTimer + 1000;
+           if TimeTimer >= 3000 then
+            begin
+                 Pnl_UserPassWordIncorrect.Visible := False;
+                 TimeTimer := 0;
+            end;
+      end;
+end;
+
+// ========================================================================== //
+
+
 
 end.

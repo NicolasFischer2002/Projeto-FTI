@@ -2882,7 +2882,7 @@ object F_Login: TF_Login
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label1: TLabel
+      object Lbl_ForgotPassword: TLabel
         Left = 157
         Top = 219
         Width = 140
@@ -2896,7 +2896,7 @@ object F_Login: TF_Login
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label2: TLabel
+      object Lbl_CreateAccount: TLabel
         Left = 106
         Top = 273
         Width = 118
@@ -2910,7 +2910,7 @@ object F_Login: TF_Login
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Edit1: TEdit
+      object Edt_NickName: TEdit
         Left = 32
         Top = 90
         Width = 265
@@ -2926,10 +2926,10 @@ object F_Login: TF_Login
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 2
+        TabOrder = 1
         TextHint = ' Digite seu NickName'
       end
-      object Edit2: TEdit
+      object Edt_PassWord: TEdit
         Left = 32
         Top = 159
         Width = 265
@@ -2944,8 +2944,9 @@ object F_Login: TF_Login
         ParentCtl3D = False
         ParentFont = False
         ParentShowHint = False
+        PasswordChar = '*'
         ShowHint = True
-        TabOrder = 1
+        TabOrder = 2
         TextHint = ' Digite sua senha'
       end
       object Pnl_Enter: TPanel
@@ -2971,5 +2972,28 @@ object F_Login: TF_Login
         OnMouseLeave = Pnl_EnterMouseLeave
       end
     end
+    object Pnl_UserPassWordIncorrect: TPanel
+      Left = 0
+      Top = 559
+      Width = 850
+      Height = 41
+      BevelOuter = bvNone
+      Caption = 'Usu'#225'rio ou senha incorretos!'
+      Color = clRed
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      Visible = False
+    end
+  end
+  object Timer: TTimer
+    OnTimer = TimerTimer
+    Left = 800
+    Top = 504
   end
 end

@@ -66,16 +66,110 @@ function SaleWithProfit_Public(AmountPaid, Quantity, Fees, Profit : String ) : S
 function Return_Public(SaleWithProfit, Quantity, AmountPaid : String) : String;
 
 
+function AsciiToInt_Public(Caracter : Char): Integer;
+Function Criptografa_Public(Texto : String; Chave : Integer) : String;
+Function DesCriptografa_Public(Texto : String; Chave : Integer) : String;
 
 
 implementation
 
 
-Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMessageUpdate;
+Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMessageUpdate,U_Login;
 
 
 
 
+
+// ========================= para usar mais tarde =========================== //
+
+
+                  // Exemplo de uso
+//procedure TF_Login.Pnl_EnterClick(Sender: TObject);
+//Var
+//   NickName : String;
+//   PassWord : String;
+//
+//   vText : String;
+//begin
+//     Try
+//        NickName := Edt_NickName.Text;
+//        PassWord := Edt_PassWord.Text;
+//
+//        ShowMessage(Criptografa_Public('showdelphi.com.br', 100));
+//
+//
+//        vText := (Criptografa_Public('showdelphi.com.br', 100));
+//        ShowMessage(DesCriptografa_Public(vText, 100));
+//
+//        // F_Principal := TF_Principal.Create(Self);
+//        // F_Principal.Show;
+//
+//     Finally
+//
+//     End;
+//end;
+
+
+
+function AsciiToInt_Public(Caracter: Char): Integer;
+Var
+   I : Integer;
+begin
+     I := 32;
+     while I < 255 do
+      begin
+           if Chr(I) = Caracter then
+             Break;
+           I := I + 1;
+      end;
+      Result := I;
+end;
+
+
+
+function Criptografa_Public(texto:string;chave:integer):String;
+Var
+   Retorno : String;
+   Cont    : Integer;
+begin
+     if (Trim(Texto) = EmptyStr) or (Chave = 0) then
+      begin
+           Result := Texto;
+      end
+     else
+      begin
+           Retorno := '';
+           for Cont := 1 to Length(Texto) do
+            begin
+                 Retorno := Retorno + Chr(asciitoint_Public(Texto[Cont]) + Chave);
+            end;
+           Result := Retorno;
+      end;
+end;
+
+
+
+Function DesCriptografa_Public(Texto : String; Chave : Integer) : String;
+var
+   Retorno : String;
+   Cont    : Integer;
+begin
+     if (Trim(Texto) = EmptyStr) or (Chave = 0) then
+      begin
+           Result := Texto;
+      end
+     else
+      begin
+           Retorno := '';
+           for Cont := 1 to Length(Texto) do
+            begin
+                 Retorno := Retorno + Chr(AsciiToInt_Public(Texto[Cont]) - Chave);
+            end;
+           Result := Retorno;
+      end;
+end;
+
+// ========================================================================== //
 
 
 
