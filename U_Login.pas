@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg,
-  Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.StdCtrls, Vcl.Buttons, Data.Win.ADODB;
 
 type
   TF_Login = class(TForm)
@@ -27,6 +27,7 @@ type
     procedure Pnl_EnterClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure Lbl_ForgotPasswordClick(Sender: TObject);
   private
     { Private declarations }
     TimeTimer : Integer;
@@ -68,6 +69,58 @@ end;
 
 
 
+
+procedure TF_Login.Lbl_ForgotPasswordClick(Sender: TObject);
+Var
+   QueryLogin : TADOQuery;
+   AdoLogin   : TADOConnection;
+   NickName   : String;
+   PassWord   : String;
+   Permission : String;
+begin
+     Try
+//        NickName   := 'GodModeOn';
+//        PassWord   := 'PassWord';
+//        Permission := 'Administrador';
+//
+//        NickName   := Criptografa_Public(NickName, 100);
+//        PassWord   := Criptografa_Public(PassWord, 100);
+//        Permission := Criptografa_Public(Permission, 100);
+//
+//        AdoLogin                  := TADOConnection.Create(Nil);
+//        AdoLogin.Connected        := False;
+//        AdoLogin.Provider         := 'Microsoft.Jet.OLEDB.4.0';
+//        AdoLogin.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Investimentos.mdb;Persist Security Info=False';
+//        AdoLogin.LoginPrompt      := False;
+//        AdoLogin.Connected        := True;
+//
+//        QueryLogin            := TADOQuery.Create(Nil);
+//        QueryLogin.Connection := AdoLogin;
+//     
+//        QueryLogin.SQL.Clear;
+//        QueryLogin.SQL.Text := 'INSERT INTO Login (Usuario,Senha,Permissao) VALUES (' + QuotedStr(NickName) + 
+//                           ',' + QuotedStr(PassWord) + ',' + QuotedStr(Permission) + ')';
+//        QueryLogin.ExecSQL;
+//        ShowMessage('OK');
+
+          ShowMessage('Desabilitado por enquanto');
+
+          // Usuario cadastrado   : GodModeOn
+          // Senha cadastrada     : PassWord
+          // Permissao cadastrada : Administrador
+          // Now, realizar for dentro do banco e ir descriptografando as info
+          // e comparando com as digitadas para verificar se existem ou não
+
+          // Dar um clear no banco e inserir novamente essas informações
+     
+     Except
+         // ShowMessage('Erro');
+     End;
+end;
+
+
+
+
 // ============================== Enter Click =============================== //
 
 procedure TF_Login.Pnl_EnterClick(Sender: TObject);
@@ -79,7 +132,7 @@ begin
         NickName := Edt_NickName.Text;
         PassWord := Edt_PassWord.Text;
 
-        if (NickName = 'GodModeOn') and (PassWord = 'GodModeOn') then
+        if (NickName = '') and (PassWord = '') then
          begin
               F_Principal := TF_Principal.Create(Self);
               F_Principal.Show;

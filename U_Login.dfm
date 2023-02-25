@@ -2895,6 +2895,7 @@ object F_Login: TF_Login
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        OnClick = Lbl_ForgotPasswordClick
       end
       object Lbl_CreateAccount: TLabel
         Left = 106
