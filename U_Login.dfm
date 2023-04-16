@@ -1,9 +1,10 @@
 object F_Login: TF_Login
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'Fischer Technologies - Investments  [Beta] - Login'
-  ClientHeight = 600
-  ClientWidth = 850
+  ClientHeight = 610
+  ClientWidth = 860
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,16 +19,16 @@ object F_Login: TF_Login
   object Pnl_Center: TPanel
     Left = 0
     Top = 0
-    Width = 850
-    Height = 600
+    Width = 860
+    Height = 610
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
     object TImage_Wallpaper: TImage
       Left = 0
       Top = 0
-      Width = 850
-      Height = 600
+      Width = 860
+      Height = 610
       Align = alClient
       Picture.Data = {
         0A544A504547496D616765F65D0100FFD8FFE000104A46494600010101004800
@@ -2833,6 +2834,8 @@ object F_Login: TF_Login
         24247FFFD9}
       Stretch = True
       ExplicitTop = 1
+      ExplicitWidth = 850
+      ExplicitHeight = 600
     end
     object Pnl_LoginCenter: TPanel
       Left = 269
@@ -2910,6 +2913,7 @@ object F_Login: TF_Login
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        OnClick = Lbl_CreateAccountClick
       end
       object Edt_NickName: TEdit
         Left = 32
@@ -2949,6 +2953,7 @@ object F_Login: TF_Login
         ShowHint = True
         TabOrder = 2
         TextHint = ' Digite sua senha'
+        OnKeyDown = Edt_PassWordKeyDown
       end
       object Pnl_Enter: TPanel
         Left = 32
@@ -2975,7 +2980,7 @@ object F_Login: TF_Login
     end
     object Pnl_UserPassWordIncorrect: TPanel
       Left = 0
-      Top = 559
+      Top = 570
       Width = 850
       Height = 41
       BevelOuter = bvNone

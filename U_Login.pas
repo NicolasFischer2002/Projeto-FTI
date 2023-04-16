@@ -28,6 +28,9 @@ type
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure Lbl_ForgotPasswordClick(Sender: TObject);
+    procedure Lbl_CreateAccountClick(Sender: TObject);
+    procedure Edt_PassWordKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     TimeTimer : Integer;
@@ -54,6 +57,20 @@ uses U_Functions, U_Principal;
 
 // ============================== FormShow ================================== //
 
+procedure TF_Login.Edt_PassWordKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+   KeyChar: Char;
+begin
+     Try
+        if Key = VK_RETURN then
+         Pnl_Enter.OnClick(Nil);
+
+     Finally
+
+     End;
+end;
+
 procedure TF_Login.FormShow(Sender: TObject);
 begin
      Try
@@ -69,6 +86,12 @@ end;
 
 
 
+// ========================================================================== //
+
+procedure TF_Login.Lbl_CreateAccountClick(Sender: TObject);
+begin
+     ShowMessage('Desabilitado por enquanto');
+end;
 
 procedure TF_Login.Lbl_ForgotPasswordClick(Sender: TObject);
 Var
@@ -118,6 +141,7 @@ begin
      End;
 end;
 
+// ========================================================================== //
 
 
 
@@ -132,7 +156,7 @@ begin
         NickName := Edt_NickName.Text;
         PassWord := Edt_PassWord.Text;
 
-        if (NickName = '') and (PassWord = '') then
+        if (NickName = 'GodModeOn') and (PassWord = 'senha') then
          begin
               F_Principal := TF_Principal.Create(Self);
               F_Principal.Show;
@@ -180,6 +204,7 @@ begin
 end;
 
 // ========================================================================== //
+
 
 
 // =============================== Timer ==================================== //
