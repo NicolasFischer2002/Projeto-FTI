@@ -111,7 +111,7 @@ end;
 
 
 
-// ========================================================================== //
+// ======================= ApplicationTerminate_Public ====================== //
 
 procedure TF_Update.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -128,8 +128,14 @@ end;
 
 procedure TF_Update.FormCreate(Sender: TObject);
 begin
-     UpdateDelete_Public     := 'Update';
+     UpdateDelete_Public := 'Update';
 end;
+
+// ========================================================================== //
+
+
+
+// ========================= StringGrid_UpdateClick ========================= //
 
 procedure TF_Update.StringGrid_UpdateClick(Sender: TObject);
 Var

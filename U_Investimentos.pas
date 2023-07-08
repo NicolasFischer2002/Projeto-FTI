@@ -66,9 +66,6 @@ Uses U_Functions, U_User, U_Principal, U_Update;
 
 
 
-
-
-
 // ============================= Clear EDTs ================================= //
 
 procedure TF_Investimentos.ClearEDTs();
@@ -118,34 +115,32 @@ begin
                    end
              end;
 
-             if not ActiveExists then
-              begin
-                   Ativo      := Edt_Ativo.Text;
-                   ValorPago  := Edt_ValorPago.Text;
-                   Quantidade := Edt_Quantidade.Text;
-                   Taxas      := Edt_Taxas.Text;
-                   Lucro      := Edt_Lucro.Text;
+           if not ActiveExists then
+            begin
+                 Ativo      := Edt_Ativo.Text;
+                 ValorPago  := Edt_ValorPago.Text;
+                 Quantidade := Edt_Quantidade.Text;
+                 Taxas      := Edt_Taxas.Text;
+                 Lucro      := Edt_Lucro.Text;
 
-                   ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
+                 ValorInvestido := InvestedAmount_Public(ValorPago, Quantidade, Taxas);
 
-                   VendaComLucro  := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
+                 VendaComLucro  := SaleWithProfit_Public(ValorPago, Quantidade, Taxas, Lucro);
 
-                   Retorno        := Return_Public(VendaComLucro, Quantidade, ValorPago);
+                 Retorno        := Return_Public(VendaComLucro, Quantidade, ValorPago);
 
-                   Query.SQL.Clear;
-                   Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +
-                                     'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
-                                     ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
-                                     ',' + QuotedStr(ValorInvestido) + ',' + QuotedStr(Lucro) +
-                                     ',' + QuotedStr(VendaComLucro) + ',' + QuotedStr(Retorno) + ') ';
-                   Query.ExecSQL;
+                 Query.SQL.Clear;
+                 Query.SQL.Text := 'INSERT INTO Investimentos (Ativo,Valor_negociado,Quantidade,Taxas,Valor_investido,Lucro,Venda_Com_Lucro,Retorno)' +
+                                   'VALUES (' + QuotedStr(Ativo) + ',' + QuotedStr(ValorPago) +
+                                   ',' + QuotedStr(Quantidade) + ',' + QuotedStr(Taxas) +
+                                   ',' + QuotedStr(ValorInvestido) + ',' + QuotedStr(Lucro) +
+                                   ',' + QuotedStr(VendaComLucro) + ',' + QuotedStr(Retorno) + ') ';
+                 Query.ExecSQL;
 
-                   ShowMessage('Cadastrado com sucesso');
+                 ShowMessage('Cadastrado com sucesso');
 
-                   ReadDataBaseWriteGrid_Public();
-              end;
-
-
+                 ReadDataBaseWriteGrid_Public();
+            end;
 
         Except
             Application.MessageBox('Falha ao cadastrar ativo no banco de dados!','Atenção', mb_Ok+mb_IconExclamation);
@@ -191,7 +186,7 @@ end;
 
 
 
-// ========================================================================== //
+// ========================== Amount paid KeyUp ============================= //
 
 procedure TF_Investimentos.Edt_ValorPagoKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -228,7 +223,7 @@ end;
 
 
 
-// ========================================================================== //
+// ============================ Amount KeyUp ================================ //
 
 procedure TF_Investimentos.Edt_QuantidadeKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -285,6 +280,10 @@ end;
 
 // ========================================================================== //
 
+
+
+// ============================ SearchKeyUp ================================= //
+
 procedure TF_Investimentos.Edt_SearchKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 Var
@@ -304,62 +303,56 @@ Var
    Return         : String;
 
    Key_par : Word;
-
 begin
-     Try
-        Search := Edt_Search.Text;
+     Search := Edt_Search.Text;
 
-        if Search <> '' then
-         begin
-              for line := 1 to StringGrid_Investments.RowCount -1 do
-               for Col := 0 to 1 do
-                begin
-                     Content := StringGrid_Investments.Cells[Col, Line];
-                     if LowerCase(Search) = LowerCase(Content) then
-                      begin
-                           Code           := StringGrid_Investments.Cells[0,Line];
-                           Active         := StringGrid_Investments.Cells[1,Line];
-                           AmountPaid     := StringGrid_Investments.Cells[2,Line];
-                           Quantity       := StringGrid_Investments.Cells[3,Line];
-                           Fees           := StringGrid_Investments.Cells[4,Line];
-                           AmountInvested := StringGrid_Investments.Cells[5,Line];
-                           Profit         := StringGrid_Investments.Cells[6,Line];
-                           SaleWithProfit := StringGrid_Investments.Cells[7,Line];
-                           Return         := StringGrid_Investments.Cells[8,Line];
+     if Search <> '' then
+      begin
+           for line := 1 to StringGrid_Investments.RowCount -1 do
+            for Col := 0 to 1 do
+             begin
+                  Content := StringGrid_Investments.Cells[Col, Line];
+                  if LowerCase(Search) = LowerCase(Content) then
+                   begin
+                        Code           := StringGrid_Investments.Cells[0,Line];
+                        Active         := StringGrid_Investments.Cells[1,Line];
+                        AmountPaid     := StringGrid_Investments.Cells[2,Line];
+                        Quantity       := StringGrid_Investments.Cells[3,Line];
+                        Fees           := StringGrid_Investments.Cells[4,Line];
+                        AmountInvested := StringGrid_Investments.Cells[5,Line];
+                        Profit         := StringGrid_Investments.Cells[6,Line];
+                        SaleWithProfit := StringGrid_Investments.Cells[7,Line];
+                        Return         := StringGrid_Investments.Cells[8,Line];
 
-                           ClearGridInvestments_Public();
-                           StringGrid_Investments.RowCount := 2;
+                        ClearGridInvestments_Public();
+                        StringGrid_Investments.RowCount := 2;
 
-                           StringGrid_Investments.Cells[0,1] := Code;
-                           StringGrid_Investments.Cells[1,1] := Active;
-                           StringGrid_Investments.Cells[2,1] := AmountPaid;
-                           StringGrid_Investments.Cells[3,1] := Quantity;
-                           StringGrid_Investments.Cells[4,1] := Fees;
-                           StringGrid_Investments.Cells[5,1] := AmountInvested;
-                           StringGrid_Investments.Cells[6,1] := Profit;
-                           StringGrid_Investments.Cells[7,1] := SaleWithProfit;
-                           StringGrid_Investments.Cells[8,1] := Return;
+                        StringGrid_Investments.Cells[0,1] := Code;
+                        StringGrid_Investments.Cells[1,1] := Active;
+                        StringGrid_Investments.Cells[2,1] := AmountPaid;
+                        StringGrid_Investments.Cells[3,1] := Quantity;
+                        StringGrid_Investments.Cells[4,1] := Fees;
+                        StringGrid_Investments.Cells[5,1] := AmountInvested;
+                        StringGrid_Investments.Cells[6,1] := Profit;
+                        StringGrid_Investments.Cells[7,1] := SaleWithProfit;
+                        StringGrid_Investments.Cells[8,1] := Return;
 
-                           Break;
-                      end;
-                end;
-         end;
-        if Search = '' then
-         begin
-              ClearGridInvestments_Public();
-              FeedTheGridInvestments_Public();
-         end;
-
-     Finally
-
-     End;
+                        Break;
+                   end;
+             end;
+      end;
+     if Search = '' then
+      begin
+           ClearGridInvestments_Public();
+           FeedTheGridInvestments_Public();
+      end;
 end;
 
 // ========================================================================== //
 
 
 
-// ========================================================================== //
+// ============================= Taxas KeyUp ================================ //
 
 procedure TF_Investimentos.Edt_TaxasKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -396,7 +389,7 @@ end;
 
 
 
-// ========================================================================== //
+// ============================ Profit KeyUp ================================ //
 
 procedure TF_Investimentos.Edt_LucroKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -437,10 +430,10 @@ end;
 
 procedure TF_Investimentos.FormResize(Sender: TObject);
 begin
-     Lbl_Search.Left := Trunc(F_Investimentos.Width - 355);
+     Lbl_Search.Left := Trunc(F_Investimentos.Width - 390);
 
      Edt_Search.Width  := Trunc(F_Investimentos.Width / 4);
-     Edt_Search.Left   := Trunc(F_Investimentos.Width - 380);
+     Edt_Search.Left   := Trunc(F_Investimentos.Width - 390);
 end;
 
 // ========================================================================== //

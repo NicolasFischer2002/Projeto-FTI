@@ -799,7 +799,6 @@ object F_Principal: TF_Principal
           CD3EFC90B7D977FD246DC6B207CB5A8873E25692710E2663DE9064CC8C4D56DD
           589AB09C427194EF26FF0FD1A6A0EADF91A75D0000000049454E44AE426082}
         Stretch = True
-        OnClick = TImage_DashBoardClick
         OnMouseEnter = TImage_DashBoardMouseEnter
         OnMouseLeave = TImage_DashBoardMouseLeave
       end

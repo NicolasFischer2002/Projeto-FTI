@@ -95,6 +95,12 @@ begin
      End;
 end;
 
+// ========================================================================== //
+
+
+
+// ========================== Close Form ctrl + w =========================== //
+
 procedure TF_UpdateMessage.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin

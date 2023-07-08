@@ -52,46 +52,45 @@ uses U_Functions, U_Principal;
 
 
 
-
-
-
-// ============================== FormShow ================================== //
+// ========================== Call click Pnl_Enter ========================== //
 
 procedure TF_Login.Edt_PassWordKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 var
    KeyChar: Char;
 begin
-     Try
-        if Key = VK_RETURN then
-         Pnl_Enter.OnClick(Nil);
-
-     Finally
-
-     End;
+     if Key = VK_RETURN then
+      Pnl_Enter.OnClick(Nil);
 end;
+
+// ========================================================================== //
+
+
+
+// ============================== FormShow ================================== //
 
 procedure TF_Login.FormShow(Sender: TObject);
 begin
-     Try
-        Pnl_Enter.SetFocus;
-        TimeTimer := 0;
-
-     Finally
-
-     End;
+     Pnl_Enter.SetFocus;
+     TimeTimer := 0;
 end;
 
 // ========================================================================== //
 
 
 
-// ========================================================================== //
+// ============================ Create Account ============================== //
 
 procedure TF_Login.Lbl_CreateAccountClick(Sender: TObject);
 begin
      ShowMessage('Desabilitado por enquanto');
 end;
+
+// ========================================================================== //
+
+
+
+// ============================ ForgotPassword ============================== //
 
 procedure TF_Login.Lbl_ForgotPasswordClick(Sender: TObject);
 Var
@@ -152,23 +151,18 @@ Var
    NickName : String;
    PassWord : String;
 begin
-     Try
-        NickName := Edt_NickName.Text;
-        PassWord := Edt_PassWord.Text;
+     NickName := Edt_NickName.Text;
+     PassWord := Edt_PassWord.Text;
 
-        if (NickName = 'GodModeOn') and (PassWord = 'senha') then
-         begin
-              F_Principal := TF_Principal.Create(Self);
-              F_Principal.Show;
-         end
-        else
-         begin
-              Pnl_UserPassWordIncorrect.Visible := True;
-         end;
-
-     Finally
-
-     End;
+     if (NickName = 'GodModeOn') and (PassWord = 'senha') then
+      begin
+           F_Principal := TF_Principal.Create(Self);
+           F_Principal.Show;
+      end
+     else
+      begin
+           Pnl_UserPassWordIncorrect.Visible := True;
+      end;
 end;
 
 // ========================================================================== //
@@ -179,12 +173,7 @@ end;
 
 procedure TF_Login.Pnl_EnterMouseEnter(Sender: TObject);
 begin
-     Try
-        Pnl_Enter.Color := $3c3c3c;
-
-     Finally
-
-     End;
+     Pnl_Enter.Color := $3c3c3c;
 end;
 
 // ========================================================================== //
@@ -195,12 +184,7 @@ end;
 
 procedure TF_Login.Pnl_EnterMouseLeave(Sender: TObject);
 begin
-     Try
-        Pnl_Enter.Color := $002D2D2D;
-
-     Finally
-
-     End;
+     Pnl_Enter.Color := $002D2D2D;
 end;
 
 // ========================================================================== //
@@ -223,7 +207,5 @@ begin
 end;
 
 // ========================================================================== //
-
-
 
 end.

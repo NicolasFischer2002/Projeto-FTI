@@ -29,14 +29,19 @@ implementation
 
 {$R *.dfm}
 
+
+// =============================== FormKeyDown ============================== //
+
 procedure TF_Credits.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
      if ((GetKeyState(VK_CONTROL) AND 128)=128) and
         ((GetKeyState(ord('W')) AND 128)=128) then
-        begin
-             Close;
-        end;
+      begin
+           Close;
+      end;
 end;
+
+// ========================================================================== //
 
 end.

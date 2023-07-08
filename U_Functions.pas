@@ -10,12 +10,6 @@ Var
 private,
     { Private declarations }
 
-// Procedures
-
-
-// Functions
-
-
 public,
     { Public declarations }
     ArqIni_Public           : TIniFile;
@@ -109,7 +103,11 @@ Uses U_Principal, U_User, U_Investimentos, U_Update, U_UpdateMessage, U_UpdateMe
 //     End;
 //end;
 
+// ========================================================================== //
 
+
+
+// ========================= Used in cryptography =========================== //
 
 function AsciiToInt_Public(Caracter: Char): Integer;
 Var
@@ -125,7 +123,11 @@ begin
       Result := I;
 end;
 
+// ========================================================================== //
 
+
+
+// =============================== Encrypt ================================== //
 
 function Criptografa_Public(texto:string;chave:integer):String;
 Var
@@ -147,9 +149,13 @@ begin
       end;
 end;
 
+// ========================================================================== //
 
 
-Function DesCriptografa_Public(Texto : String; Chave : Integer) : String;
+
+// ============================== Decrypts ================================== //
+
+Function Descriptografa_Public(Texto : String; Chave : Integer) : String;
 var
    Retorno : String;
    Cont    : Integer;
@@ -200,13 +206,8 @@ function SaleWithProfit_Public(AmountPaid, Quantity, Fees, Profit : String ) : S
 Var
    SaleWithProfit : String;
    InvestedAmount : String;
-
 begin
      Try
-//         SaleWithProfit := FloatToStr((((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees))
-//                               / StrToFloat(Profit)) + (StrToFloat(AmountPaid) * StrToFloat(Quantity))) / StrToFloat(Quantity));
-
-
          InvestedAmount := FloatToStr((StrToFloat(AmountPaid) * StrToFloat(Quantity) + StrToFloat(Fees)));
 
          SaleWithProfit := FloatToStr((StrToFloat(InvestedAmount) * StrToFloat(Profit)) / 100 );
@@ -285,10 +286,7 @@ begin
                           F_Update.StringGrid_Update.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
                           F_Update.StringGrid_Update.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
                           F_Update.StringGrid_Update.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
-                     end;
 
-                    if Query.FieldByName('Ativo').AsString <> '' then
-                     begin
                           Inc(Line_public);
                           F_Update.StringGrid_Update.RowCount := Line_public;
                      end;
@@ -296,6 +294,8 @@ begin
                     Query.Next;
                end;
          end;
+
+        Query.Close;
 
      Except
          Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
@@ -312,35 +312,30 @@ procedure StartTheStringGridUpdate_Public();
 Var
    Str : String;
 begin
-     try
-        Line_public := 1;
+     Line_public := 1;
 
-        F_Update.StringGrid_Update.ColCount := 9;
-        F_Update.StringGrid_Update.RowCount := Line_public;
+     F_Update.StringGrid_Update.ColCount := 9;
+     F_Update.StringGrid_Update.RowCount := Line_public;
 
-        F_Update.StringGrid_Update.Cells[0,0] := 'Código';
-        F_Update.StringGrid_Update.Cells[1,0] := 'Ativo';
-        F_Update.StringGrid_Update.Cells[2,0] := 'Valor';
-        F_Update.StringGrid_Update.Cells[3,0] := 'Quantidade';
-        F_Update.StringGrid_Update.Cells[4,0] := 'Taxas';
-        F_Update.StringGrid_Update.Cells[5,0] := 'Valor investido';
-        F_Update.StringGrid_Update.Cells[6,0] := 'Lucro %';
-        F_Update.StringGrid_Update.Cells[7,0] := 'Venda com lucro';
-        F_Update.StringGrid_Update.Cells[8,0] := 'Retorno';
+     F_Update.StringGrid_Update.Cells[0,0] := 'Código';
+     F_Update.StringGrid_Update.Cells[1,0] := 'Ativo';
+     F_Update.StringGrid_Update.Cells[2,0] := 'Valor';
+     F_Update.StringGrid_Update.Cells[3,0] := 'Quantidade';
+     F_Update.StringGrid_Update.Cells[4,0] := 'Taxas';
+     F_Update.StringGrid_Update.Cells[5,0] := 'Valor investido';
+     F_Update.StringGrid_Update.Cells[6,0] := 'Lucro %';
+     F_Update.StringGrid_Update.Cells[7,0] := 'Venda com lucro';
+     F_Update.StringGrid_Update.Cells[8,0] := 'Retorno';
 
-        F_Update.StringGrid_Update.ColWidths[0] := 70;
-        F_Update.StringGrid_Update.ColWidths[1] := 80;
-        F_Update.StringGrid_Update.ColWidths[2] := 80;
-        F_Update.StringGrid_Update.ColWidths[3] := 100;
-        F_Update.StringGrid_Update.ColWidths[4] := 80;
-        F_Update.StringGrid_Update.ColWidths[5] := 120;
-        F_Update.StringGrid_Update.ColWidths[6] := 80;
-        F_Update.StringGrid_Update.ColWidths[7] := 135;
-        F_Update.StringGrid_Update.ColWidths[8] := 100;
-
-     finally
-
-     end;
+     F_Update.StringGrid_Update.ColWidths[0] := 70;
+     F_Update.StringGrid_Update.ColWidths[1] := 80;
+     F_Update.StringGrid_Update.ColWidths[2] := 80;
+     F_Update.StringGrid_Update.ColWidths[3] := 100;
+     F_Update.StringGrid_Update.ColWidths[4] := 80;
+     F_Update.StringGrid_Update.ColWidths[5] := 120;
+     F_Update.StringGrid_Update.ColWidths[6] := 80;
+     F_Update.StringGrid_Update.ColWidths[7] := 135;
+     F_Update.StringGrid_Update.ColWidths[8] := 100;
 end;
 
 // ========================================================================== //
@@ -409,10 +404,7 @@ begin
                           F_Investimentos.StringGrid_Investments.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
                           F_Investimentos.StringGrid_Investments.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
                           F_Investimentos.StringGrid_Investments.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
-                     end;
 
-                    if Query.FieldByName('Ativo').AsString <> '' then
-                     begin
                           Inc(Line_public);
                           F_Investimentos.StringGrid_Investments.RowCount := Line_public;
                      end;
@@ -420,6 +412,8 @@ begin
                     Query.Next;
                end;
          end;
+
+        Query.Close;
 
      Except
          Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
@@ -436,35 +430,30 @@ procedure StartTheStringGridInvestments_Public();
 Var
    Str : String;
 begin
-     try
-        Line_public := 1;
+     Line_public := 1;
 
-        F_Investimentos.StringGrid_Investments.ColCount := 9;
-        F_Investimentos.StringGrid_Investments.RowCount := Line_public;
+     F_Investimentos.StringGrid_Investments.ColCount := 9;
+     F_Investimentos.StringGrid_Investments.RowCount := Line_public;
 
-        F_Investimentos.StringGrid_Investments.Cells[0,0] := 'Código';
-        F_Investimentos.StringGrid_Investments.Cells[1,0] := 'Ativo';
-        F_Investimentos.StringGrid_Investments.Cells[2,0] := 'Valor';
-        F_Investimentos.StringGrid_Investments.Cells[3,0] := 'Quantidade';
-        F_Investimentos.StringGrid_Investments.Cells[4,0] := 'Taxas';
-        F_Investimentos.StringGrid_Investments.Cells[5,0] := 'Valor investido';
-        F_Investimentos.StringGrid_Investments.Cells[6,0] := 'Lucro %';
-        F_Investimentos.StringGrid_Investments.Cells[7,0] := 'Venda com lucro';
-        F_Investimentos.StringGrid_Investments.Cells[8,0] := 'Retorno';
+     F_Investimentos.StringGrid_Investments.Cells[0,0] := 'Código';
+     F_Investimentos.StringGrid_Investments.Cells[1,0] := 'Ativo';
+     F_Investimentos.StringGrid_Investments.Cells[2,0] := 'Valor';
+     F_Investimentos.StringGrid_Investments.Cells[3,0] := 'Quantidade';
+     F_Investimentos.StringGrid_Investments.Cells[4,0] := 'Taxas';
+     F_Investimentos.StringGrid_Investments.Cells[5,0] := 'Valor investido';
+     F_Investimentos.StringGrid_Investments.Cells[6,0] := 'Lucro %';
+     F_Investimentos.StringGrid_Investments.Cells[7,0] := 'Venda com lucro';
+     F_Investimentos.StringGrid_Investments.Cells[8,0] := 'Retorno';
 
-        F_Investimentos.StringGrid_Investments.ColWidths[0] := 70;
-        F_Investimentos.StringGrid_Investments.ColWidths[1] := 80;
-        F_Investimentos.StringGrid_Investments.ColWidths[2] := 80;
-        F_Investimentos.StringGrid_Investments.ColWidths[3] := 100;
-        F_Investimentos.StringGrid_Investments.ColWidths[4] := 80;
-        F_Investimentos.StringGrid_Investments.ColWidths[5] := 120;
-        F_Investimentos.StringGrid_Investments.ColWidths[6] := 80;
-        F_Investimentos.StringGrid_Investments.ColWidths[7] := 135;
-        F_Investimentos.StringGrid_Investments.ColWidths[8] := 100;
-
-     finally
-
-     end;
+     F_Investimentos.StringGrid_Investments.ColWidths[0] := 70;
+     F_Investimentos.StringGrid_Investments.ColWidths[1] := 80;
+     F_Investimentos.StringGrid_Investments.ColWidths[2] := 80;
+     F_Investimentos.StringGrid_Investments.ColWidths[3] := 100;
+     F_Investimentos.StringGrid_Investments.ColWidths[4] := 80;
+     F_Investimentos.StringGrid_Investments.ColWidths[5] := 120;
+     F_Investimentos.StringGrid_Investments.ColWidths[6] := 80;
+     F_Investimentos.StringGrid_Investments.ColWidths[7] := 135;
+     F_Investimentos.StringGrid_Investments.ColWidths[8] := 100;
 end;
 
 // ========================================================================== //
@@ -495,7 +484,7 @@ end;
 
 procedure ReadDataBaseWriteGrid_public();
 Var
-   Str  : String;
+   Str : String;
 begin
      Try
         ClearGridInvestments_Public();
@@ -535,17 +524,16 @@ begin
                           F_Investimentos.StringGrid_Investments.Cells[6,Line_public] := PegaColpipeline_Public(Str,6) + '%';
                           F_Investimentos.StringGrid_Investments.Cells[7,Line_public] := PegaColpipeline_Public(Str,7);
                           F_Investimentos.StringGrid_Investments.Cells[8,Line_public] := PegaColpipeline_Public(Str,8);
-                     end;
 
-                    if Query.FieldByName('Ativo').AsString <> '' then
-                    begin
                          Inc(Line_public);
                          F_Investimentos.StringGrid_Investments.RowCount := Line_public;
-                    end;
+                     end;
 
                     Query.Next;
                end;
          end;
+
+        Query.Close;
 
      Except
            Application.MessageBox('Falha ao ler Ativos do banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);
@@ -628,8 +616,6 @@ begin
 
         Query            := TADOQuery.Create(Nil);
         Query.Connection := AConnection;
-
-        // F_Principal.Pnl_CenterBottomConectado.Visible := True;
 
      Except
          Application.MessageBox('Falha ao conectar com banco de dados', 'Atenção!', mb_Ok+mb_IconExclamation);

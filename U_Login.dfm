@@ -2981,7 +2981,7 @@ object F_Login: TF_Login
     object Pnl_UserPassWordIncorrect: TPanel
       Left = 0
       Top = 570
-      Width = 850
+      Width = 860
       Height = 41
       BevelOuter = bvNone
       Caption = 'Usu'#225'rio ou senha incorretos!'

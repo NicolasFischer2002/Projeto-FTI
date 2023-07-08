@@ -64,7 +64,6 @@ type
     procedure TImage_InvestimentosClick(Sender: TObject);
     procedure Pnl_DashboardClick(Sender: TObject);
     procedure Lbl_DashBoardClick(Sender: TObject);
-    procedure TImage_DashBoardClick(Sender: TObject);
     procedure Pnl_AtualizarClick(Sender: TObject);
     procedure Lbl_AtualizarClick(Sender: TObject);
     procedure TImage_AtualizarClick(Sender: TObject);
@@ -101,7 +100,7 @@ implementation
 uses U_Functions, U_User, U_Investimentos, U_Update, U_Credits, U_Login;
 
 
-// ====================== OnCreate do TF_Principal ========================== //
+// ====================== FormShow of TF_Principal ========================== //
 
 procedure TF_Principal.FormShow(Sender: TObject);
 var
@@ -116,99 +115,100 @@ var
 
    LengthFullDate : Integer;
 begin
-     MenuCollapsed := False;
-     FormUserAtivo := False;
-
-     LongDayNames[1] := 'Domingo';
-     LongDayNames[2] := 'Segunda-Feira';
-     LongDayNames[3] := 'Terça-Feira';
-     LongDayNames[4] := 'Quarta-Feira';
-     LongDayNames[5] := 'Quinta-Feira';
-     LongDayNames[6] := 'Sexta-Feira';
-     LongDayNames[7] := 'Sábado';
-
-     MyDateStr := DateToStr(Date());
-     Day       := Copy(MyDateStr,0,2);
-     Month     := Copy(MyDateStr,4,2);
-     Year      := Copy(MyDateStr,7,9);
-
-     myDate     := EncodeDate(StrToInt(Year),StrToInt(Month),StrToInt(Day));
-     DayWeekStr := LongDayNames[DayOfWeek(myDate)];
-
-     Data := Date();
-
-     MonthInt := StrToInt(formatdatetime(' mm',Data));
-
-     case MonthInt of
-          1  : MonthStr := 'Janeiro';
-          2  : MonthStr := 'Fevereiro';
-          3  : MonthStr := 'Março';
-          4  : MonthStr := 'Abril';
-          5  : MonthStr := 'Maio';
-          6  : MonthStr := 'Junho';
-          7  : MonthStr := 'Julho';
-          8  : MonthStr := 'Agosto';
-          9  : MonthStr := 'Setembro';
-          10 : MonthStr := 'Outubro';
-          11 : MonthStr := 'Novembro';
-          12 : MonthStr := 'Dezembro';
-     end;
-
-     Lbl_FullDate.Caption := ('');
-     Lbl_FullDate.Caption := (DayWeekStr + ', ' + MonthStr + formatdatetime(' dd',data) +
-                                 ',' + FormatDateTime(' yyyy', Data));
-
-
-     // Position the Lbl dynamically according to the text size of the dates
-     // 16.33333333 is the size each character occupies
-     // (maximum label width / number of characters occupied = 16.3333...)
-     // Lbl_FullDate.Caption := 'Terça-feira,Dezembro 19, 2023';
-     // Lbl_FullDate.Caption := 'Quinta-feira, Novembro 19, 2023';
-
-     LengthFullDate := Length(Lbl_FullDate.Caption);
-
-     if LengthFullDate < 30 then
-      begin
-           Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
-           Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) - 6);
-      end
-     else
-      begin
-           Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
-           Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 2);
-      end;
-
      Try
-        Try
-           if FileExists(ExtractFilePath(Application.ExeName) + 'ArqIni.ini') then
-            begin
-                 ArqIni_Public := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
-                 Lbl_BemVindo.Caption := ('Bem vindo, ' + ArqIni_Public.ReadString('NickName', 'Username', 'Erro ao ler o valor'));
-            end
-           else
-            begin
-                 Lbl_BemVindo.Caption := ('Bem vindo, Amigo');
-            end;
+        MenuCollapsed := False;
+        FormUserAtivo := False;
 
-        Except
-         on E: Exception do
-          begin
-               ShowMessage('Erro na manipulação de File Ini: ' + E.Message );
-               Close;
-          end;
+        LongDayNames[1] := 'Domingo';
+        LongDayNames[2] := 'Segunda-Feira';
+        LongDayNames[3] := 'Terça-Feira';
+        LongDayNames[4] := 'Quarta-Feira';
+        LongDayNames[5] := 'Quinta-Feira';
+        LongDayNames[6] := 'Sexta-Feira';
+        LongDayNames[7] := 'Sábado';
 
+        MyDateStr := DateToStr(Date());
+        Day       := Copy(MyDateStr,0,2);
+        Month     := Copy(MyDateStr,4,2);
+        Year      := Copy(MyDateStr,7,9);
+
+        myDate     := EncodeDate(StrToInt(Year),StrToInt(Month),StrToInt(Day));
+        DayWeekStr := LongDayNames[DayOfWeek(myDate)];
+
+        Data := Date();
+
+        MonthInt := StrToInt(formatdatetime(' mm',Data));
+
+        case MonthInt of
+             1  : MonthStr := 'Janeiro';
+             2  : MonthStr := 'Fevereiro';
+             3  : MonthStr := 'Março';
+             4  : MonthStr := 'Abril';
+             5  : MonthStr := 'Maio';
+             6  : MonthStr := 'Junho';
+             7  : MonthStr := 'Julho';
+             8  : MonthStr := 'Agosto';
+             9  : MonthStr := 'Setembro';
+             10 : MonthStr := 'Outubro';
+             11 : MonthStr := 'Novembro';
+             12 : MonthStr := 'Dezembro';
         end;
 
+        Lbl_FullDate.Caption := ('');
+        Lbl_FullDate.Caption := (DayWeekStr + ', ' + MonthStr + formatdatetime(' dd',data) +
+                                    ',' + FormatDateTime(' yyyy', Data));
+
+        // Position the Lbl dynamically according to the text size of the dates
+        // 16.33333333 is the size each character occupies
+        // (maximum label width / number of characters occupied = 16.3333...)
+        // Lbl_FullDate.Caption := 'Terça-feira,Dezembro 19, 2023';
+        // Lbl_FullDate.Caption := 'Quinta-feira, Novembro 19, 2023';
+
+        LengthFullDate := Length(Lbl_FullDate.Caption);
+
+        if LengthFullDate < 30 then
+         begin
+              Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
+              Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) - 6);
+         end
+        else
+         begin
+              Lbl_FullDate.Width := Trunc((Length(Lbl_FullDate.Caption) * 16.9));
+              Lbl_FullDate.Left  := Trunc((Pnl_Center.Width / 2) - (Lbl_FullDate.Width / 2) + 2);
+         end;
+
+        Try
+           Try
+              if FileExists(ExtractFilePath(Application.ExeName) + 'ArqIni.ini') then
+               begin
+                    ArqIni_Public := TIniFile.Create(ExtractFilePath(Application. ExeName) + '\ArqIni.ini');
+                    Lbl_BemVindo.Caption := ('Bem vindo, ' + ArqIni_Public.ReadString('NickName', 'Username', 'Erro ao ler o valor'));
+               end
+              else
+               begin
+                    Lbl_BemVindo.Caption := ('Bem vindo, Amigo');
+               end;
+
+           Except
+            on E: Exception do
+             begin
+                  ShowMessage('Erro na manipulação de File Ini: ' + E.Message );
+                  Close;
+             end;
+
+           end;
+
+        Finally
+            FreeAndNil(ArqIni_Public);
+        End;
+
      Finally
-         FreeAndNil(ArqIni_Public);
+        ConnectDatabase_Public();
+
+        Line_public := 1;
+
+        F_Login.Visible := False;
      End;
-
-     ConnectDatabase_Public();
-
-     Line_public := 1;
-
-     F_Login.Visible := False;
-
 end;
 
 // ========================================================================== //
@@ -219,12 +219,7 @@ end;
 
 procedure TF_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-     Try
-        F_Login.Close;
-
-     Finally
-
-     End;
+     F_Login.Close;
 end;
 
 // ========================================================================== //
@@ -243,7 +238,7 @@ end;
 
 
 
-// ======================= ScreenMaximizade/Minimized ======================= //
+// ============================ ScreenMaximizade ============================ //
 
 procedure TF_Principal.ScreenMaximized();
 begin
@@ -264,6 +259,12 @@ begin
      TImage_Atualizar.Left     := 55;
      Lbl_Atualizar.Left        := 155;
 end;
+
+// ========================================================================== //
+
+
+
+// =========================== ScreenMinimized ============================== //
 
 procedure TF_Principal.ScreenMinimized;
 begin
@@ -289,7 +290,7 @@ end;
 
 
 
-// ======================= Screen Maximized/Minimized ======================= //
+// =============================== FormResize =============================== //
 
 procedure TF_Principal.FormResize(Sender: TObject);
 begin
@@ -427,7 +428,6 @@ begin
            ClearGridUpdate_Public();
            StartTheStringGridUpdate_Public();
            FeedTheGridUpdate_Public();
-
       end
      else
       begin
@@ -447,11 +447,6 @@ end;
 procedure TF_Principal.Lbl_DashBoardClick(Sender: TObject);
 begin
      Pnl_DashboardClick(Sender);
-end;
-
-procedure TF_Principal.TImage_DashBoardClick(Sender: TObject);
-begin
-      Pnl_DashboardClick(Sender);
 end;
 
 // ========================================================================== //

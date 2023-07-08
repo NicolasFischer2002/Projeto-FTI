@@ -311,40 +311,41 @@ procedure TF_UpdateMessageUpdate.FormCreate(Sender: TObject);
 Var
    Profit : String;
 begin
-     Try
-        EdtActiveCompleted     := True;
-        EdtAmountPaidCompleted := True;
-        EdtQuantityCompleted   := True;
-        EdtFeesCompleted       := True;
-        EdtProfitCompleted     := True;
+     EdtActiveCompleted     := True;
+     EdtAmountPaidCompleted := True;
+     EdtQuantityCompleted   := True;
+     EdtFeesCompleted       := True;
+     EdtProfitCompleted     := True;
 
-        Btn_Update.Caption := 'Atualizar ' + F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public];
+     Btn_Update.Caption := 'Atualizar ' + F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public];
 
-        Lbl_UpdateActive.Left    := 115;
-        Lbl_UpdateActive.Caption := 'Atualizar ativo ' + F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public] + ',' + ' código ' + F_Update.StringGrid_Update.Cells[0,LineGridUpdate_Public];
+     Lbl_UpdateActive.Left    := 35;
+     Lbl_UpdateActive.Caption := 'Atualizar ativo ' + F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public] + ',' + ' código ' + F_Update.StringGrid_Update.Cells[0,LineGridUpdate_Public];
 
-        Profit := F_Update.StringGrid_Update.Cells[6,LineGridUpdate_Public];
-        Profit := StringReplace(Profit,'%','',[rfReplaceAll, rfIgnoreCase]);
+     Profit := F_Update.StringGrid_Update.Cells[6,LineGridUpdate_Public];
+     Profit := StringReplace(Profit,'%','',[rfReplaceAll, rfIgnoreCase]);
 
-        Edt_Active.Text     := F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public];
-        Edt_AmountPaid.Text := F_Update.StringGrid_Update.Cells[2,LineGridUpdate_Public];
-        Edt_Quantity.Text   := F_Update.StringGrid_Update.Cells[3,LineGridUpdate_Public];
-        Edt_Fees.Text       := F_Update.StringGrid_Update.Cells[4,LineGridUpdate_Public];
-        Edt_Profit.Text     := Profit;
-
-     Except
-
-     End;
+     Edt_Active.Text     := F_Update.StringGrid_Update.Cells[1,LineGridUpdate_Public];
+     Edt_AmountPaid.Text := F_Update.StringGrid_Update.Cells[2,LineGridUpdate_Public];
+     Edt_Quantity.Text   := F_Update.StringGrid_Update.Cells[3,LineGridUpdate_Public];
+     Edt_Fees.Text       := F_Update.StringGrid_Update.Cells[4,LineGridUpdate_Public];
+     Edt_Profit.Text     := Profit;
 end;
+
+// ========================================================================== //
+
+
+
+// ============================ Form KeyDown ================================ //
 
 procedure TF_UpdateMessageUpdate.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
      if ((GetKeyState(VK_CONTROL) AND 128)=128) and
         ((GetKeyState(ord('W')) AND 128)=128) then
-        begin
-             Close;
-        end;
+      begin
+           Close;
+      end;
      if ((GetKeyState(VK_CONTROL) AND 128)=128) and (key = VK_DELETE) then
       begin
            (Sender as Tedit).Clear;
@@ -352,7 +353,5 @@ begin
 end;
 
 // ========================================================================== //
-
-
 
 end.
